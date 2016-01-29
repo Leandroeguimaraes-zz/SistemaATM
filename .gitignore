@@ -1,0 +1,5 @@
+build/
+.git/
+dist/
+nbproject/private
+nbproject/project.properties
