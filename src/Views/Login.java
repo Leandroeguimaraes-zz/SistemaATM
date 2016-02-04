@@ -188,7 +188,7 @@ public class Login extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(80, 30, 190, 40);
 
-        jLabel2.setText("*a senha é 123456*");
+        jLabel2.setText("*a senha certa é 123456*");
         getContentPane().add(jLabel2);
         jLabel2.setBounds(430, 110, 120, 14);
 
