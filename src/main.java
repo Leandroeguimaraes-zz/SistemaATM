@@ -15,6 +15,8 @@ public class main {
     public static void main(String[] args) {
         BoasVindas tela=new BoasVindas();
         tela.setVisible(true);
+        System.out.println("GIT VIADO");
+        System.out.println("lalal");
     }
     
 }
