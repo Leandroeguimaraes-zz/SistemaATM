@@ -10,6 +10,10 @@ package Modelo;
  * @author VM
  */
 public class Conta {
+
+    public static final int TAMANHO_CODIGO_AGENCIA = 5;
+    public static final int TAMANHO_CODIGO_CONTA = 8;
+    private String codigoConta;
     private String titular;
     private String agencia;
     private String conta;
@@ -26,26 +30,33 @@ public class Conta {
         this.setSenha(senha);
         this.setStatus(status);
         this.setSaldo(saldo);
+        this.makeCodigoConta();
     }
 
-    
+    /**
+     * cria o codigo da conta apartir do numero da agencia e da conta sem os
+     * digitos verificadores de ambos.
+     */
+    private void makeCodigoConta() {
+        this.codigoConta = this.agencia.substring(0, this.agencia.length() - 2) + this.conta.substring(0, this.conta.length() - 2);
+    }
 
     public void setTitular(String titular) throws TitularInvalidoException {
-        if(titular.isEmpty()){
+        if (titular.isEmpty()) {
             throw new TitularInvalidoException();
         }
         this.titular = titular;
     }
 
     public void setAgencia(String agencia) throws AgenciaInvalidoException {
-        if(agencia.isEmpty()){
+        if (agencia.isEmpty() || agencia.length() > TAMANHO_CODIGO_AGENCIA) {
             throw new AgenciaInvalidoException();
         }
         this.agencia = agencia;
     }
 
     public void setConta(String conta) throws ContaInvalidoException {
-        if(conta.isEmpty()){
+        if (conta.isEmpty() || conta.length() > TAMANHO_CODIGO_CONTA) {
             throw new ContaInvalidoException();
         }
         this.conta = conta;
@@ -56,9 +67,12 @@ public class Conta {
     }
 
     public void setSenha(String senha) throws SenhaInvalidaException {
-        try{
+        try {
             Long.parseLong(senha);
-        }catch(NumberFormatException ex){
+            if (senha.length() != 6) {
+                throw new SenhaInvalidaException();
+            }
+        } catch (NumberFormatException ex) {
             throw new SenhaInvalidaException();
         }
         this.senha = senha;
@@ -99,7 +113,4 @@ public class Conta {
     public double getSaldo() {
         return saldo;
     }
-    
-    
-    
 }
