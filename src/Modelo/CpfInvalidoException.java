@@ -9,13 +9,15 @@ package Modelo;
  *
  * @author VM
  */
-public class ContaInvalidoException extends Exception {
+public class CpfInvalidoException extends Exception {
 
-    public ContaInvalidoException() {
+    public CpfInvalidoException() {
     }
 
-    public ContaInvalidoException(String message) {
+    public CpfInvalidoException(String message) {
         super(message);
     }
+    
+    
     
 }

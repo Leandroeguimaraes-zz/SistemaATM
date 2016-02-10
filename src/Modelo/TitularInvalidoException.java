@@ -9,7 +9,7 @@ package Modelo;
  *
  * @author VM
  */
-class TitularInvalidoException extends Exception {
+public class TitularInvalidoException extends Exception {
 
     public TitularInvalidoException() {
     }

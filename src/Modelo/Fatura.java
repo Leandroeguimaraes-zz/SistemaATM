@@ -10,7 +10,9 @@ package Modelo;
  * @author VM
  */
 public class Fatura {
-    private String cliente;
+    private String NomeCliente;
+    private String CPFCliente;
     private String codigoProvedorDeServico;
+    private String DataVencimento;
     
 }

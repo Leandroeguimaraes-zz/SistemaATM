@@ -9,7 +9,7 @@ package Modelo;
  *
  * @author VM
  */
-class SenhaInvalidaException extends Exception {
+public class SenhaInvalidaException extends Exception {
 
     public SenhaInvalidaException() {
     }

@@ -9,7 +9,7 @@ package Modelo;
  *
  * @author VM
  */
-class AgenciaInvalidoException extends Exception {
+public class AgenciaInvalidoException extends Exception {
 
     public AgenciaInvalidoException() {
     }
