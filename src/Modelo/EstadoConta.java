@@ -9,6 +9,6 @@ package Modelo;
  *
  * @author VM
  */
-public enum StatusConta {
+public enum EstadoConta {
     ABERTA, BLOQUEADA;
 }
