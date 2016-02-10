@@ -3,20 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo;
+package Modelo.excecoes;
 
 /**
  *
  * @author VM
  */
-public class TitularInvalidoException extends Exception {
+public class SenhaInvalidaException extends Exception {
 
-    public TitularInvalidoException() {
+    public SenhaInvalidaException() {
     }
 
-    public TitularInvalidoException(String message) {
+    public SenhaInvalidaException(String message) {
         super(message);
     }
-    
     
 }

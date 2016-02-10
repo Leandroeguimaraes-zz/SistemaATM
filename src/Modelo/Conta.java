@@ -5,18 +5,24 @@
  */
 package Modelo;
 
+import Modelo.excecoes.DataInvalidaException;
+import Modelo.excecoes.HoraInvalidaException;
+import Modelo.excecoes.SenhaInvalidaException;
+import Modelo.excecoes.ValorInvalidoException;
+import Modelo.excecoes.ContaInvalidoException;
+import Modelo.excecoes.TitularInvalidoException;
+import Modelo.excecoes.CpfInvalidoException;
+import Modelo.excecoes.AgenciaInvalidoException;
+
 /**
  *
  * @author VM
  */
-public class Conta {
+public final class Conta {
 
     public static final int TAMANHO_CODIGO_AGENCIA = 5;
     public static final int TAMANHO_CODIGO_CONTA = 8;
-    public static final int TAMANHO_CPF = 11;
 
-    private String titular;
-    private String CPF;
     private String agencia;
     private String conta;
     private TipoConta tipoConta;
@@ -26,27 +32,19 @@ public class Conta {
 
     /**
      *
-     * @param titular (nome do titular)
-     * @param cpf (cpf do titular)
      * @param agencia (numero da agencia)
      * @param conta (numero da conta)
      * @param tipoConta (tipo da conta)
      * @param senha (senha da conta)
      * @param estado (esta da conta)
      * @param saldo (saldo da conta)
-     * @throws Modelo.TitularInvalidoException (nome de titular não aceito pelas
-     * regras de negocio)
-     * @throws Modelo.AgenciaInvalidoException (numero de agencia não aceita
-     * pelas regras de negocio)
-     * @throws Modelo.ContaInvalidoException (numero de conta não aceito pelas
-     * regras de negocio)
-     * @throws Modelo.SenhaInvalidaException (senha não aceita pelas regras de
-     * negocio)
-     * @throws Modelo.CpfInvalidoException (cpf não aceito pela receita federal)
+     * @throws Modelo.excecoes.TitularInvalidoException
+     * @throws Modelo.excecoes.AgenciaInvalidoException
+     * @throws Modelo.excecoes.ContaInvalidoException
+     * @throws Modelo.excecoes.SenhaInvalidaException
+     * @throws Modelo.excecoes.CpfInvalidoException
      */
-    public Conta(String titular, String cpf, String agencia, String conta, TipoConta tipoConta, String senha, EstadoConta estado, double saldo) throws TitularInvalidoException, AgenciaInvalidoException, ContaInvalidoException, SenhaInvalidaException, CpfInvalidoException {
-        this.setTitular(titular);
-        this.setCPF(cpf);
+    public Conta(String agencia, String conta, TipoConta tipoConta, String senha, EstadoConta estado, double saldo) throws TitularInvalidoException, AgenciaInvalidoException, ContaInvalidoException, SenhaInvalidaException, CpfInvalidoException {
         this.setAgencia(agencia);
         this.setConta(conta);
         this.setTipoConta(tipoConta);
@@ -56,110 +54,38 @@ public class Conta {
     }
 
     /**
-     * insere uma quantia ao saldo da conta e retorna o saldo atual apos ser 
-     * efetuado o deposito.
+     * insere uma quantia ao saldo da conta.
+     *
      * @param valor (valor a ser inserido)
-     * @return (saldo atual apos ser efetuado o deposito)
-     * @throws Modelo.ValorInvalidoException (valor invalido pelas regras de negocio)
+     * @throws Modelo.excecoes.ValorInvalidoException
+     * @throws Modelo.excecoes.DataInvalidaException (valor invalido pelas
+     * regras de negocio)
+     * @throws Modelo.excecoes.HoraInvalidaException (hora invalida para o
+     * padrao 24h)
      */
-    public double deposita(double valor) throws ValorInvalidoException {
+    public void deposita(double valor) throws ValorInvalidoException, DataInvalidaException, HoraInvalidaException {
         if (valor < 0) {
             throw new ValorInvalidoException();
         }
         this.saldo += valor;
-        return this.saldo;
     }
 
     /**
-     * retira uma quantia do saldo da conta e retorna o saldo da mesma depois de
-     * efetuado o saque.
+     * retira uma quantia do saldo da conta.
      *
      * @param valor (valor a ser sacado)
-     * @return (saldo atual depois do saque ser efetuado)
-     * @throws Modelo.ValorInvalidoException (valor invalido pelas regras de
-     * negocio)
+     * @throws Modelo.excecoes.ValorInvalidoException (valor invalido pelas
+     * regras de negocio)
+     * @throws Modelo.excecoes.DataInvalidaException (valor invalido pelas
+     * regras de negocio)
+     * @throws Modelo.excecoes.HoraInvalidaException (hora invalida para o
+     * padrao 24h)
      */
-    public double sacar(double valor) throws ValorInvalidoException {
+    public void sacar(double valor) throws ValorInvalidoException, DataInvalidaException, HoraInvalidaException {
         if (valor < 0) {
             throw new ValorInvalidoException();
         }
         this.saldo -= valor;
-        return this.saldo;
-    }
-
-    /**
-     * seta o cpf atraves do algoritmo de validacao.
-     *
-     * @param cpf (cpf d otitular da conta)
-     * @throws Modelo.CpfInvalidoException (cpf invalidado pelo algoritmo da
-     * receita federal)
-     */
-    public void setCPF(String cpf) throws CpfInvalidoException {
-        try {
-            Long.parseLong(cpf);
-        } catch (NumberFormatException ex) {
-            throw new CpfInvalidoException();
-        }
-        if (cpf.length() < TAMANHO_CPF) {
-            throw new CpfInvalidoException();
-        }
-        char digitos[] = cpf.toCharArray();
-        char digitoAnterior = digitos[0];
-        int contador = 0;
-        for (char digitoProximo : digitos) {
-            if (digitoAnterior == digitoProximo) {
-                contador++;
-            } else {
-                break;
-            }
-        }
-        if (contador == 11) {
-            throw new CpfInvalidoException();
-        }
-        int numeros[] = new int[TAMANHO_CPF - 1];
-        contador = 10;
-        int soma = 0;
-        for (int i = 0; i < TAMANHO_CPF - 2; i++) {
-            numeros[i] = Character.getNumericValue(digitos[i]);
-            soma += numeros[i] * contador;
-            contador--;
-        }
-        int resultado = (soma * 10) % 11;
-        if (resultado == 10) {
-            resultado = 0;
-        }
-        if (resultado != Character.getNumericValue(digitos[TAMANHO_CPF - 2])) {
-            throw new CpfInvalidoException();
-        }
-        soma = 0;
-        contador = 11;
-        numeros[TAMANHO_CPF - 2] = Character.getNumericValue(digitos[TAMANHO_CPF - 2]);
-        for (int i = 0; i < TAMANHO_CPF - 1; i++) {
-            soma += numeros[i] * contador;
-            contador--;
-        }
-        resultado = (soma * 10) % 11;
-        if (resultado == 10) {
-            resultado = 0;
-        }
-        if (resultado != Character.getNumericValue(digitos[TAMANHO_CPF - 1])) {
-            throw new CpfInvalidoException();
-        }
-        this.CPF = cpf;
-    }
-
-    /**
-     * seta o nome do titular da conta
-     *
-     * @param titular (nome do titular)
-     * @throws Modelo.TitularInvalidoException (nome do titular invalid opelas
-     * regras de negocio)
-     */
-    public void setTitular(String titular) throws TitularInvalidoException {
-        if (titular.isEmpty()) {
-            throw new TitularInvalidoException();
-        }
-        this.titular = titular;
     }
 
     /**
@@ -238,14 +164,6 @@ public class Conta {
         this.saldo = saldo;
     }
 
-    /**
-     * retorna o nome do titular da conta.
-     *
-     * @return (nome do titular da conta)
-     */
-    public String getTitular() {
-        return titular;
-    }
 
     /**
      * retorna o numero da agencia da conta.
@@ -303,6 +221,6 @@ public class Conta {
 
     @Override
     public String toString() {
-        return "Conta{" + "titular=" + titular + ", CPF=" + CPF + ", agencia=" + agencia + ", conta=" + conta + ", tipoConta=" + tipoConta + ", senha=" + senha + ", estado=" + estado + ", saldo=" + saldo + '}';
+        return "Conta{" + ", agencia=" + agencia + ", conta=" + conta + ", tipoConta=" + tipoConta + ", senha=" + senha + ", estado=" + estado + ", saldo=" + saldo + '}';
     }
-}   
+}

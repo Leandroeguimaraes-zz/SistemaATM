@@ -5,60 +5,62 @@
  */
 package Modelo;
 
+import Modelo.excecoes.DataInvalidaException;
+import Modelo.excecoes.HoraInvalidaException;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 /**
  *
  * @author VM
  */
-public class Extrato {
+public class Extrato implements Formato {
 
-    private final Data dataInicio;
-    private final Data dataFim;
-    private final Map<Data, String> extrato;
+    private static final Map<Data, Set<String>> extrato = new HashMap<>();
 
-    
-    public Extrato(Data dataInicio, Data dataFim) {
-        this.dataInicio = dataInicio;
-        this.dataFim = dataFim;
-        this.extrato = new HashMap<>();
-        this.extrato.put(dataInicio, "");
-        this.extrato.put(dataFim, "");
-    }
+    ;
 
     /**
-     * 
-     * @param data (data em que a transacao foi feita
-     * @param relatorio (transacoes feitas nesta data)
+     *
+     * @param data (data em que a transacao foi feita)
+     * @param comprovantes (transacoes feitas nesta data)
      */
-    public void addRelatorio(Data data, String relatorio) {
-        this.extrato.put(data, relatorio);
+    public static void addComprovantes(Data data, HashSet<String> comprovantes) {
+        extrato.put(data, comprovantes);
+    }
+
+    public static void limpaExtrato() {
+        extrato.clear();
     }
 
     /**
      *
-     * @return (data de inicio do relatorio)
+     * @param dataEmissao
+     * @param nomeTitular
+     * @param cpfTitular
+     * @param numeroConta
+     * @return (um String representando o extrato)
      */
-    public Data getDataInicio() {
-        return dataInicio;
-    }
-
-    /**
-     *
-     * @return (data do final do relatorio)
-     */
-    public Data getDataFim() {
-        return dataFim;
-    }
-
-    /**
-     *
-     * @return (mapa que representa o relatorio onde as chaves são as datas e os
-     * valores são os relatorios das operções financeiras realizadas)
-     */
-    public Map<Data, String> getExtrato() {
-        return extrato;
+    public static String geraExtrato(Data dataEmissao, String nomeTitular, String cpfTitular,
+            String numeroConta) {
+        String resultado = "";
+        String cabecalho = DATA + dataEmissao + TITULAR_NOME + nomeTitular + TITULAR_CPF + cpfTitular + CONTA + numeroConta + "\n";
+        Iterator<Data> iteratorChave = extrato.keySet().iterator();
+        String conteudo = "";
+        Data chavaAtual;
+        while (iteratorChave.hasNext()) {
+            chavaAtual = iteratorChave.next();
+            conteudo += DATA + chavaAtual + "\n";
+            Iterator<String> iteratorConteudo = extrato.get(chavaAtual).iterator();
+            while(iteratorConteudo.hasNext()){
+                conteudo += iteratorConteudo.next()+"\n";
+            }
+        }
+        resultado = cabecalho+conteudo;
+        return resultado;
     }
 
 }

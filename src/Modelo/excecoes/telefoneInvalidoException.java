@@ -3,20 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo;
+package Modelo.excecoes;
 
 /**
  *
  * @author VM
  */
-public class ValorInvalidoException extends Exception {
+public class telefoneInvalidoException extends Exception {
 
-    public ValorInvalidoException() {
+    public telefoneInvalidoException() {
     }
 
-    public ValorInvalidoException(String message) {
+    public telefoneInvalidoException(String message) {
         super(message);
     }
-    
     
 }

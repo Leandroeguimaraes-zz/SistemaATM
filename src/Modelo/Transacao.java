@@ -9,13 +9,6 @@ package Modelo;
  *
  * @author VM
  */
-public class AgenciaInvalidoException extends Exception {
-
-    public AgenciaInvalidoException() {
-    }
-
-    public AgenciaInvalidoException(String message) {
-        super(message);
-    }
-    
+public enum Transacao {
+    SAQUE,DEPOSITO,TRANSFERENCIA,PAGAMENTO,CONPENSACAO_CHEQUE,INVESTIMENTO;
 }

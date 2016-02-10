@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo;
+package Modelo.excecoes;
 
 /**
  *
  * @author VM
  */
-public class ContaInvalidoException extends Exception {
+public class AgenciaInvalidoException extends Exception {
 
-    public ContaInvalidoException() {
+    public AgenciaInvalidoException() {
     }
 
-    public ContaInvalidoException(String message) {
+    public AgenciaInvalidoException(String message) {
         super(message);
     }
     
