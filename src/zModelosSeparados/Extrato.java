@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo;
+package zModelosSeparados;
 
-import Modelo.excecoes.DataInvalidaException;
-import Modelo.excecoes.HoraInvalidaException;
+import zModelosExcecoesSeparados.DataInvalidaException;
+import zModelosExcecoesSeparados.HoraInvalidaException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;

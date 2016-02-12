@@ -3,19 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo.excecoes;
+package zModelosExcecoesSeparados;
 
 /**
  *
  * @author VM
  */
-public class ContaInvalidoException extends Exception {
+public class EnderecoInvalidoException extends Exception {
 
-    public ContaInvalidoException() {
+    public EnderecoInvalidoException() {
     }
 
-    public ContaInvalidoException(String message) {
+    public EnderecoInvalidoException(String message) {
         super(message);
     }
+    
+    
     
 }

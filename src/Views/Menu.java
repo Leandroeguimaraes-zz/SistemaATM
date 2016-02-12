@@ -43,9 +43,7 @@ public class Menu extends javax.swing.JFrame {
         setBackground(new java.awt.Color(0, 255, 102));
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(600, 400));
         setResizable(false);
-        setSize(new java.awt.Dimension(600, 400));
         getContentPane().setLayout(null);
 
         jButton1.setText("DEPÓSITO");

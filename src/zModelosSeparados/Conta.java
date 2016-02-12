@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo;
+package zModelosSeparados;
 
-import Modelo.excecoes.DataInvalidaException;
-import Modelo.excecoes.HoraInvalidaException;
-import Modelo.excecoes.SenhaInvalidaException;
-import Modelo.excecoes.ValorInvalidoException;
-import Modelo.excecoes.ContaInvalidoException;
-import Modelo.excecoes.TitularInvalidoException;
-import Modelo.excecoes.CpfInvalidoException;
-import Modelo.excecoes.AgenciaInvalidoException;
+import zModelosExcecoesSeparados.DataInvalidaException;
+import zModelosExcecoesSeparados.HoraInvalidaException;
+import zModelosExcecoesSeparados.SenhaInvalidaException;
+import zModelosExcecoesSeparados.ValorInvalidoException;
+import zModelosExcecoesSeparados.ContaInvalidoException;
+import zModelosExcecoesSeparados.TitularInvalidoException;
+import zModelosExcecoesSeparados.CpfInvalidoException;
+import zModelosExcecoesSeparados.AgenciaInvalidoException;
 
 /**
  *
@@ -38,11 +38,11 @@ public final class Conta {
      * @param senha (senha da conta)
      * @param estado (esta da conta)
      * @param saldo (saldo da conta)
-     * @throws Modelo.excecoes.TitularInvalidoException
-     * @throws Modelo.excecoes.AgenciaInvalidoException
-     * @throws Modelo.excecoes.ContaInvalidoException
-     * @throws Modelo.excecoes.SenhaInvalidaException
-     * @throws Modelo.excecoes.CpfInvalidoException
+     * @throws zModelosExcecoesSeparados.TitularInvalidoException
+     * @throws zModelosExcecoesSeparados.AgenciaInvalidoException
+     * @throws zModelosExcecoesSeparados.ContaInvalidoException
+     * @throws zModelosExcecoesSeparados.SenhaInvalidaException
+     * @throws zModelosExcecoesSeparados.CpfInvalidoException
      */
     public Conta(String agencia, String conta, TipoConta tipoConta, String senha, EstadoConta estado, double saldo) throws TitularInvalidoException, AgenciaInvalidoException, ContaInvalidoException, SenhaInvalidaException, CpfInvalidoException {
         this.setAgencia(agencia);
@@ -57,10 +57,10 @@ public final class Conta {
      * insere uma quantia ao saldo da conta.
      *
      * @param valor (valor a ser inserido)
-     * @throws Modelo.excecoes.ValorInvalidoException
-     * @throws Modelo.excecoes.DataInvalidaException (valor invalido pelas
+     * @throws zModelosExcecoesSeparados.ValorInvalidoException
+     * @throws zModelosExcecoesSeparados.DataInvalidaException (valor invalido pelas
      * regras de negocio)
-     * @throws Modelo.excecoes.HoraInvalidaException (hora invalida para o
+     * @throws zModelosExcecoesSeparados.HoraInvalidaException (hora invalida para o
      * padrao 24h)
      */
     public void deposita(double valor) throws ValorInvalidoException, DataInvalidaException, HoraInvalidaException {
@@ -74,11 +74,11 @@ public final class Conta {
      * retira uma quantia do saldo da conta.
      *
      * @param valor (valor a ser sacado)
-     * @throws Modelo.excecoes.ValorInvalidoException (valor invalido pelas
+     * @throws zModelosExcecoesSeparados.ValorInvalidoException (valor invalido pelas
      * regras de negocio)
-     * @throws Modelo.excecoes.DataInvalidaException (valor invalido pelas
+     * @throws zModelosExcecoesSeparados.DataInvalidaException (valor invalido pelas
      * regras de negocio)
-     * @throws Modelo.excecoes.HoraInvalidaException (hora invalida para o
+     * @throws zModelosExcecoesSeparados.HoraInvalidaException (hora invalida para o
      * padrao 24h)
      */
     public void sacar(double valor) throws ValorInvalidoException, DataInvalidaException, HoraInvalidaException {

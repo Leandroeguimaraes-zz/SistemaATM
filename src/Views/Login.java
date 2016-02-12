@@ -48,9 +48,7 @@ public class Login extends javax.swing.JFrame {
         setTitle("ATM");
         setBackground(new java.awt.Color(204, 255, 51));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(600, 400));
         setResizable(false);
-        setSize(new java.awt.Dimension(600, 400));
         getContentPane().setLayout(null);
         getContentPane().add(caixaSenha);
         caixaSenha.setBounds(80, 270, 170, 20);

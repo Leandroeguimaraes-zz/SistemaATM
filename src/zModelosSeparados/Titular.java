@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo;
+package zModelosSeparados;
 
-import Modelo.excecoes.EnderecoInvalidoException;
-import Modelo.excecoes.telefoneInvalidoException;
-import Modelo.excecoes.CpfInvalidoException;
-import Modelo.excecoes.TitularInvalidoException;
+import zModelosExcecoesSeparados.EnderecoInvalidoException;
+import zModelosExcecoesSeparados.telefoneInvalidoException;
+import zModelosExcecoesSeparados.CpfInvalidoException;
+import zModelosExcecoesSeparados.TitularInvalidoException;
 
 /**
  *
@@ -43,7 +43,7 @@ public final class Titular {
      * seta o cpf atraves do algoritmo de validacao.
      *
      * @param cpf (cpf do titular da conta)
-     * @throws Modelo.excecoes.CpfInvalidoException
+     * @throws zModelosExcecoesSeparados.CpfInvalidoException
      */
     public void setCPF(String cpf) throws CpfInvalidoException {
         try {
@@ -103,7 +103,7 @@ public final class Titular {
      * seta o nome do titular da conta
      *
      * @param nome (nome do titular)
-     * @throws Modelo.excecoes.TitularInvalidoException
+     * @throws zModelosExcecoesSeparados.TitularInvalidoException
      */
     public void setNome(String nome) throws TitularInvalidoException {
         if (nome.isEmpty()) {

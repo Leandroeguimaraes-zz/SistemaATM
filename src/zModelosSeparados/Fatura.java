@@ -3,19 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo.excecoes;
+package zModelosSeparados;
 
 /**
  *
  * @author VM
  */
-public class SenhaInvalidaException extends Exception {
-
-    public SenhaInvalidaException() {
-    }
-
-    public SenhaInvalidaException(String message) {
-        super(message);
-    }
+public class Fatura {
+    private String NomeCliente;
+    private String CPFCliente;
+    private String codigoProvedorDeServico;
+    private String DataVencimento;
     
 }

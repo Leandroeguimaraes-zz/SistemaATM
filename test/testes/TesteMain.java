@@ -5,11 +5,11 @@
  */
 package testes;
 
-import Modelo.Comprovante;
-import Modelo.Data;
-import Modelo.Extrato;
-import Modelo.excecoes.DataInvalidaException;
-import Modelo.excecoes.HoraInvalidaException;
+import zModelosSeparados.Comprovante;
+import zModelosSeparados.Data;
+import zModelosSeparados.Extrato;
+import zModelosExcecoesSeparados.DataInvalidaException;
+import zModelosExcecoesSeparados.HoraInvalidaException;
 import java.util.HashSet;
 
 /**

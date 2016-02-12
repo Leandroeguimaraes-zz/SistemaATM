@@ -3,19 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo.excecoes;
+package zModelosExcecoesSeparados;
 
 /**
  *
  * @author VM
  */
-public class AgenciaInvalidoException extends Exception {
+public class TitularInvalidoException extends Exception {
 
-    public AgenciaInvalidoException() {
+    public TitularInvalidoException() {
     }
 
-    public AgenciaInvalidoException(String message) {
+    public TitularInvalidoException(String message) {
         super(message);
     }
+    
     
 }

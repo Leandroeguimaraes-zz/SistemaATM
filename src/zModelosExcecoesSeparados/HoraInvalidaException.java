@@ -3,21 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo.excecoes;
+package zModelosExcecoesSeparados;
 
 /**
  *
  * @author VM
  */
-public class EnderecoInvalidoException extends Exception {
+public class HoraInvalidaException extends Exception {
 
-    public EnderecoInvalidoException() {
+    public HoraInvalidaException() {
     }
 
-    public EnderecoInvalidoException(String message) {
+    public HoraInvalidaException(String message) {
         super(message);
     }
-    
     
     
 }

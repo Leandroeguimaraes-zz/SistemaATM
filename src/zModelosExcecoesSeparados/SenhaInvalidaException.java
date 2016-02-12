@@ -3,20 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Modelo.excecoes;
+package zModelosExcecoesSeparados;
 
 /**
  *
  * @author VM
  */
-public class DataInvalidaException extends Exception {
+public class SenhaInvalidaException extends Exception {
 
-    public DataInvalidaException() {
+    public SenhaInvalidaException() {
     }
 
-    public DataInvalidaException(String message) {
+    public SenhaInvalidaException(String message) {
         super(message);
     }
-    
     
 }

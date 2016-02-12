@@ -35,9 +35,7 @@ public class BoasVindas extends javax.swing.JFrame {
         setTitle("ATM");
         setBackground(new java.awt.Color(204, 0, 204));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(600, 400));
         setResizable(false);
-        setSize(new java.awt.Dimension(600, 400));
         getContentPane().setLayout(null);
 
         jButton1.setText("*insere*");
@@ -47,7 +45,7 @@ public class BoasVindas extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(330, 340, 73, 23);
+        jButton1.setBounds(220, 320, 73, 23);
 
         botaoSair.setText("SAIR");
         botaoSair.addActionListener(new java.awt.event.ActionListener() {
@@ -76,7 +74,7 @@ public class BoasVindas extends javax.swing.JFrame {
     private void botaoSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSairActionPerformed
         this.dispose();
     }//GEN-LAST:event_botaoSairActionPerformed
-
+    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
