@@ -7,6 +7,7 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import model.Conta;
 import model.Usuario;
 import model.dao.UsuarioDAO;
@@ -17,13 +18,23 @@ import model.dao.UsuarioDAO;
  */
 public class ValidacaoUsuario {
     UsuarioDAO usuarioDAO = new UsuarioDAO();
-    List<Usuario> usuarios = new ArrayList<>();;
+    List<Usuario> usuarios = new ArrayList<>();
+    Usuario usuario;
     
+//    public boolean validaLogin(String numConta, String senha){
+//        usuarios = usuarioDAO.getUsuarios();
+//        for(Usuario user :usuarios)
+//            if((user.getConta().getNumConta().equals(numConta) && user.getSenha().equals(senha)))
+//                return true; 
+//        return false;
+//    }
     public boolean validaLogin(String numConta, String senha){
-        usuarios = usuarioDAO.getUsuarios();
-        for(Usuario user :usuarios)
-            if((user.getConta().getConta().equals(numConta) && user.getSenha().equals(senha)))
-                return true; 
+        usuario = usuarioDAO.getBuscaUsuario(numConta,senha);
+        if(usuario!=null){
+            JOptionPane.showMessageDialog(null, "Validado");
+            return true;
+        }
+       
         return false;
     }
     

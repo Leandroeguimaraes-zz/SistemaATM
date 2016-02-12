@@ -122,8 +122,10 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         try {
-            if(vu.validaLogin(campoConta.getText(), campoSenha.getText()))
+            if(vu.validaLogin(campoConta.getText(), campoSenha.getText())){
+                System.out.println("CHECK");
                 new Login();
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(campoConta, "Acesso negado");
             campoConta.setText("");

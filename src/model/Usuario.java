@@ -7,21 +7,29 @@ package model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 /**
  *
  * @author Leandro
  */
 @NamedQueries({
-    @NamedQuery(name="Usuario.listaUsuarios", query="select a from Usuario a")
+    @NamedQuery(name="Usuario.listaUsuarios", query="select a from Usuario a"),
+    @NamedQuery(name="Usuario.buscaUsuario", 
+    query="select user from Usuario as user "
++ "join user.conta as c "
++ "where c.numConta=:numConta and user.senha=:senha " )  
 })
 
 @Entity 
@@ -44,7 +52,9 @@ public class Usuario implements java.io.Serializable{
     @Column(name="senha")
     private String senha;
     
-    @JoinColumn(name="conta")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idconta", nullable = true)
+    @Cascade(CascadeType.SAVE_UPDATE)
     private Conta conta;
 
     public int getIdUsuario() {

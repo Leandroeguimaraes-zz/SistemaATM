@@ -38,8 +38,8 @@ public class Conta implements java.io.Serializable{
     @Column(name="Agencia")
     private String agencia;
     
-    @Column(name="Conta")
-    private String conta;
+    @Column(name="numConta")
+    private String numConta;
     
     @Column(name="Saldo")
     private String saldo;
@@ -60,12 +60,12 @@ public class Conta implements java.io.Serializable{
         this.agencia = agencia;
     }
 
-    public String getConta() {
-        return conta;
+    public String getNumConta() {
+        return numConta;
     }
 
-    public void setConta(String conta) {
-        this.conta = conta;
+    public void setNumConta(String numConta) {
+        this.numConta = numConta;
     }
 
     public String getSaldo() {

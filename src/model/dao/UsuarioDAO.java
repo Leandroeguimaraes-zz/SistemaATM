@@ -21,6 +21,23 @@ import org.hibernate.Transaction;
 public class UsuarioDAO implements UsuarioInterfaceDAO{
     
     private List<Usuario> usuarios;
+    private Usuario usuario;
+    
+    @Override
+    public Usuario getBuscaUsuario(String numConta, String senha){
+        if(usuario==null){
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            Query query = session.getNamedQuery("Usuario.buscaUsuario").setString("numConta",numConta).setString("senha", senha);
+            usuario= (Usuario) query.list().get(0);
+            session.close();
+        }
+        return usuario;
+    }
+    @Override
+    public void setBuscaUsuario(){
+        this.usuario=usuario;
+    }
+    
     
     @Override
     public List<Usuario> getUsuarios(){

@@ -15,6 +15,10 @@ import model.Usuario;
  */
 public interface UsuarioInterfaceDAO {
     
+    public void setBuscaUsuario();
+    
+    public Usuario getBuscaUsuario(String numConta,String senha);
+    
     public List<Usuario> getUsuarios();
     
     public void setUsuarios(List<Usuario> usuarios);

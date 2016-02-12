@@ -11,5 +11,8 @@
     <mapping class="model.Conta"/>
     <mapping class="model.dao.ContaDAO"/>
     <mapping class="model.dao.ContaInterfaceDAO"/>
+    <mapping class="model.Usuario"/>
+    <mapping class="model.dao.UsuarioDAO"/>
+    <mapping class="model.dao.UsuarioInterfaceDAO"/>
   </session-factory>
 </hibernate-configuration>
