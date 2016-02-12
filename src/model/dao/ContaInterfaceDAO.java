@@ -5,6 +5,7 @@
  */
 package model.dao;
 
+import java.util.List;
 import model.Conta;
 
 /**
@@ -12,6 +13,10 @@ import model.Conta;
  * @author Leandro
  */
 public interface ContaInterfaceDAO {
+    
+    public List<Conta> getContas();
+    
+    public void setContas(List<Conta> contas);
     
     public void salvar(Conta conta);
 

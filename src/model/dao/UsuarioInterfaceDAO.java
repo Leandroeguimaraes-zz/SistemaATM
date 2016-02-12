@@ -5,6 +5,8 @@
  */
 package model.dao;
 
+import java.util.List;
+import model.Conta;
 import model.Usuario;
 
 /**
@@ -12,6 +14,10 @@ import model.Usuario;
  * @author Leandro
  */
 public interface UsuarioInterfaceDAO {
+    
+    public List<Usuario> getUsuarios();
+    
+    public void setUsuarios(List<Usuario> usuarios);
     
     public void salvar(Usuario usuario);
 

@@ -6,10 +6,12 @@
 package model.dao;
 
 import Util.HibernateUtil;
+import java.util.List;
 import javax.swing.JOptionPane;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import model.Conta;
+import org.hibernate.Query;
 
 /**
  *
@@ -17,6 +19,25 @@ import model.Conta;
  */
 public class ContaDAO implements ContaInterfaceDAO{
 
+    private List<Conta> contas;
+    
+    @Override
+    public List<Conta> getContas() {
+        if(contas == null){
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            Query query = session.getNamedQuery("Conta.listaContas");
+            contas= query.list();
+            session.close();
+          
+        }
+        return contas;
+    }
+
+    @Override
+    public void setContas(List<Conta> contas) {
+        this.contas = contas;
+    }
+    
   @Override
     public void salvar(Conta conta){
         Session s = HibernateUtil.getSessionFactory().openSession();

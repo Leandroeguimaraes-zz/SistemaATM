@@ -6,8 +6,11 @@
 package model.dao;
 
 import Util.HibernateUtil;
+import java.util.List;
 import javax.swing.JOptionPane;
+import model.Conta;
 import model.Usuario;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -16,6 +19,27 @@ import org.hibernate.Transaction;
  * @author Leandro
  */
 public class UsuarioDAO implements UsuarioInterfaceDAO{
+    
+    private List<Usuario> usuarios;
+    
+    @Override
+    public List<Usuario> getUsuarios(){
+        if(usuarios == null){
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            Query query = session.getNamedQuery("Usuario.listaUsuarios");
+            usuarios= query.list();
+            session.close();
+          
+        }
+        return usuarios;
+    }
+
+    @Override
+    public void setUsuarios(List<Usuario> usuarios) {
+        this.usuarios = usuarios;
+    }
+    
+    
     @Override
     public void salvar(Usuario usuario){
         Session s = HibernateUtil.getSessionFactory().openSession();
