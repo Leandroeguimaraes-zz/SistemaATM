@@ -31,7 +31,7 @@ public class ValidacaoUsuario {
     public boolean validaLogin(String agencia,String numConta, String senha){
         usuario = usuarioDAO.getBuscaUsuario(agencia,numConta,senha);
         if(usuario!=null){
-            JOptionPane.showMessageDialog(null, "Validado");
+            JOptionPane.showMessageDialog(null, "Confirmação realizada");
             return true;
         }
        
