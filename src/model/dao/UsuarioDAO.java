@@ -24,12 +24,13 @@ public class UsuarioDAO implements UsuarioInterfaceDAO{
     private Usuario usuario;
     
     @Override
-    public Usuario getBuscaUsuario(String numConta, String senha){
+    public Usuario getBuscaUsuario(String agencia,String numConta, String senha){
         if(usuario==null){
             Session session = HibernateUtil.getSessionFactory().openSession();
             Query query = session.getNamedQuery("Usuario.buscaUsuario");
             query.setParameter("numConta", numConta);
             query.setParameter("senha", senha);
+            query.setParameter("agencia", agencia);
             usuario= (Usuario) query.list().get(0);
             session.close();
         }

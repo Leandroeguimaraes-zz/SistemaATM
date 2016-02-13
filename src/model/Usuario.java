@@ -29,7 +29,7 @@ import org.hibernate.annotations.CascadeType;
     @NamedQuery(name="Usuario.buscaUsuario", 
     query="select user from Usuario as user "
 + "join user.conta as c "
-+ "where c.numConta=:numConta and user.senha=:senha " )  
++ "where c.numConta=:numConta and user.senha=:senha and c.agencia=:agencia" )  
 })
 
 @Entity 

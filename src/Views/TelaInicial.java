@@ -34,7 +34,9 @@ public class TelaInicial extends javax.swing.JFrame {
         campoSenha = new javax.swing.JPasswordField();
         btnConfirmar = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
+        campoAgencia = new javax.swing.JTextField();
         campoConta = new javax.swing.JTextField();
+        labelAgencia = new javax.swing.JLabel();
         labelSenha = new javax.swing.JLabel();
         labelConta = new javax.swing.JLabel();
         fundoTelaInicial = new javax.swing.JLabel();
@@ -77,6 +79,14 @@ public class TelaInicial extends javax.swing.JFrame {
         painelTelaInicial.add(btnSair);
         btnSair.setBounds(400, 480, 100, 23);
 
+        campoAgencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoAgenciaActionPerformed(evt);
+            }
+        });
+        painelTelaInicial.add(campoAgencia);
+        campoAgencia.setBounds(300, 340, 310, 30);
+
         campoConta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 campoContaActionPerformed(evt);
@@ -84,6 +94,11 @@ public class TelaInicial extends javax.swing.JFrame {
         });
         painelTelaInicial.add(campoConta);
         campoConta.setBounds(300, 380, 310, 30);
+
+        labelAgencia.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        labelAgencia.setText("Agência:");
+        painelTelaInicial.add(labelAgencia);
+        labelAgencia.setBounds(230, 340, 70, 30);
 
         labelSenha.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         labelSenha.setText("Senha:");
@@ -122,7 +137,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         try {
-            if(vu.validaLogin(campoConta.getText(), campoSenha.getText())){
+            if(vu.validaLogin(campoAgencia.getText(),campoConta.getText(), campoSenha.getText())){
                 System.out.println("CHECK");
                 new Login();
             }
@@ -130,10 +145,15 @@ public class TelaInicial extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(campoConta, "Acesso negado");
             campoConta.setText("");
             campoSenha.setText("");
+            campoAgencia.setText("");
         }
     
         
     }//GEN-LAST:event_btnConfirmarActionPerformed
+
+    private void campoAgenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoAgenciaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoAgenciaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,9 +194,11 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JButton btnConfirmar;
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnSair;
+    private javax.swing.JTextField campoAgencia;
     private javax.swing.JTextField campoConta;
     private javax.swing.JPasswordField campoSenha;
     private javax.swing.JLabel fundoTelaInicial;
+    private javax.swing.JLabel labelAgencia;
     private javax.swing.JLabel labelConta;
     private javax.swing.JLabel labelSenha;
     private javax.swing.JPanel painelTelaInicial;
