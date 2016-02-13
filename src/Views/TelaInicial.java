@@ -6,6 +6,8 @@
 package Views;
 
 import controller.ValidacaoUsuario;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -131,6 +133,7 @@ public class TelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        
         int a =JOptionPane.showConfirmDialog(painelPrincipal, "Tem certeza que quer sair");
         if(a==0)
             this.dispose();
@@ -144,7 +147,9 @@ public class TelaInicial extends javax.swing.JFrame {
                 new TelaBemVindoMenu(vu.getUsuario()).setVisible(true);
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(campoConta, "Acesso negado");
+            ImageIcon iN =new ImageIcon(getClass().getResource("/Imagens/acessoNegado.png"));
+            //JLabel label1 = new JLabel(iN);
+            JOptionPane.showMessageDialog(null,iN,"Acesso Negado!",JOptionPane.PLAIN_MESSAGE);
             campoConta.setText("");
             campoSenha.setText("");
             campoAgencia.setText("");
