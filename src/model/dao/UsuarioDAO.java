@@ -27,7 +27,9 @@ public class UsuarioDAO implements UsuarioInterfaceDAO{
     public Usuario getBuscaUsuario(String numConta, String senha){
         if(usuario==null){
             Session session = HibernateUtil.getSessionFactory().openSession();
-            Query query = session.getNamedQuery("Usuario.buscaUsuario").setString("numConta",numConta).setString("senha", senha);
+            Query query = session.getNamedQuery("Usuario.buscaUsuario");
+            query.setParameter("numConta", numConta);
+            query.setParameter("senha", senha);
             usuario= (Usuario) query.list().get(0);
             session.close();
         }
