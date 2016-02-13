@@ -125,9 +125,6 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
 
     private void btnFimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFimActionPerformed
         // TODO add your handling code here:
-        BoasVindas tela = new BoasVindas();
-        this.setVisible(false);
-        tela.setVisible(true);
     }//GEN-LAST:event_btnFimActionPerformed
 
     /**
