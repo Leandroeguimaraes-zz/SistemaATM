@@ -29,7 +29,7 @@ public class TelaInicial extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        painelTelaInicial = new javax.swing.JPanel();
+        painelPrincipal = new javax.swing.JPanel();
         btnLimpar = new javax.swing.JButton();
         campoSenha = new javax.swing.JPasswordField();
         btnConfirmar = new javax.swing.JButton();
@@ -39,16 +39,16 @@ public class TelaInicial extends javax.swing.JFrame {
         labelAgencia = new javax.swing.JLabel();
         labelSenha = new javax.swing.JLabel();
         labelConta = new javax.swing.JLabel();
-        fundoTelaInicial = new javax.swing.JLabel();
+        labelFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
         setPreferredSize(new java.awt.Dimension(820, 650));
         getContentPane().setLayout(null);
 
-        painelTelaInicial.setBackground(new java.awt.Color(204, 204, 204));
-        painelTelaInicial.setPreferredSize(new java.awt.Dimension(800, 600));
-        painelTelaInicial.setLayout(null);
+        painelPrincipal.setBackground(new java.awt.Color(204, 204, 204));
+        painelPrincipal.setPreferredSize(new java.awt.Dimension(800, 600));
+        painelPrincipal.setLayout(null);
 
         btnLimpar.setText("Limpar");
         btnLimpar.addActionListener(new java.awt.event.ActionListener() {
@@ -56,9 +56,9 @@ public class TelaInicial extends javax.swing.JFrame {
                 btnLimparActionPerformed(evt);
             }
         });
-        painelTelaInicial.add(btnLimpar);
+        painelPrincipal.add(btnLimpar);
         btnLimpar.setBounds(520, 480, 90, 23);
-        painelTelaInicial.add(campoSenha);
+        painelPrincipal.add(campoSenha);
         campoSenha.setBounds(300, 420, 310, 30);
 
         btnConfirmar.setText("Confirmar");
@@ -67,7 +67,7 @@ public class TelaInicial extends javax.swing.JFrame {
                 btnConfirmarActionPerformed(evt);
             }
         });
-        painelTelaInicial.add(btnConfirmar);
+        painelPrincipal.add(btnConfirmar);
         btnConfirmar.setBounds(270, 480, 100, 23);
 
         btnSair.setText("Sair");
@@ -76,7 +76,7 @@ public class TelaInicial extends javax.swing.JFrame {
                 btnSairActionPerformed(evt);
             }
         });
-        painelTelaInicial.add(btnSair);
+        painelPrincipal.add(btnSair);
         btnSair.setBounds(400, 480, 100, 23);
 
         campoAgencia.addActionListener(new java.awt.event.ActionListener() {
@@ -84,7 +84,7 @@ public class TelaInicial extends javax.swing.JFrame {
                 campoAgenciaActionPerformed(evt);
             }
         });
-        painelTelaInicial.add(campoAgencia);
+        painelPrincipal.add(campoAgencia);
         campoAgencia.setBounds(300, 340, 310, 30);
 
         campoConta.addActionListener(new java.awt.event.ActionListener() {
@@ -92,30 +92,30 @@ public class TelaInicial extends javax.swing.JFrame {
                 campoContaActionPerformed(evt);
             }
         });
-        painelTelaInicial.add(campoConta);
+        painelPrincipal.add(campoConta);
         campoConta.setBounds(300, 380, 310, 30);
 
         labelAgencia.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         labelAgencia.setText("Agência:");
-        painelTelaInicial.add(labelAgencia);
+        painelPrincipal.add(labelAgencia);
         labelAgencia.setBounds(230, 340, 70, 30);
 
         labelSenha.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         labelSenha.setText("Senha:");
-        painelTelaInicial.add(labelSenha);
+        painelPrincipal.add(labelSenha);
         labelSenha.setBounds(240, 420, 50, 30);
 
         labelConta.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         labelConta.setText("Conta:");
-        painelTelaInicial.add(labelConta);
+        painelPrincipal.add(labelConta);
         labelConta.setBounds(240, 380, 50, 30);
 
-        fundoTelaInicial.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/FUNDOBOASVINDASresize.png"))); // NOI18N
-        painelTelaInicial.add(fundoTelaInicial);
-        fundoTelaInicial.setBounds(0, 0, 800, 600);
+        labelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/FUNDOBOASVINDASresize.png"))); // NOI18N
+        painelPrincipal.add(labelFundo);
+        labelFundo.setBounds(0, 0, 800, 600);
 
-        getContentPane().add(painelTelaInicial);
-        painelTelaInicial.setBounds(0, 0, 910, 600);
+        getContentPane().add(painelPrincipal);
+        painelPrincipal.setBounds(0, 0, 910, 600);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -130,7 +130,7 @@ public class TelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLimparActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
-        int a =JOptionPane.showConfirmDialog(painelTelaInicial, "Tem certeza que quer sair");
+        int a =JOptionPane.showConfirmDialog(painelPrincipal, "Tem certeza que quer sair");
         if(a==0)
             this.dispose();
     }//GEN-LAST:event_btnSairActionPerformed
@@ -139,7 +139,8 @@ public class TelaInicial extends javax.swing.JFrame {
         try {
             if(vu.validaLogin(campoAgencia.getText(),campoConta.getText(), campoSenha.getText())){
                 System.out.println("CHECK");
-                new Login();
+                this.setVisible(false);
+                new TelaBemVindoMenu(vu.getUsuario()).setVisible(true);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(campoConta, "Acesso negado");
@@ -197,10 +198,10 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JTextField campoAgencia;
     private javax.swing.JTextField campoConta;
     private javax.swing.JPasswordField campoSenha;
-    private javax.swing.JLabel fundoTelaInicial;
     private javax.swing.JLabel labelAgencia;
     private javax.swing.JLabel labelConta;
+    private javax.swing.JLabel labelFundo;
     private javax.swing.JLabel labelSenha;
-    private javax.swing.JPanel painelTelaInicial;
+    private javax.swing.JPanel painelPrincipal;
     // End of variables declaration//GEN-END:variables
 }
