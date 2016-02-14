@@ -7,6 +7,7 @@ package controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import model.Conta;
 import model.Usuario;
@@ -31,7 +32,9 @@ public class ValidacaoUsuario {
     public boolean validaLogin(String agencia,String numConta, String senha){
         usuario = usuarioDAO.getBuscaUsuario(agencia,numConta,senha);
         if(usuario!=null){
-            JOptionPane.showMessageDialog(null, "Confirmação realizada");
+            ImageIcon iP =new ImageIcon(getClass().getResource("/Imagens/acessoPermitido.png"));
+            //JLabel label2 = new JLabel(iP);
+            JOptionPane.showMessageDialog(null,iP,"Acesso Permitido!",JOptionPane.PLAIN_MESSAGE);
             return true;
         }
        
