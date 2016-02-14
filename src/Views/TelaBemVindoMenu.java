@@ -5,6 +5,7 @@
  */
 package Views;
 
+import javax.swing.JOptionPane;
 import model.Usuario;
 
 /**
@@ -124,7 +125,9 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFimActionPerformed
-        // TODO add your handling code here:
+        int a =JOptionPane.showConfirmDialog(painelPrincipal, "Tem certeza que quer sair");
+        if(a==0)
+            this.dispose();
     }//GEN-LAST:event_btnFimActionPerformed
 
     /**
