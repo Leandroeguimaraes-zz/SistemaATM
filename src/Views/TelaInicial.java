@@ -52,6 +52,8 @@ public class TelaInicial extends javax.swing.JFrame {
         painelPrincipal.setPreferredSize(new java.awt.Dimension(800, 600));
         painelPrincipal.setLayout(null);
 
+        btnLimpar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnLimpar.setForeground(new java.awt.Color(0, 51, 102));
         btnLimpar.setText("Limpar");
         btnLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -59,10 +61,14 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
         painelPrincipal.add(btnLimpar);
-        btnLimpar.setBounds(520, 480, 90, 23);
-        painelPrincipal.add(campoSenha);
-        campoSenha.setBounds(300, 420, 310, 30);
+        btnLimpar.setBounds(300, 500, 200, 50);
+        btnLimpar.getAccessibleContext().setAccessibleName("");
 
+        painelPrincipal.add(campoSenha);
+        campoSenha.setBounds(250, 430, 300, 30);
+
+        btnConfirmar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnConfirmar.setForeground(new java.awt.Color(0, 51, 102));
         btnConfirmar.setText("Confirmar");
         btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,8 +76,11 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
         painelPrincipal.add(btnConfirmar);
-        btnConfirmar.setBounds(270, 480, 100, 23);
+        btnConfirmar.setBounds(50, 500, 200, 50);
+        btnConfirmar.getAccessibleContext().setAccessibleName("");
 
+        btnSair.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnSair.setForeground(new java.awt.Color(102, 0, 51));
         btnSair.setText("Sair");
         btnSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,7 +88,8 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
         painelPrincipal.add(btnSair);
-        btnSair.setBounds(400, 480, 100, 23);
+        btnSair.setBounds(550, 500, 200, 50);
+        btnSair.getAccessibleContext().setAccessibleName("");
 
         campoAgencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,7 +97,7 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
         painelPrincipal.add(campoAgencia);
-        campoAgencia.setBounds(300, 340, 310, 30);
+        campoAgencia.setBounds(250, 330, 300, 30);
 
         campoConta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,24 +105,27 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
         painelPrincipal.add(campoConta);
-        campoConta.setBounds(300, 380, 310, 30);
+        campoConta.setBounds(250, 380, 300, 30);
 
-        labelAgencia.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        labelAgencia.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        labelAgencia.setForeground(new java.awt.Color(0, 51, 102));
         labelAgencia.setText("Agência:");
         painelPrincipal.add(labelAgencia);
-        labelAgencia.setBounds(230, 340, 70, 30);
+        labelAgencia.setBounds(100, 330, 100, 30);
 
-        labelSenha.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        labelSenha.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        labelSenha.setForeground(new java.awt.Color(0, 51, 102));
         labelSenha.setText("Senha:");
         painelPrincipal.add(labelSenha);
-        labelSenha.setBounds(240, 420, 50, 30);
+        labelSenha.setBounds(100, 430, 100, 30);
 
-        labelConta.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        labelConta.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        labelConta.setForeground(new java.awt.Color(0, 51, 102));
         labelConta.setText("Conta:");
         painelPrincipal.add(labelConta);
-        labelConta.setBounds(240, 380, 50, 30);
+        labelConta.setBounds(100, 380, 100, 30);
 
-        labelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/FUNDOBOASVINDASresize.png"))); // NOI18N
+        labelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/FUNDOBOASVINDAS.png"))); // NOI18N
         painelPrincipal.add(labelFundo);
         labelFundo.setBounds(0, 0, 800, 600);
 

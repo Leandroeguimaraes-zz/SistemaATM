@@ -47,6 +47,7 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
         btnSaques = new javax.swing.JButton();
         btnSaldoExtrato = new javax.swing.JButton();
         btnEmprestimos = new javax.swing.JButton();
+        labelLogo = new javax.swing.JLabel();
         labelFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -54,64 +55,92 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
 
         painelPrincipal.setLayout(null);
 
-        labelNomeUsuario.setFont(new java.awt.Font("Times New Roman", 2, 36)); // NOI18N
+        labelNomeUsuario.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        labelNomeUsuario.setForeground(new java.awt.Color(0, 102, 153));
         labelNomeUsuario.setText("Nome do Usuario");
         painelPrincipal.add(labelNomeUsuario);
-        labelNomeUsuario.setBounds(200, 40, 350, 30);
+        labelNomeUsuario.setBounds(450, 50, 350, 30);
 
-        labelBemVindo.setFont(new java.awt.Font("Times New Roman", 0, 26)); // NOI18N
+        labelBemVindo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        labelBemVindo.setForeground(new java.awt.Color(0, 51, 102));
         labelBemVindo.setText("Bem Vindo, ");
         painelPrincipal.add(labelBemVindo);
-        labelBemVindo.setBounds(54, 44, 140, 30);
+        labelBemVindo.setBounds(320, 50, 130, 30);
 
-        btnFim.setText("FIM");
+        btnFim.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnFim.setForeground(new java.awt.Color(102, 0, 51));
+        btnFim.setText("Fim");
         btnFim.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFimActionPerformed(evt);
             }
         });
         painelPrincipal.add(btnFim);
-        btnFim.setBounds(360, 470, 120, 40);
+        btnFim.setBounds(250, 500, 300, 50);
 
-        btnDeposito.setText("DEPÓSITO");
+        btnDeposito.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnDeposito.setForeground(new java.awt.Color(0, 51, 102));
+        btnDeposito.setText("Depósitos");
         painelPrincipal.add(btnDeposito);
-        btnDeposito.setBounds(120, 160, 220, 47);
+        btnDeposito.setBounds(50, 175, 300, 50);
 
-        btnOutrosServicos.setText("OUTROS SERVIÇOS");
+        btnOutrosServicos.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnOutrosServicos.setForeground(new java.awt.Color(0, 51, 102));
+        btnOutrosServicos.setText("Outros Serviços");
         painelPrincipal.add(btnOutrosServicos);
-        btnOutrosServicos.setBounds(480, 350, 230, 47);
+        btnOutrosServicos.setBounds(450, 400, 300, 50);
 
-        btnTransferencias.setText("TRANSFERÊNCIAS");
+        btnTransferencias.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnTransferencias.setForeground(new java.awt.Color(0, 51, 102));
+        btnTransferencias.setText("Transferências");
         painelPrincipal.add(btnTransferencias);
-        btnTransferencias.setBounds(120, 350, 220, 47);
+        btnTransferencias.setBounds(50, 400, 300, 50);
 
-        btnInvestimentos.setText("INVESTIMENTOS");
+        btnInvestimentos.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnInvestimentos.setForeground(new java.awt.Color(0, 51, 102));
+        btnInvestimentos.setText("Investimentos");
+        btnInvestimentos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInvestimentosActionPerformed(evt);
+            }
+        });
         painelPrincipal.add(btnInvestimentos);
-        btnInvestimentos.setBounds(120, 280, 220, 47);
+        btnInvestimentos.setBounds(50, 325, 300, 50);
 
-        btnPagamentos.setText("PAGAMENTOS");
+        btnPagamentos.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnPagamentos.setForeground(new java.awt.Color(0, 51, 102));
+        btnPagamentos.setText("Pagamentos");
         painelPrincipal.add(btnPagamentos);
-        btnPagamentos.setBounds(120, 220, 220, 47);
+        btnPagamentos.setBounds(50, 250, 300, 50);
 
-        btnSaques.setText("SAQUES");
+        btnSaques.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnSaques.setForeground(new java.awt.Color(0, 51, 102));
+        btnSaques.setText("Saques");
         painelPrincipal.add(btnSaques);
-        btnSaques.setBounds(480, 160, 230, 47);
+        btnSaques.setBounds(450, 175, 300, 50);
 
-        btnSaldoExtrato.setText("SALDO E EXTRATO");
+        btnSaldoExtrato.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnSaldoExtrato.setForeground(new java.awt.Color(0, 51, 102));
+        btnSaldoExtrato.setText("Saldo e Extratos");
         btnSaldoExtrato.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSaldoExtratoActionPerformed(evt);
             }
         });
         painelPrincipal.add(btnSaldoExtrato);
-        btnSaldoExtrato.setBounds(480, 220, 230, 47);
+        btnSaldoExtrato.setBounds(450, 250, 300, 50);
 
-        btnEmprestimos.setText("EMPRÉSTIMOS");
+        btnEmprestimos.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnEmprestimos.setForeground(new java.awt.Color(0, 51, 102));
+        btnEmprestimos.setText("Emprestimos");
         painelPrincipal.add(btnEmprestimos);
-        btnEmprestimos.setBounds(480, 280, 230, 47);
+        btnEmprestimos.setBounds(450, 325, 300, 50);
 
-        labelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/FUNDOresize.png"))); // NOI18N
-        labelFundo.setText("jLabel2");
+        labelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/LOGO.png"))); // NOI18N
+        painelPrincipal.add(labelLogo);
+        labelLogo.setBounds(50, 50, 250, 100);
+
+        labelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/FUNDO.png"))); // NOI18N
         painelPrincipal.add(labelFundo);
         labelFundo.setBounds(0, 0, 800, 600);
 
@@ -139,6 +168,10 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
        this.setVisible(false);
        new TelaSaldoExtrato(usuario).setVisible(true);
     }//GEN-LAST:event_btnSaldoExtratoActionPerformed
+
+    private void btnInvestimentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInvestimentosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnInvestimentosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,6 +221,7 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
     private javax.swing.JButton btnTransferencias;
     private javax.swing.JLabel labelBemVindo;
     private javax.swing.JLabel labelFundo;
+    private javax.swing.JLabel labelLogo;
     private javax.swing.JLabel labelNomeUsuario;
     private javax.swing.JPanel painelPrincipal;
     // End of variables declaration//GEN-END:variables
