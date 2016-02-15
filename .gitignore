@@ -2,4 +2,4 @@ build/
 .git/
 dist/
 nbproject/private
-src/hibernate.cfg.xml
+src/hibernate.cfg
