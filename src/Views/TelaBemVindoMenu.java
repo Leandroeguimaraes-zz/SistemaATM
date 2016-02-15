@@ -47,11 +47,12 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
         btnSaques = new javax.swing.JButton();
         btnSaldoExtrato = new javax.swing.JButton();
         btnEmprestimos = new javax.swing.JButton();
-        labelLogo = new javax.swing.JLabel();
         labelFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(820, 650));
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(800, 600));
+        setResizable(false);
 
         painelPrincipal.setLayout(null);
 
@@ -81,6 +82,11 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
         btnDeposito.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnDeposito.setForeground(new java.awt.Color(0, 51, 102));
         btnDeposito.setText("Depósitos");
+        btnDeposito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDepositoActionPerformed(evt);
+            }
+        });
         painelPrincipal.add(btnDeposito);
         btnDeposito.setBounds(50, 175, 300, 50);
 
@@ -136,10 +142,6 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
         painelPrincipal.add(btnEmprestimos);
         btnEmprestimos.setBounds(450, 325, 300, 50);
 
-        labelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/LOGO.png"))); // NOI18N
-        painelPrincipal.add(labelLogo);
-        labelLogo.setBounds(50, 50, 250, 100);
-
         labelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/FUNDO.png"))); // NOI18N
         painelPrincipal.add(labelFundo);
         labelFundo.setBounds(0, 0, 800, 600);
@@ -159,9 +161,10 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFimActionPerformed
-        int a =JOptionPane.showConfirmDialog(painelPrincipal, "Tem certeza que quer sair");
+        int a =JOptionPane.showConfirmDialog(painelPrincipal, "Tem certeza que quer finalizar?");
         if(a==0)
-            this.dispose();
+            this.setVisible(false);
+            new TelaInicial().setVisible(true);
     }//GEN-LAST:event_btnFimActionPerformed
 
     private void btnSaldoExtratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaldoExtratoActionPerformed
@@ -172,6 +175,11 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
     private void btnInvestimentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInvestimentosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnInvestimentosActionPerformed
+
+    private void btnDepositoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepositoActionPerformed
+        this.setVisible(false);
+        new TelaDeposito(usuario).setVisible(true);
+    }//GEN-LAST:event_btnDepositoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -221,7 +229,6 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
     private javax.swing.JButton btnTransferencias;
     private javax.swing.JLabel labelBemVindo;
     private javax.swing.JLabel labelFundo;
-    private javax.swing.JLabel labelLogo;
     private javax.swing.JLabel labelNomeUsuario;
     private javax.swing.JPanel painelPrincipal;
     // End of variables declaration//GEN-END:variables

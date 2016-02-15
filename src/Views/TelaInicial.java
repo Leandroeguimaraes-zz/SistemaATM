@@ -45,7 +45,9 @@ public class TelaInicial extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
-        setPreferredSize(new java.awt.Dimension(820, 650));
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(800, 600));
+        setResizable(false);
         getContentPane().setLayout(null);
 
         painelPrincipal.setBackground(new java.awt.Color(204, 204, 204));
@@ -133,6 +135,7 @@ public class TelaInicial extends javax.swing.JFrame {
         painelPrincipal.setBounds(0, 0, 910, 600);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void campoContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoContaActionPerformed
@@ -147,7 +150,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         
-        int a =JOptionPane.showConfirmDialog(painelPrincipal, "Tem certeza que quer sair");
+        int a =JOptionPane.showConfirmDialog(painelPrincipal, "Tem certeza que quer sair?");
         if(a==0)
             this.dispose();
     }//GEN-LAST:event_btnSairActionPerformed

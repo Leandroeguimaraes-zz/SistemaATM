@@ -9,19 +9,21 @@ import model.Usuario;
 
 /**
  *
- * @author Leandro
+ * @author Lucas Thimoteo
  */
-public class TelaSaldoExtrato extends javax.swing.JFrame {
-
-    Usuario usuario;
+public class TelaDeposito extends javax.swing.JFrame {
     
-    public TelaSaldoExtrato() {
+    private Usuario usuario;
+
+    /**
+     * Creates new form TelaDeposito
+     */
+    public TelaDeposito() {
         initComponents();
     }
-    public TelaSaldoExtrato(Usuario usuario) {
+    public TelaDeposito(Usuario usuario){
         initComponents();
-        this.usuario=usuario;
-//        labelSaldo.setText(usuario.getConta().getSaldo());
+        this.usuario = usuario;
     }
 
     /**
@@ -35,35 +37,23 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         labelSaldo = new javax.swing.JLabel();
-        btnMostarExtrato = new javax.swing.JButton();
-        labelSaldoUsuario = new javax.swing.JLabel();
         btnVoltar = new javax.swing.JButton();
+        campoValor = new javax.swing.JTextField();
+        btnConfirmar = new javax.swing.JButton();
         labelFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(820, 650));
+        setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
 
         jPanel1.setLayout(null);
 
         labelSaldo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         labelSaldo.setForeground(new java.awt.Color(0, 51, 102));
-        labelSaldo.setText("Saldo:");
+        labelSaldo.setText("Valor do Deposito:");
         jPanel1.add(labelSaldo);
-        labelSaldo.setBounds(50, 200, 70, 30);
-
-        btnMostarExtrato.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnMostarExtrato.setForeground(new java.awt.Color(0, 51, 102));
-        btnMostarExtrato.setText("Mostrar Extrato");
-        jPanel1.add(btnMostarExtrato);
-        btnMostarExtrato.setBounds(300, 500, 200, 50);
-
-        labelSaldoUsuario.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        labelSaldoUsuario.setForeground(new java.awt.Color(0, 102, 153));
-        labelSaldoUsuario.setText("Saldo do Usuario");
-        jPanel1.add(labelSaldoUsuario);
-        labelSaldoUsuario.setBounds(130, 200, 300, 30);
+        labelSaldo.setBounds(50, 200, 210, 30);
 
         btnVoltar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnVoltar.setForeground(new java.awt.Color(102, 0, 51));
@@ -75,6 +65,21 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
         });
         jPanel1.add(btnVoltar);
         btnVoltar.setBounds(550, 500, 200, 50);
+
+        campoValor.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jPanel1.add(campoValor);
+        campoValor.setBounds(260, 200, 200, 30);
+
+        btnConfirmar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnConfirmar.setForeground(new java.awt.Color(0, 51, 102));
+        btnConfirmar.setText("Confirmar");
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnConfirmar);
+        btnConfirmar.setBounds(300, 500, 200, 50);
 
         labelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/FUNDO.png"))); // NOI18N
         jPanel1.add(labelFundo);
@@ -93,6 +98,10 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.setVisible(false);
@@ -116,30 +125,30 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaSaldoExtrato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaDeposito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaSaldoExtrato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaDeposito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaSaldoExtrato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaDeposito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaSaldoExtrato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaDeposito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaSaldoExtrato().setVisible(true);
+                new TelaDeposito().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnMostarExtrato;
+    private javax.swing.JButton btnConfirmar;
     private javax.swing.JButton btnVoltar;
+    private javax.swing.JTextField campoValor;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelFundo;
     private javax.swing.JLabel labelSaldo;
-    private javax.swing.JLabel labelSaldoUsuario;
     // End of variables declaration//GEN-END:variables
 }
