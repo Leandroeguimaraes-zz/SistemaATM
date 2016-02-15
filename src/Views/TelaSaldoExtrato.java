@@ -35,7 +35,10 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         labelSaldo = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnMostarExtrato = new javax.swing.JButton();
+        labelLogo = new javax.swing.JLabel();
+        labelSaldoUsuario = new javax.swing.JLabel();
+        btnVoltar = new javax.swing.JButton();
         labelFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -43,16 +46,35 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
 
         jPanel1.setLayout(null);
 
-        labelSaldo.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
-        labelSaldo.setText("Saldo");
+        labelSaldo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        labelSaldo.setForeground(new java.awt.Color(0, 51, 102));
+        labelSaldo.setText("Saldo:");
         jPanel1.add(labelSaldo);
-        labelSaldo.setBounds(90, 124, 260, 50);
+        labelSaldo.setBounds(50, 200, 70, 50);
 
-        jButton1.setText("Mostrar Extrato");
-        jPanel1.add(jButton1);
-        jButton1.setBounds(570, 490, 140, 50);
+        btnMostarExtrato.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnMostarExtrato.setForeground(new java.awt.Color(0, 51, 102));
+        btnMostarExtrato.setText("Mostrar Extrato");
+        jPanel1.add(btnMostarExtrato);
+        btnMostarExtrato.setBounds(300, 500, 200, 50);
 
-        labelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/FUNDOresize.png"))); // NOI18N
+        labelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/LOGO.png"))); // NOI18N
+        jPanel1.add(labelLogo);
+        labelLogo.setBounds(50, 50, 250, 100);
+
+        labelSaldoUsuario.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        labelSaldoUsuario.setForeground(new java.awt.Color(0, 102, 153));
+        labelSaldoUsuario.setText("Saldo do Usuario");
+        jPanel1.add(labelSaldoUsuario);
+        labelSaldoUsuario.setBounds(130, 200, 310, 50);
+
+        btnVoltar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnVoltar.setForeground(new java.awt.Color(102, 0, 51));
+        btnVoltar.setText("Voltar");
+        jPanel1.add(btnVoltar);
+        btnVoltar.setBounds(550, 500, 200, 50);
+
+        labelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/FUNDO.png"))); // NOI18N
         jPanel1.add(labelFundo);
         labelFundo.setBounds(0, 0, 800, 600);
 
@@ -106,9 +128,12 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnMostarExtrato;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelFundo;
+    private javax.swing.JLabel labelLogo;
     private javax.swing.JLabel labelSaldo;
+    private javax.swing.JLabel labelSaldoUsuario;
     // End of variables declaration//GEN-END:variables
 }

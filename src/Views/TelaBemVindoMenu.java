@@ -76,7 +76,7 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
             }
         });
         painelPrincipal.add(btnFim);
-        btnFim.setBounds(250, 500, 300, 50);
+        btnFim.setBounds(300, 500, 200, 50);
 
         btnDeposito.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnDeposito.setForeground(new java.awt.Color(0, 51, 102));
