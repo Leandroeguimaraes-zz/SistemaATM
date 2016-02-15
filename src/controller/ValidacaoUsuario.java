@@ -31,14 +31,8 @@ public class ValidacaoUsuario {
 //    }
     public boolean validaLogin(String agencia,String numConta, String senha){
         usuario = usuarioDAO.getBuscaUsuario(agencia,numConta,senha);
-        if(usuario!=null){
-            ImageIcon iP =new ImageIcon(getClass().getResource("/Imagens/acessoPermitido.png"));
-            //JLabel label2 = new JLabel(iP);
-            JOptionPane.showMessageDialog(null,iP,"Acesso Permitido!",JOptionPane.PLAIN_MESSAGE);
-            return true;
-        }
-       
-        return false;
+        
+        return usuario!=null;        
     }
 
     public UsuarioDAO getUsuarioDAO() {

@@ -98,6 +98,11 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
         btnSaques.setBounds(480, 160, 230, 47);
 
         btnSaldoExtrato.setText("SALDO E EXTRATO");
+        btnSaldoExtrato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaldoExtratoActionPerformed(evt);
+            }
+        });
         painelPrincipal.add(btnSaldoExtrato);
         btnSaldoExtrato.setBounds(480, 220, 230, 47);
 
@@ -129,6 +134,11 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
         if(a==0)
             this.dispose();
     }//GEN-LAST:event_btnFimActionPerformed
+
+    private void btnSaldoExtratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaldoExtratoActionPerformed
+       this.setVisible(false);
+       new TelaSaldoExtrato(usuario).setVisible(true);
+    }//GEN-LAST:event_btnSaldoExtratoActionPerformed
 
     /**
      * @param args the command line arguments

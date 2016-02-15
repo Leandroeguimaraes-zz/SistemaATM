@@ -142,6 +142,8 @@ public class TelaInicial extends javax.swing.JFrame {
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         try {
             if(vu.validaLogin(campoAgencia.getText(),campoConta.getText(), campoSenha.getText())){
+                ImageIcon iP =new ImageIcon(getClass().getResource("/Imagens/acessoPermitido.png"));
+                JOptionPane.showMessageDialog(campoConta,iP,"Acesso Permitido!",JOptionPane.PLAIN_MESSAGE);
                 System.out.println("CHECK");
                 this.setVisible(false);
                 new TelaBemVindoMenu(vu.getUsuario()).setVisible(true);
@@ -149,7 +151,7 @@ public class TelaInicial extends javax.swing.JFrame {
         } catch (Exception e) {
             ImageIcon iN =new ImageIcon(getClass().getResource("/Imagens/acessoNegado.png"));
             //JLabel label1 = new JLabel(iN);
-            JOptionPane.showMessageDialog(null,iN,"Acesso Negado!",JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(campoConta,iN,"Acesso Negado!",JOptionPane.PLAIN_MESSAGE);
             campoConta.setText("");
             campoSenha.setText("");
             campoAgencia.setText("");
