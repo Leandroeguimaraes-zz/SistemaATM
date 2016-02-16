@@ -8,7 +8,7 @@ package zModelosSeparados;
 import zModelosExcecoesSeparados.DataInvalidaException;
 import zModelosExcecoesSeparados.HoraInvalidaException;
 import zModelosExcecoesSeparados.SenhaInvalidaException;
-import zModelosExcecoesSeparados.ValorInvalidoException;
+import model.ValorInvalidoException;
 import zModelosExcecoesSeparados.ContaInvalidoException;
 import zModelosExcecoesSeparados.TitularInvalidoException;
 import zModelosExcecoesSeparados.CpfInvalidoException;
@@ -57,7 +57,7 @@ public final class Conta {
      * insere uma quantia ao saldo da conta.
      *
      * @param valor (valor a ser inserido)
-     * @throws zModelosExcecoesSeparados.ValorInvalidoException
+     * @throws model.ValorInvalidoException
      * @throws zModelosExcecoesSeparados.DataInvalidaException (valor invalido pelas
      * regras de negocio)
      * @throws zModelosExcecoesSeparados.HoraInvalidaException (hora invalida para o
@@ -74,7 +74,7 @@ public final class Conta {
      * retira uma quantia do saldo da conta.
      *
      * @param valor (valor a ser sacado)
-     * @throws zModelosExcecoesSeparados.ValorInvalidoException (valor invalido pelas
+     * @throws model.ValorInvalidoException (valor invalido pelas
      * regras de negocio)
      * @throws zModelosExcecoesSeparados.DataInvalidaException (valor invalido pelas
      * regras de negocio)

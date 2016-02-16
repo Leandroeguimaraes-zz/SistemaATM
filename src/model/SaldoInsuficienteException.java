@@ -3,20 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package zModelosExcecoesSeparados;
+package model;
 
 /**
  *
  * @author VM
  */
-public class ValorInvalidoException extends Exception {
+public class SaldoInsuficienteException extends Exception{
 
-    public ValorInvalidoException() {
+    public SaldoInsuficienteException() {
     }
 
-    public ValorInvalidoException(String message) {
+    public SaldoInsuficienteException(String message) {
         super(message);
     }
-    
     
 }
