@@ -161,10 +161,11 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFimActionPerformed
-        int a =JOptionPane.showConfirmDialog(painelPrincipal, "Tem certeza que quer finalizar?");
-        if(a==0)
+        int a =JOptionPane.showConfirmDialog(painelPrincipal, "Deseja finalizar a sessão?");
+        if(a==0){
             this.setVisible(false);
-            new TelaInicial().setVisible(true);
+            this.dispose();
+            new TelaInicial().setVisible(true);}
     }//GEN-LAST:event_btnFimActionPerformed
 
     private void btnSaldoExtratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaldoExtratoActionPerformed
