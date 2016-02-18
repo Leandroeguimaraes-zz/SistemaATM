@@ -17,7 +17,10 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
    Usuario usuario;
    
     public TelaBemVindoMenu() {
+        Usuario usu = new Usuario();
+        this.usuario=usu;
         initComponents();
+        
       
     }
     public TelaBemVindoMenu(Usuario usuario) {
@@ -90,7 +93,7 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
             }
         });
         painelPrincipal.add(btnDeposito);
-        btnDeposito.setBounds(50, 175, 300, 50);
+        btnDeposito.setBounds(450, 250, 300, 50);
 
         btnOutrosServicos.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnOutrosServicos.setForeground(new java.awt.Color(0, 51, 102));
@@ -102,7 +105,7 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
         btnTransferencias.setForeground(new java.awt.Color(0, 51, 102));
         btnTransferencias.setText("Transferências");
         painelPrincipal.add(btnTransferencias);
-        btnTransferencias.setBounds(50, 400, 300, 50);
+        btnTransferencias.setBounds(50, 325, 300, 50);
 
         btnInvestimentos.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnInvestimentos.setForeground(new java.awt.Color(0, 51, 102));
@@ -113,17 +116,27 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
             }
         });
         painelPrincipal.add(btnInvestimentos);
-        btnInvestimentos.setBounds(50, 325, 300, 50);
+        btnInvestimentos.setBounds(50, 400, 300, 50);
 
         btnPagamentos.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnPagamentos.setForeground(new java.awt.Color(0, 51, 102));
         btnPagamentos.setText("Pagamentos");
+        btnPagamentos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPagamentosActionPerformed(evt);
+            }
+        });
         painelPrincipal.add(btnPagamentos);
         btnPagamentos.setBounds(50, 250, 300, 50);
 
         btnSaques.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnSaques.setForeground(new java.awt.Color(0, 51, 102));
         btnSaques.setText("Saques");
+        btnSaques.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaquesActionPerformed(evt);
+            }
+        });
         painelPrincipal.add(btnSaques);
         btnSaques.setBounds(450, 175, 300, 50);
 
@@ -136,7 +149,7 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
             }
         });
         painelPrincipal.add(btnSaldoExtrato);
-        btnSaldoExtrato.setBounds(450, 250, 300, 50);
+        btnSaldoExtrato.setBounds(50, 175, 300, 50);
 
         btnEmprestimos.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnEmprestimos.setForeground(new java.awt.Color(0, 51, 102));
@@ -184,6 +197,16 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
         this.setVisible(false);
         new TelaDeposito(usuario).setVisible(true);
     }//GEN-LAST:event_btnDepositoActionPerformed
+
+    private void btnSaquesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaquesActionPerformed
+        this.setVisible(false);
+       new TelaSaque(usuario).setVisible(true);
+    }//GEN-LAST:event_btnSaquesActionPerformed
+
+    private void btnPagamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagamentosActionPerformed
+        this.setVisible(false);
+       new TelaPagamento(usuario).setVisible(true);
+    }//GEN-LAST:event_btnPagamentosActionPerformed
 
     /**
      * @param args the command line arguments
