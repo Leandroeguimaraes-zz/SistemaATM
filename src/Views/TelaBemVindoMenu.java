@@ -104,6 +104,11 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
         btnTransferencias.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnTransferencias.setForeground(new java.awt.Color(0, 51, 102));
         btnTransferencias.setText("Transferências");
+        btnTransferencias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTransferenciasActionPerformed(evt);
+            }
+        });
         painelPrincipal.add(btnTransferencias);
         btnTransferencias.setBounds(50, 325, 300, 50);
 
@@ -165,11 +170,11 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(painelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(painelPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
         );
 
         pack();
@@ -208,6 +213,11 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
         this.setVisible(false);
         new TelaPagamento(usuario).setVisible(true);
     }//GEN-LAST:event_btnPagamentosActionPerformed
+
+    private void btnTransferenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferenciasActionPerformed
+        this.setVisible(false);
+        new TelaTransferencia(usuario).setVisible(true);
+    }//GEN-LAST:event_btnTransferenciasActionPerformed
 
     /**
      * @param args the command line arguments
