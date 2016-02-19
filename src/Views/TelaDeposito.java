@@ -12,7 +12,7 @@ import model.Usuario;
  * @author Lucas Thimoteo
  */
 public class TelaDeposito extends javax.swing.JFrame {
-    
+
     private Usuario usuario;
 
     /**
@@ -21,7 +21,8 @@ public class TelaDeposito extends javax.swing.JFrame {
     public TelaDeposito() {
         initComponents();
     }
-    public TelaDeposito(Usuario usuario){
+
+    public TelaDeposito(Usuario usuario) {
         initComponents();
         this.usuario = usuario;
     }
@@ -40,6 +41,7 @@ public class TelaDeposito extends javax.swing.JFrame {
         btnVoltar = new javax.swing.JButton();
         campoValor = new javax.swing.JTextField();
         btnConfirmar = new javax.swing.JButton();
+        labelDeposito = new javax.swing.JLabel();
         labelFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -53,7 +55,7 @@ public class TelaDeposito extends javax.swing.JFrame {
 
         labelSaldo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         labelSaldo.setForeground(new java.awt.Color(0, 51, 102));
-        labelSaldo.setText("Valor do Deposito:");
+        labelSaldo.setText("Valor do depósito:");
         jPanel1.add(labelSaldo);
         labelSaldo.setBounds(50, 200, 210, 30);
 
@@ -82,6 +84,12 @@ public class TelaDeposito extends javax.swing.JFrame {
         });
         jPanel1.add(btnConfirmar);
         btnConfirmar.setBounds(300, 500, 200, 50);
+
+        labelDeposito.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        labelDeposito.setForeground(new java.awt.Color(0, 51, 102));
+        labelDeposito.setText("Depósito");
+        jPanel1.add(labelDeposito);
+        labelDeposito.setBounds(320, 50, 200, 50);
 
         labelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/FUNDO.png"))); // NOI18N
         jPanel1.add(labelFundo);
@@ -151,6 +159,7 @@ public class TelaDeposito extends javax.swing.JFrame {
     private javax.swing.JButton btnVoltar;
     private javax.swing.JTextField campoValor;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel labelDeposito;
     private javax.swing.JLabel labelFundo;
     private javax.swing.JLabel labelSaldo;
     // End of variables declaration//GEN-END:variables

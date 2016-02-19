@@ -11,20 +11,20 @@ import model.Usuario;
  *
  * @author Lucas Thimoteo
  */
-public class TelaPagamento extends javax.swing.JFrame {
+public class TelaTransferencia extends javax.swing.JFrame {
 
     private Usuario usuario;
 
     /**
      * Creates new form TelaSaque
      */
-    public TelaPagamento() {
+    public TelaTransferencia() {
         initComponents();
     }
 
-    TelaPagamento(Usuario usuario) {
-        initComponents();
+    TelaTransferencia(Usuario usuario) {
         this.usuario = usuario;
+        initComponents();
     }
 
     /**
@@ -37,11 +37,11 @@ public class TelaPagamento extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
+        btnBancoBanco = new javax.swing.JButton();
+        btnDOC = new javax.swing.JButton();
+        btnTED = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
-        campoCodigoBarras = new javax.swing.JTextField();
-        labelCodigoBarras = new javax.swing.JLabel();
-        btnConfirmar = new javax.swing.JButton();
-        labelPagamento = new javax.swing.JLabel();
+        labelTransferencia = new javax.swing.JLabel();
         labelFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -52,6 +52,39 @@ public class TelaPagamento extends javax.swing.JFrame {
         jPanel2.setMaximumSize(new java.awt.Dimension(800, 600));
         jPanel2.setMinimumSize(new java.awt.Dimension(800, 600));
         jPanel2.setLayout(null);
+
+        btnBancoBanco.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnBancoBanco.setForeground(new java.awt.Color(0, 51, 102));
+        btnBancoBanco.setText("Para ATM5");
+        btnBancoBanco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBancoBancoActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnBancoBanco);
+        btnBancoBanco.setBounds(50, 200, 200, 50);
+
+        btnDOC.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnDOC.setForeground(new java.awt.Color(0, 51, 102));
+        btnDOC.setText("DOC");
+        btnDOC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDOCActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnDOC);
+        btnDOC.setBounds(50, 275, 200, 50);
+
+        btnTED.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnTED.setForeground(new java.awt.Color(0, 51, 102));
+        btnTED.setText("TED");
+        btnTED.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTEDActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnTED);
+        btnTED.setBounds(50, 350, 200, 50);
 
         btnVoltar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnVoltar.setForeground(new java.awt.Color(102, 0, 51));
@@ -64,32 +97,11 @@ public class TelaPagamento extends javax.swing.JFrame {
         jPanel2.add(btnVoltar);
         btnVoltar.setBounds(550, 500, 200, 50);
 
-        campoCodigoBarras.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jPanel2.add(campoCodigoBarras);
-        campoCodigoBarras.setBounds(250, 200, 490, 30);
-
-        labelCodigoBarras.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        labelCodigoBarras.setForeground(new java.awt.Color(0, 51, 102));
-        labelCodigoBarras.setText("Código de Barras:");
-        jPanel2.add(labelCodigoBarras);
-        labelCodigoBarras.setBounds(50, 200, 200, 30);
-
-        btnConfirmar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnConfirmar.setForeground(new java.awt.Color(0, 51, 102));
-        btnConfirmar.setText("Confirmar");
-        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfirmarActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnConfirmar);
-        btnConfirmar.setBounds(300, 500, 200, 50);
-
-        labelPagamento.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        labelPagamento.setForeground(new java.awt.Color(0, 51, 102));
-        labelPagamento.setText("Pagamento");
-        jPanel2.add(labelPagamento);
-        labelPagamento.setBounds(320, 50, 200, 50);
+        labelTransferencia.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        labelTransferencia.setForeground(new java.awt.Color(0, 51, 102));
+        labelTransferencia.setText("Transferência");
+        jPanel2.add(labelTransferencia);
+        labelTransferencia.setBounds(320, 50, 290, 50);
 
         labelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/FUNDO.png"))); // NOI18N
         jPanel2.add(labelFundo);
@@ -114,15 +126,25 @@ public class TelaPagamento extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBancoBancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBancoBancoActionPerformed
+        this.setVisible(false);
+        new TelaParaATM5(usuario).setVisible(true);
+    }//GEN-LAST:event_btnBancoBancoActionPerformed
+
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.setVisible(false);
         new TelaBemVindoMenu(usuario).setVisible(true);
     }//GEN-LAST:event_btnVoltarActionPerformed
 
-    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+    private void btnDOCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDOCActionPerformed
         this.setVisible(false);
-        new TelaInfoBoleto(usuario).setVisible(true);
-    }//GEN-LAST:event_btnConfirmarActionPerformed
+        new TelaDOC(usuario).setVisible(true);
+    }//GEN-LAST:event_btnDOCActionPerformed
+
+    private void btnTEDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTEDActionPerformed
+        this.setVisible(false);
+        new TelaTED(usuario).setVisible(true);
+    }//GEN-LAST:event_btnTEDActionPerformed
 
     /**
      * @param args the command line arguments
@@ -141,13 +163,13 @@ public class TelaPagamento extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaPagamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaTransferencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaPagamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaTransferencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaPagamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaTransferencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaPagamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaTransferencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -157,18 +179,18 @@ public class TelaPagamento extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaPagamento().setVisible(true);
+                new TelaTransferencia().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConfirmar;
+    private javax.swing.JButton btnBancoBanco;
+    private javax.swing.JButton btnDOC;
+    private javax.swing.JButton btnTED;
     private javax.swing.JButton btnVoltar;
-    private javax.swing.JTextField campoCodigoBarras;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel labelCodigoBarras;
     private javax.swing.JLabel labelFundo;
-    private javax.swing.JLabel labelPagamento;
+    private javax.swing.JLabel labelTransferencia;
     // End of variables declaration//GEN-END:variables
 }

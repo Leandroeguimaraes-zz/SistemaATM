@@ -12,7 +12,9 @@ import model.Usuario;
  * @author Lucas Thimoteo
  */
 public class TelaSaque extends javax.swing.JFrame {
+
     private Usuario usuario;
+
     /**
      * Creates new form TelaSaque
      */
@@ -42,6 +44,7 @@ public class TelaSaque extends javax.swing.JFrame {
         btn200 = new javax.swing.JButton();
         btnOutros = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
+        labelSaque = new javax.swing.JLabel();
         labelFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -57,7 +60,7 @@ public class TelaSaque extends javax.swing.JFrame {
 
         btn10.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btn10.setForeground(new java.awt.Color(0, 51, 102));
-        btn10.setText("10");
+        btn10.setText("10 R$");
         btn10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn10ActionPerformed(evt);
@@ -68,25 +71,25 @@ public class TelaSaque extends javax.swing.JFrame {
 
         btn20.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btn20.setForeground(new java.awt.Color(0, 51, 102));
-        btn20.setText("20");
+        btn20.setText("20 R$");
         jPanel2.add(btn20);
         btn20.setBounds(50, 275, 200, 50);
 
         btn50.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btn50.setForeground(new java.awt.Color(0, 51, 102));
-        btn50.setText("50");
+        btn50.setText("50 R$");
         jPanel2.add(btn50);
         btn50.setBounds(50, 350, 200, 50);
 
         btn100.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btn100.setForeground(new java.awt.Color(0, 51, 102));
-        btn100.setText("100");
+        btn100.setText("100 R$");
         jPanel2.add(btn100);
         btn100.setBounds(300, 200, 200, 50);
 
         btn200.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btn200.setForeground(new java.awt.Color(0, 51, 102));
-        btn200.setText("200");
+        btn200.setText("200 R$");
         jPanel2.add(btn200);
         btn200.setBounds(300, 275, 200, 50);
 
@@ -111,6 +114,12 @@ public class TelaSaque extends javax.swing.JFrame {
         });
         jPanel2.add(btnVoltar);
         btnVoltar.setBounds(550, 500, 200, 50);
+
+        labelSaque.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        labelSaque.setForeground(new java.awt.Color(0, 51, 102));
+        labelSaque.setText("Saque");
+        jPanel2.add(labelSaque);
+        labelSaque.setBounds(320, 50, 200, 50);
 
         labelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/FUNDO.png"))); // NOI18N
         jPanel2.add(labelFundo);
@@ -141,12 +150,12 @@ public class TelaSaque extends javax.swing.JFrame {
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.setVisible(false);
-       new TelaBemVindoMenu(usuario).setVisible(true);
+        new TelaBemVindoMenu(usuario).setVisible(true);
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnOutrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOutrosActionPerformed
         this.setVisible(false);
-       new TelaSaqueOutros(usuario).setVisible(true);
+        new TelaSaqueOutros(usuario).setVisible(true);
     }//GEN-LAST:event_btnOutrosActionPerformed
 
     /**
@@ -194,5 +203,6 @@ public class TelaSaque extends javax.swing.JFrame {
     private javax.swing.JButton btnVoltar;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel labelFundo;
+    private javax.swing.JLabel labelSaque;
     // End of variables declaration//GEN-END:variables
 }

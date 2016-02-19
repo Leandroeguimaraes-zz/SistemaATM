@@ -14,18 +14,18 @@ import model.Usuario;
  */
 public class TelaBemVindoMenu extends javax.swing.JFrame {
 
-   Usuario usuario;
-   
+    Usuario usuario;
+
     public TelaBemVindoMenu() {
         Usuario usu = new Usuario();
-        this.usuario=usu;
+        this.usuario = usu;
         initComponents();
-        
-      
+
     }
+
     public TelaBemVindoMenu(Usuario usuario) {
         initComponents();
-        this.usuario=usuario;
+        this.usuario = usuario;
         labelNomeUsuario.setText(usuario.getNome());
     }
 
@@ -63,15 +63,15 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
 
         labelNomeUsuario.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         labelNomeUsuario.setForeground(new java.awt.Color(0, 102, 153));
-        labelNomeUsuario.setText("Nome do Usuario");
+        labelNomeUsuario.setText("Nome do Usuário");
         painelPrincipal.add(labelNomeUsuario);
-        labelNomeUsuario.setBounds(450, 50, 350, 30);
+        labelNomeUsuario.setBounds(320, 100, 350, 30);
 
-        labelBemVindo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        labelBemVindo.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         labelBemVindo.setForeground(new java.awt.Color(0, 51, 102));
         labelBemVindo.setText("Bem Vindo, ");
         painelPrincipal.add(labelBemVindo);
-        labelBemVindo.setBounds(320, 50, 130, 30);
+        labelBemVindo.setBounds(320, 50, 220, 50);
 
         btnFim.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnFim.setForeground(new java.awt.Color(102, 0, 51));
@@ -177,16 +177,17 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFimActionPerformed
-        int a =JOptionPane.showConfirmDialog(painelPrincipal, "Deseja finalizar a sessão?");
-        if(a==0){
+        int a = JOptionPane.showConfirmDialog(painelPrincipal, "Deseja finalizar a sessão?");
+        if (a == 0) {
             this.setVisible(false);
             this.dispose();
-            new TelaInicial().setVisible(true);}
+            new TelaInicial().setVisible(true);
+        }
     }//GEN-LAST:event_btnFimActionPerformed
 
     private void btnSaldoExtratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaldoExtratoActionPerformed
-       this.setVisible(false);
-       new TelaSaldoExtrato(usuario).setVisible(true);
+        this.setVisible(false);
+        new TelaSaldoExtrato(usuario).setVisible(true);
     }//GEN-LAST:event_btnSaldoExtratoActionPerformed
 
     private void btnInvestimentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInvestimentosActionPerformed
@@ -200,12 +201,12 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
 
     private void btnSaquesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaquesActionPerformed
         this.setVisible(false);
-       new TelaSaque(usuario).setVisible(true);
+        new TelaSaque(usuario).setVisible(true);
     }//GEN-LAST:event_btnSaquesActionPerformed
 
     private void btnPagamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagamentosActionPerformed
         this.setVisible(false);
-       new TelaPagamento(usuario).setVisible(true);
+        new TelaPagamento(usuario).setVisible(true);
     }//GEN-LAST:event_btnPagamentosActionPerformed
 
     /**

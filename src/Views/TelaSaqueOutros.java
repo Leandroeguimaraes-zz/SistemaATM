@@ -12,7 +12,9 @@ import model.Usuario;
  * @author Lucas Thimoteo
  */
 public class TelaSaqueOutros extends javax.swing.JFrame {
+
     private Usuario usuario;
+
     /**
      * Creates new form TelaSaque
      */
@@ -39,6 +41,7 @@ public class TelaSaqueOutros extends javax.swing.JFrame {
         campoValorSaque = new javax.swing.JTextField();
         labelValorSaque = new javax.swing.JLabel();
         btnConfirmar = new javax.swing.JButton();
+        labelOutroValor = new javax.swing.JLabel();
         labelFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -77,6 +80,12 @@ public class TelaSaqueOutros extends javax.swing.JFrame {
         jPanel2.add(btnConfirmar);
         btnConfirmar.setBounds(300, 500, 200, 50);
 
+        labelOutroValor.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        labelOutroValor.setForeground(new java.awt.Color(0, 51, 102));
+        labelOutroValor.setText("Outro Valor");
+        jPanel2.add(labelOutroValor);
+        labelOutroValor.setBounds(320, 50, 200, 50);
+
         labelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/FUNDO.png"))); // NOI18N
         jPanel2.add(labelFundo);
         labelFundo.setBounds(0, 0, 800, 600);
@@ -102,7 +111,7 @@ public class TelaSaqueOutros extends javax.swing.JFrame {
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.setVisible(false);
-       new TelaSaque(usuario).setVisible(true);
+        new TelaSaque(usuario).setVisible(true);
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
@@ -147,6 +156,7 @@ public class TelaSaqueOutros extends javax.swing.JFrame {
     private javax.swing.JTextField campoValorSaque;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel labelFundo;
+    private javax.swing.JLabel labelOutroValor;
     private javax.swing.JLabel labelValorSaque;
     // End of variables declaration//GEN-END:variables
 }

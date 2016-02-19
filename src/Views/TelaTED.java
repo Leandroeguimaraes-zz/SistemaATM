@@ -11,20 +11,20 @@ import model.Usuario;
  *
  * @author Lucas Thimoteo
  */
-public class TelaPagamento extends javax.swing.JFrame {
+public class TelaTED extends javax.swing.JFrame {
 
     private Usuario usuario;
 
     /**
      * Creates new form TelaSaque
      */
-    public TelaPagamento() {
+    public TelaTED() {
         initComponents();
     }
 
-    TelaPagamento(Usuario usuario) {
-        initComponents();
+    TelaTED(Usuario usuario) {
         this.usuario = usuario;
+        initComponents();
     }
 
     /**
@@ -38,10 +38,18 @@ public class TelaPagamento extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         btnVoltar = new javax.swing.JButton();
-        campoCodigoBarras = new javax.swing.JTextField();
-        labelCodigoBarras = new javax.swing.JLabel();
+        campoCPF = new javax.swing.JTextField();
+        labelCPF = new javax.swing.JLabel();
         btnConfirmar = new javax.swing.JButton();
-        labelPagamento = new javax.swing.JLabel();
+        labelAgencia = new javax.swing.JLabel();
+        campoAgencia = new javax.swing.JTextField();
+        labelConta = new javax.swing.JLabel();
+        campoConta = new javax.swing.JTextField();
+        labelValor = new javax.swing.JLabel();
+        campoValor = new javax.swing.JTextField();
+        labelBanco = new javax.swing.JLabel();
+        campoBanco = new javax.swing.JTextField();
+        labelTED = new javax.swing.JLabel();
         labelFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -64,15 +72,15 @@ public class TelaPagamento extends javax.swing.JFrame {
         jPanel2.add(btnVoltar);
         btnVoltar.setBounds(550, 500, 200, 50);
 
-        campoCodigoBarras.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jPanel2.add(campoCodigoBarras);
-        campoCodigoBarras.setBounds(250, 200, 490, 30);
+        campoCPF.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jPanel2.add(campoCPF);
+        campoCPF.setBounds(230, 250, 200, 30);
 
-        labelCodigoBarras.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        labelCodigoBarras.setForeground(new java.awt.Color(0, 51, 102));
-        labelCodigoBarras.setText("Código de Barras:");
-        jPanel2.add(labelCodigoBarras);
-        labelCodigoBarras.setBounds(50, 200, 200, 30);
+        labelCPF.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        labelCPF.setForeground(new java.awt.Color(0, 51, 102));
+        labelCPF.setText("CPF:");
+        jPanel2.add(labelCPF);
+        labelCPF.setBounds(50, 250, 180, 30);
 
         btnConfirmar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnConfirmar.setForeground(new java.awt.Color(0, 51, 102));
@@ -85,11 +93,51 @@ public class TelaPagamento extends javax.swing.JFrame {
         jPanel2.add(btnConfirmar);
         btnConfirmar.setBounds(300, 500, 200, 50);
 
-        labelPagamento.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        labelPagamento.setForeground(new java.awt.Color(0, 51, 102));
-        labelPagamento.setText("Pagamento");
-        jPanel2.add(labelPagamento);
-        labelPagamento.setBounds(320, 50, 200, 50);
+        labelAgencia.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        labelAgencia.setForeground(new java.awt.Color(0, 51, 102));
+        labelAgencia.setText("Agência:");
+        jPanel2.add(labelAgencia);
+        labelAgencia.setBounds(50, 300, 180, 30);
+
+        campoAgencia.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jPanel2.add(campoAgencia);
+        campoAgencia.setBounds(230, 300, 200, 30);
+
+        labelConta.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        labelConta.setForeground(new java.awt.Color(0, 51, 102));
+        labelConta.setText("Conta Corrente:");
+        jPanel2.add(labelConta);
+        labelConta.setBounds(50, 350, 180, 30);
+
+        campoConta.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jPanel2.add(campoConta);
+        campoConta.setBounds(230, 350, 200, 30);
+
+        labelValor.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        labelValor.setForeground(new java.awt.Color(0, 51, 102));
+        labelValor.setText("Valor:");
+        jPanel2.add(labelValor);
+        labelValor.setBounds(50, 400, 180, 30);
+
+        campoValor.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jPanel2.add(campoValor);
+        campoValor.setBounds(230, 400, 200, 30);
+
+        labelBanco.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        labelBanco.setForeground(new java.awt.Color(0, 51, 102));
+        labelBanco.setText("Banco:");
+        jPanel2.add(labelBanco);
+        labelBanco.setBounds(50, 200, 180, 30);
+
+        campoBanco.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jPanel2.add(campoBanco);
+        campoBanco.setBounds(230, 200, 200, 30);
+
+        labelTED.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        labelTED.setForeground(new java.awt.Color(0, 51, 102));
+        labelTED.setText("TED");
+        jPanel2.add(labelTED);
+        labelTED.setBounds(320, 50, 200, 50);
 
         labelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/FUNDO.png"))); // NOI18N
         jPanel2.add(labelFundo);
@@ -116,12 +164,11 @@ public class TelaPagamento extends javax.swing.JFrame {
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.setVisible(false);
-        new TelaBemVindoMenu(usuario).setVisible(true);
+        new TelaTransferencia(usuario).setVisible(true);
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        this.setVisible(false);
-        new TelaInfoBoleto(usuario).setVisible(true);
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     /**
@@ -141,14 +188,26 @@ public class TelaPagamento extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaPagamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaTED.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaPagamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaTED.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaPagamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaTED.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaPagamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaTED.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -157,7 +216,7 @@ public class TelaPagamento extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaPagamento().setVisible(true);
+                new TelaTED().setVisible(true);
             }
         });
     }
@@ -165,10 +224,18 @@ public class TelaPagamento extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmar;
     private javax.swing.JButton btnVoltar;
-    private javax.swing.JTextField campoCodigoBarras;
+    private javax.swing.JTextField campoAgencia;
+    private javax.swing.JTextField campoBanco;
+    private javax.swing.JTextField campoCPF;
+    private javax.swing.JTextField campoConta;
+    private javax.swing.JTextField campoValor;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel labelCodigoBarras;
+    private javax.swing.JLabel labelAgencia;
+    private javax.swing.JLabel labelBanco;
+    private javax.swing.JLabel labelCPF;
+    private javax.swing.JLabel labelConta;
     private javax.swing.JLabel labelFundo;
-    private javax.swing.JLabel labelPagamento;
+    private javax.swing.JLabel labelTED;
+    private javax.swing.JLabel labelValor;
     // End of variables declaration//GEN-END:variables
 }
