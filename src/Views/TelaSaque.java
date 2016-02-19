@@ -51,7 +51,6 @@ public class TelaSaque extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
 
         jPanel2.setMaximumSize(new java.awt.Dimension(800, 600));
@@ -151,6 +150,7 @@ public class TelaSaque extends javax.swing.JFrame {
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.setVisible(false);
         new TelaBemVindoMenu(usuario).setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnOutrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOutrosActionPerformed

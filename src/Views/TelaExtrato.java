@@ -9,22 +9,19 @@ import model.Usuario;
 
 /**
  *
- * @author Lucas Thimoteo
+ * @author Leandro
  */
-public class TelaDeposito extends javax.swing.JFrame {
+public class TelaExtrato extends javax.swing.JFrame {
 
-    private Usuario usuario;
-
-    /**
-     * Creates new form TelaDeposito
-     */
-    public TelaDeposito() {
+    Usuario usuario;
+    
+    public TelaExtrato() {
         initComponents();
     }
-
-    public TelaDeposito(Usuario usuario) {
+    public TelaExtrato(Usuario usuario) {
         initComponents();
-        this.usuario = usuario;
+        this.usuario=usuario;
+//        labelSaldo.setText(usuario.getConta().getSaldo());
     }
 
     /**
@@ -37,27 +34,37 @@ public class TelaDeposito extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        labelSaldo = new javax.swing.JLabel();
+        labelExtrato = new javax.swing.JLabel();
+        btnImprimir = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
-        campoValor = new javax.swing.JTextField();
-        btnConfirmar = new javax.swing.JButton();
-        labelDeposito = new javax.swing.JLabel();
+        labeloExtratoTitulo = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         labelFundo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(800, 600));
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 600));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
 
         jPanel1.setLayout(null);
 
-        labelSaldo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        labelSaldo.setForeground(new java.awt.Color(0, 51, 102));
-        labelSaldo.setText("Valor do depósito:");
-        jPanel1.add(labelSaldo);
-        labelSaldo.setBounds(50, 200, 210, 30);
+        labelExtrato.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        labelExtrato.setForeground(new java.awt.Color(0, 51, 102));
+        labelExtrato.setText("Extrato:");
+        jPanel1.add(labelExtrato);
+        labelExtrato.setBounds(50, 150, 100, 30);
+
+        btnImprimir.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnImprimir.setForeground(new java.awt.Color(0, 51, 102));
+        btnImprimir.setText("Imprimir");
+        btnImprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnImprimir);
+        btnImprimir.setBounds(300, 500, 200, 50);
 
         btnVoltar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnVoltar.setForeground(new java.awt.Color(102, 0, 51));
@@ -70,26 +77,21 @@ public class TelaDeposito extends javax.swing.JFrame {
         jPanel1.add(btnVoltar);
         btnVoltar.setBounds(550, 500, 200, 50);
 
-        campoValor.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jPanel1.add(campoValor);
-        campoValor.setBounds(260, 200, 200, 30);
+        labeloExtratoTitulo.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        labeloExtratoTitulo.setForeground(new java.awt.Color(0, 51, 102));
+        labeloExtratoTitulo.setText("Extrato");
+        jPanel1.add(labeloExtratoTitulo);
+        labeloExtratoTitulo.setBounds(320, 50, 270, 50);
 
-        btnConfirmar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnConfirmar.setForeground(new java.awt.Color(0, 51, 102));
-        btnConfirmar.setText("Confirmar");
-        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConfirmarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnConfirmar);
-        btnConfirmar.setBounds(300, 500, 200, 50);
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jTextArea1.setFocusable(false);
+        jTextArea1.setRequestFocusEnabled(false);
+        jScrollPane1.setViewportView(jTextArea1);
 
-        labelDeposito.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        labelDeposito.setForeground(new java.awt.Color(0, 51, 102));
-        labelDeposito.setText("Depósito");
-        jPanel1.add(labelDeposito);
-        labelDeposito.setBounds(320, 50, 200, 50);
+        jPanel1.add(jScrollPane1);
+        jScrollPane1.setBounds(50, 200, 700, 270);
 
         labelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/FUNDO.png"))); // NOI18N
         jPanel1.add(labelFundo);
@@ -110,15 +112,15 @@ public class TelaDeposito extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnConfirmarActionPerformed
-
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.setVisible(false);
-        this.dispose();
-        new TelaBemVindoMenu(usuario).setVisible(true);
+        new TelaSaldoExtrato(usuario).setVisible(true);
+  
     }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnImprimirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -137,31 +139,33 @@ public class TelaDeposito extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaDeposito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaExtrato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaDeposito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaExtrato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaDeposito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaExtrato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaDeposito.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaExtrato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaDeposito().setVisible(true);
+                new TelaExtrato().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnConfirmar;
+    private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnVoltar;
-    private javax.swing.JTextField campoValor;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel labelDeposito;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel labelExtrato;
     private javax.swing.JLabel labelFundo;
-    private javax.swing.JLabel labelSaldo;
+    private javax.swing.JLabel labeloExtratoTitulo;
     // End of variables declaration//GEN-END:variables
 }

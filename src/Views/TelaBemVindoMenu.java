@@ -52,7 +52,7 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
         btnEmprestimos = new javax.swing.JButton();
         labelFundo = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
         setUndecorated(true);
@@ -104,6 +104,11 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
         btnTransferencias.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnTransferencias.setForeground(new java.awt.Color(0, 51, 102));
         btnTransferencias.setText("Transferências");
+        btnTransferencias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTransferenciasActionPerformed(evt);
+            }
+        });
         painelPrincipal.add(btnTransferencias);
         btnTransferencias.setBounds(50, 325, 300, 50);
 
@@ -208,6 +213,11 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
         this.setVisible(false);
         new TelaPagamento(usuario).setVisible(true);
     }//GEN-LAST:event_btnPagamentosActionPerformed
+
+    private void btnTransferenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferenciasActionPerformed
+        this.setVisible(false);
+        new TelaTransferencia(usuario).setVisible(true);
+    }//GEN-LAST:event_btnTransferenciasActionPerformed
 
     /**
      * @param args the command line arguments

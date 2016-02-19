@@ -152,7 +152,7 @@ public class TelaInicial extends javax.swing.JFrame {
         
         int a =JOptionPane.showConfirmDialog(painelPrincipal, "Tem certeza que quer sair?");
         if(a==0)
-            this.dispose();
+            System.exit(0);
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed

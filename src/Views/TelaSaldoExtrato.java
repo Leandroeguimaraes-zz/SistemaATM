@@ -38,7 +38,7 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
         btnMostarExtrato = new javax.swing.JButton();
         labelSaldoUsuario = new javax.swing.JLabel();
         btnVoltar = new javax.swing.JButton();
-        labelSaldoExtrato = new javax.swing.JLabel();
+        labelSaldoTitulo = new javax.swing.JLabel();
         labelFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -59,6 +59,11 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
         btnMostarExtrato.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnMostarExtrato.setForeground(new java.awt.Color(0, 51, 102));
         btnMostarExtrato.setText("Mostrar Extrato");
+        btnMostarExtrato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMostarExtratoActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnMostarExtrato);
         btnMostarExtrato.setBounds(300, 500, 200, 50);
 
@@ -79,11 +84,11 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
         jPanel1.add(btnVoltar);
         btnVoltar.setBounds(550, 500, 200, 50);
 
-        labelSaldoExtrato.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
-        labelSaldoExtrato.setForeground(new java.awt.Color(0, 51, 102));
-        labelSaldoExtrato.setText("Saldo");
-        jPanel1.add(labelSaldoExtrato);
-        labelSaldoExtrato.setBounds(320, 50, 270, 50);
+        labelSaldoTitulo.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        labelSaldoTitulo.setForeground(new java.awt.Color(0, 51, 102));
+        labelSaldoTitulo.setText("Saldo");
+        jPanel1.add(labelSaldoTitulo);
+        labelSaldoTitulo.setBounds(320, 50, 270, 50);
 
         labelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/FUNDO.png"))); // NOI18N
         jPanel1.add(labelFundo);
@@ -107,7 +112,13 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.setVisible(false);
         new TelaBemVindoMenu(usuario).setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void btnMostarExtratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostarExtratoActionPerformed
+        this.setVisible(false);
+        new TelaExtrato(usuario).setVisible(true);
+    }//GEN-LAST:event_btnMostarExtratoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,7 +161,7 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelFundo;
     private javax.swing.JLabel labelSaldo;
-    private javax.swing.JLabel labelSaldoExtrato;
+    private javax.swing.JLabel labelSaldoTitulo;
     private javax.swing.JLabel labelSaldoUsuario;
     // End of variables declaration//GEN-END:variables
 }

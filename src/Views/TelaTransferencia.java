@@ -134,6 +134,7 @@ public class TelaTransferencia extends javax.swing.JFrame {
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.setVisible(false);
         new TelaBemVindoMenu(usuario).setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnDOCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDOCActionPerformed
