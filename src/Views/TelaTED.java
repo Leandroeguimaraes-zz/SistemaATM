@@ -5,7 +5,9 @@
  */
 package Views;
 
+import javax.swing.JOptionPane;
 import model.Usuario;
+import model.dao.UsuarioDAO;
 
 /**
  *
@@ -169,7 +171,44 @@ public class TelaTED extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        // TODO add your handling code here:
+        TelaConfirmacao tela = new TelaConfirmacao(this,true,usuario);
+        tela.setVisible(true);
+        //
+        //
+        //
+        //rotina para verificar se conta existe e se o cpf bate com a conta declarada
+        //
+        //
+        //
+        //
+        if (tela.confirma()){
+            int saldo =usuario.getConta().getSaldo();
+            int valor=Integer.parseInt(campoValor.getText());
+            if (saldo >= valor){
+                if (valor>1000 && valor < 30000){
+                   usuario.getConta().setSaldo(saldo-valor);
+                   UsuarioDAO usuDAO = new UsuarioDAO();
+                   usuDAO.salvar(usuario);
+                   JOptionPane.showMessageDialog(this, "Transferencia realizada com sucesso");
+                   //
+                   //
+                   //
+                   // rotina para salvar os dados na conta destinataria
+                   //
+                   //
+                   //
+                }else{
+                    JOptionPane.showMessageDialog(this, "Valor ultrapassa limite de TED");
+                }
+            }else{
+                JOptionPane.showMessageDialog(this, "Saldo insuficiente.");
+            }
+        }else{
+            JOptionPane.showMessageDialog(this,"Operação cancelada.");
+        }
+        this.setVisible(false);
+        new TelaBemVindoMenu(usuario).setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     /**

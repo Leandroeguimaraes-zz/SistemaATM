@@ -5,7 +5,9 @@
  */
 package Views;
 
+import javax.swing.JOptionPane;
 import model.Usuario;
+import model.dao.UsuarioDAO;
 
 /**
  *
@@ -110,7 +112,25 @@ public class TelaDeposito extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        // TODO add your handling code here:
+        TelaConfirmacao tela = new TelaConfirmacao(this,true,usuario);
+        tela.setVisible(true);
+        if (tela.confirma()){
+            int saldo =usuario.getConta().getSaldo();
+            int valor=Integer.parseInt(campoValor.getText());
+                if (valor < 5000){
+                   usuario.getConta().setSaldo(saldo+valor);
+                   UsuarioDAO usuDAO = new UsuarioDAO();
+                   usuDAO.salvar(usuario);
+                   JOptionPane.showMessageDialog(this, "Deposito realizado com sucesso.");
+                }else{
+                    JOptionPane.showMessageDialog(this, "Valor ultrapassa limite de deposito díario.");
+                }
+        }else{
+            JOptionPane.showMessageDialog(this,"Operação cancelada.");
+        }
+        this.setVisible(false);
+        new TelaBemVindoMenu(usuario).setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed

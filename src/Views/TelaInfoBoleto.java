@@ -5,7 +5,9 @@
  */
 package Views;
 
+import javax.swing.JOptionPane;
 import model.Usuario;
+import model.dao.UsuarioDAO;
 
 /**
  *
@@ -50,6 +52,8 @@ public class TelaInfoBoleto extends javax.swing.JFrame {
         labelNumbolet = new javax.swing.JLabel();
         labelNumeroBoleto = new javax.swing.JLabel();
         labelBoleto = new javax.swing.JLabel();
+        labelValPago = new javax.swing.JLabel();
+        campoValor = new javax.swing.JTextField();
         labelFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -75,12 +79,17 @@ public class TelaInfoBoleto extends javax.swing.JFrame {
         btnConfirmar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnConfirmar.setForeground(new java.awt.Color(0, 51, 102));
         btnConfirmar.setText("Confirmar");
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnConfirmar);
         btnConfirmar.setBounds(300, 500, 200, 50);
 
         labelVal.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         labelVal.setForeground(new java.awt.Color(0, 51, 102));
-        labelVal.setText("Valor:");
+        labelVal.setText("Valor do boleto:");
         jPanel2.add(labelVal);
         labelVal.setBounds(50, 250, 210, 30);
 
@@ -144,6 +153,16 @@ public class TelaInfoBoleto extends javax.swing.JFrame {
         jPanel2.add(labelBoleto);
         labelBoleto.setBounds(320, 50, 200, 50);
 
+        labelValPago.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        labelValPago.setForeground(new java.awt.Color(0, 51, 102));
+        labelValPago.setText("Valor a ser pago:");
+        jPanel2.add(labelValPago);
+        labelValPago.setBounds(50, 400, 210, 30);
+
+        campoValor.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jPanel2.add(campoValor);
+        campoValor.setBounds(300, 405, 200, 30);
+
         labelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/FUNDO.png"))); // NOI18N
         jPanel2.add(labelFundo);
         labelFundo.setBounds(0, 0, 800, 600);
@@ -172,6 +191,47 @@ public class TelaInfoBoleto extends javax.swing.JFrame {
         new TelaBemVindoMenu(usuario).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+        TelaConfirmacao tela = new TelaConfirmacao(this,true,usuario);
+        tela.setVisible(true);
+        //
+        //
+        //
+        //rotina para verificar se conta existe
+        //
+        //
+        //
+        //
+        if (tela.confirma()){
+            int saldo =usuario.getConta().getSaldo();
+            int valor=Integer.parseInt(labelValor.getText());
+            if (saldo >= valor){
+                if (valor < 5000){
+                   usuario.getConta().setSaldo(saldo-valor);
+                   UsuarioDAO usuDAO = new UsuarioDAO();
+                   usuDAO.salvar(usuario);
+                   JOptionPane.showMessageDialog(this, "Pagamento realizado com sucesso.");
+                   //
+                   //
+                   //
+                   // rotina para salvar os dados na conta destinataria
+                   //
+                   //
+                   //
+                }else{
+                    JOptionPane.showMessageDialog(this, "Valor ultrapassa limite de DOC");
+                }
+            }else{
+                JOptionPane.showMessageDialog(this, "Valor a ser pago inferior ao do boleto.");
+            }
+        }else{
+            JOptionPane.showMessageDialog(this,"Operação cancelada.");
+        }
+        this.setVisible(false);
+        new TelaBemVindoMenu(usuario).setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnConfirmarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -218,6 +278,7 @@ public class TelaInfoBoleto extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmar;
     private javax.swing.JButton btnVoltar;
+    private javax.swing.JTextField campoValor;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel labelBoleto;
     private javax.swing.JLabel labelDataVenc;
@@ -230,6 +291,7 @@ public class TelaInfoBoleto extends javax.swing.JFrame {
     private javax.swing.JLabel labelNumbolet;
     private javax.swing.JLabel labelNumeroBoleto;
     private javax.swing.JLabel labelVal;
+    private javax.swing.JLabel labelValPago;
     private javax.swing.JLabel labelValor;
     // End of variables declaration//GEN-END:variables
 }

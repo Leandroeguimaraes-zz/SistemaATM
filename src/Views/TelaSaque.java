@@ -5,7 +5,9 @@
  */
 package Views;
 
+import javax.swing.JOptionPane;
 import model.Usuario;
+import model.dao.UsuarioDAO;
 
 /**
  *
@@ -71,24 +73,44 @@ public class TelaSaque extends javax.swing.JFrame {
         btn20.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btn20.setForeground(new java.awt.Color(0, 51, 102));
         btn20.setText("20 R$");
+        btn20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn20ActionPerformed(evt);
+            }
+        });
         jPanel2.add(btn20);
         btn20.setBounds(50, 275, 200, 50);
 
         btn50.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btn50.setForeground(new java.awt.Color(0, 51, 102));
         btn50.setText("50 R$");
+        btn50.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn50ActionPerformed(evt);
+            }
+        });
         jPanel2.add(btn50);
         btn50.setBounds(50, 350, 200, 50);
 
         btn100.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btn100.setForeground(new java.awt.Color(0, 51, 102));
         btn100.setText("100 R$");
+        btn100.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn100ActionPerformed(evt);
+            }
+        });
         jPanel2.add(btn100);
         btn100.setBounds(300, 200, 200, 50);
 
         btn200.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btn200.setForeground(new java.awt.Color(0, 51, 102));
         btn200.setText("200 R$");
+        btn200.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn200ActionPerformed(evt);
+            }
+        });
         jPanel2.add(btn200);
         btn200.setBounds(300, 275, 200, 50);
 
@@ -144,7 +166,7 @@ public class TelaSaque extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn10ActionPerformed
-        // TODO add your handling code here:
+        efetuarSaque(10);
     }//GEN-LAST:event_btn10ActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
@@ -158,6 +180,43 @@ public class TelaSaque extends javax.swing.JFrame {
         new TelaSaqueOutros(usuario).setVisible(true);
     }//GEN-LAST:event_btnOutrosActionPerformed
 
+    private void btn20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn20ActionPerformed
+        efetuarSaque(20);
+    }//GEN-LAST:event_btn20ActionPerformed
+
+    private void btn50ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn50ActionPerformed
+        efetuarSaque(50);
+    }//GEN-LAST:event_btn50ActionPerformed
+
+    private void btn100ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn100ActionPerformed
+        efetuarSaque(100);
+    }//GEN-LAST:event_btn100ActionPerformed
+
+    private void btn200ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn200ActionPerformed
+        efetuarSaque(200);
+    }//GEN-LAST:event_btn200ActionPerformed
+    
+    private void efetuarSaque(int valor){
+        TelaConfirmacao tela = new TelaConfirmacao(this,true,usuario);
+        tela.setVisible(true);
+        if (tela.confirma()){
+            int saldo =usuario.getConta().getSaldo();
+                if (saldo>valor){
+                   usuario.getConta().setSaldo(saldo-valor);
+                   UsuarioDAO usuDAO = new UsuarioDAO();
+                   usuDAO.salvar(usuario);
+                   JOptionPane.showMessageDialog(this, "Saque realizado com sucesso");
+                }else{
+                    JOptionPane.showMessageDialog(this, "Saldo insuficiente.");
+                }
+        }else{
+            JOptionPane.showMessageDialog(this,"Operação cancelada.");
+        }
+        this.setVisible(false);
+        new TelaBemVindoMenu(usuario).setVisible(true);
+        dispose();
+        
+    }
     /**
      * @param args the command line arguments
      */

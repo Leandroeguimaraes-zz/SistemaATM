@@ -5,7 +5,9 @@
  */
 package Views;
 
+import javax.swing.JOptionPane;
 import model.Usuario;
+import model.dao.UsuarioDAO;
 
 /**
  *
@@ -77,6 +79,11 @@ public class TelaSaqueOutros extends javax.swing.JFrame {
         btnConfirmar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnConfirmar.setForeground(new java.awt.Color(0, 51, 102));
         btnConfirmar.setText("Confirmar");
+        btnConfirmar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConfirmarActionPerformed(evt);
+            }
+        });
         jPanel2.add(btnConfirmar);
         btnConfirmar.setBounds(300, 500, 200, 50);
 
@@ -114,6 +121,29 @@ public class TelaSaqueOutros extends javax.swing.JFrame {
         new TelaSaque(usuario).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+         TelaConfirmacao tela = new TelaConfirmacao(this,true,usuario);
+        tela.setVisible(true);
+        if (tela.confirma()){
+            int saldo =usuario.getConta().getSaldo();
+            int valor = Integer.parseInt(campoValorSaque.getText());
+                if (saldo>valor){
+                   usuario.getConta().setSaldo(saldo-valor);
+                   UsuarioDAO usuDAO = new UsuarioDAO();
+                   usuDAO.salvar(usuario);
+                   JOptionPane.showMessageDialog(this, "Saque realizado com sucesso");
+                }else{
+                    JOptionPane.showMessageDialog(this, "Saldo insuficiente.");
+                }
+        }else{
+            JOptionPane.showMessageDialog(this,"Operação cancelada.");
+        }
+        this.setVisible(false);
+        new TelaBemVindoMenu(usuario).setVisible(true);
+        dispose();
+   
+    }//GEN-LAST:event_btnConfirmarActionPerformed
 
     /**
      * @param args the command line arguments

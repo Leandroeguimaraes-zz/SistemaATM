@@ -190,6 +190,7 @@ public class TelaDOC extends javax.swing.JFrame {
                    usuario.getConta().setSaldo(saldo-valor);
                    UsuarioDAO usuDAO = new UsuarioDAO();
                    usuDAO.salvar(usuario);
+                   JOptionPane.showMessageDialog(this, "Transferencia realizada com sucesso.");
                    //
                    //
                    //
@@ -206,6 +207,9 @@ public class TelaDOC extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this,"Operação cancelada.");
         }
+        this.setVisible(false);
+        new TelaBemVindoMenu(usuario).setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     /**
