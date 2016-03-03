@@ -42,7 +42,7 @@ public class Conta implements java.io.Serializable{
     private String numConta;
     
     @Column(name="Saldo")
-    private String saldo;
+    private int saldo;
 
     public int getIdConta() {
         return idConta;
@@ -68,11 +68,11 @@ public class Conta implements java.io.Serializable{
         this.numConta = numConta;
     }
 
-    public String getSaldo() {
+    public int getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(String saldo) {
+    public void setSaldo(int saldo) {
         this.saldo = saldo;
     }
     

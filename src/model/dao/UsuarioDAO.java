@@ -37,7 +37,7 @@ public class UsuarioDAO implements UsuarioInterfaceDAO{
         return usuario;
     }
     @Override
-    public void setBuscaUsuario(){
+    public void setUsuario(Usuario usuario){
         this.usuario=usuario;
     }
     

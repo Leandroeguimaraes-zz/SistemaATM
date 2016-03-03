@@ -5,7 +5,10 @@
  */
 package Views;
 
+import javax.swing.JOptionPane;
+import model.Conta;
 import model.Usuario;
+import model.dao.UsuarioDAO;
 
 /**
  *
@@ -169,7 +172,40 @@ public class TelaDOC extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        // TODO add your handling code here:
+        TelaConfirmacao tela = new TelaConfirmacao(this,true,usuario);
+        tela.setVisible(true);
+        //
+        //
+        //
+        //rotina para verificar se conta existe e se o cpf bate com a conta declarada
+        //
+        //
+        //
+        //
+        if (tela.confirma()){
+            int saldo =usuario.getConta().getSaldo();
+            int valor=Integer.parseInt(campoValor.getText());
+            if (saldo >= valor){
+                if (valor < 5000){
+                   usuario.getConta().setSaldo(saldo-valor);
+                   UsuarioDAO usuDAO = new UsuarioDAO();
+                   usuDAO.salvar(usuario);
+                   //
+                   //
+                   //
+                   // rotina para salvar os dados na conta destinataria
+                   //
+                   //
+                   //
+                }else{
+                    JOptionPane.showMessageDialog(this, "Valor ultrapassa limite de DOC");
+                }
+            }else{
+                JOptionPane.showMessageDialog(this, "Saldo insuficiente.");
+            }
+        }else{
+            JOptionPane.showMessageDialog(this,"Operação cancelada.");
+        }
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     /**

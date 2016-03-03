@@ -15,7 +15,7 @@ import model.Usuario;
  */
 public interface UsuarioInterfaceDAO {
     
-    public void setBuscaUsuario();
+    public void setUsuario(Usuario usuario);
     
     public Usuario getBuscaUsuario(String agencia,String numConta,String senha);
     
