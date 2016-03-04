@@ -117,7 +117,7 @@ public class TelaDeposito extends javax.swing.JFrame {
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         ValorInvalidoException v = new ValorInvalidoException();
         
-        int valor=Integer.parseInt(campoValor.getText());
+        double valor=Double.parseDouble(campoValor.getText());
         if (valor <= 0){
             v.ValorInvalidoException(1);
         }else if(valor>500){

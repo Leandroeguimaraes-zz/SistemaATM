@@ -7,6 +7,7 @@ package Views;
 
 import javax.swing.JOptionPane;
 import model.Usuario;
+import model.ValorInvalidoException;
 import model.dao.UsuarioDAO;
 
 /**
@@ -123,26 +124,33 @@ public class TelaSaqueOutros extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        TelaConfirmacao tela = new TelaConfirmacao(this,true,usuario);
-        tela.setVisible(true);
-        if (tela.confirma()){
-            double saldo =usuario.getConta().getSaldo();
-            double valor = Double.parseDouble(campoValorSaque.getText());
-                if (saldo>valor){
-                   usuario.getConta().setSaldo(saldo-valor);
-                   UsuarioDAO usuDAO = new UsuarioDAO();
-                   usuDAO.salvar(usuario);
-                   JOptionPane.showMessageDialog(this, "Saque realizado com sucesso");
-                }else{
-                    JOptionPane.showMessageDialog(this, "Saldo insuficiente.");
-                }
+        
+        ValorInvalidoException v = new ValorInvalidoException();
+        
+        double valor=Double.parseDouble(campoValorSaque.getText());
+        if (valor <= 0){
+            v.ValorInvalidoException(1);
         }else{
-            JOptionPane.showMessageDialog(this,"Operação cancelada.");
+            TelaConfirmacao tela = new TelaConfirmacao(this,true,usuario);
+            tela.setVisible(true);
+            if (tela.confirma()){
+                double saldo =usuario.getConta().getSaldo();
+                //double valor = Double.parseDouble(campoValorSaque.getText());
+                    if (saldo>valor){
+                       usuario.getConta().setSaldo(saldo-valor);
+                       UsuarioDAO usuDAO = new UsuarioDAO();
+                       usuDAO.salvar(usuario);
+                       JOptionPane.showMessageDialog(this, "Saque realizado com sucesso");
+                    }else{
+                        JOptionPane.showMessageDialog(this, "Saldo insuficiente.");
+                    }
+            }else{
+                JOptionPane.showMessageDialog(this,"Operação cancelada.");
+            }
+            this.setVisible(false);
+            new TelaBemVindoMenu(usuario).setVisible(true);
+            dispose();
         }
-        this.setVisible(false);
-        new TelaBemVindoMenu(usuario).setVisible(true);
-        dispose();
-   
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     /**
