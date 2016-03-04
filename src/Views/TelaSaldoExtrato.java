@@ -5,6 +5,7 @@
  */
 package Views;
 
+import java.text.DecimalFormat;
 import model.Usuario;
 
 /**
@@ -21,7 +22,8 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
     public TelaSaldoExtrato(Usuario usuario) {
         initComponents();
         this.usuario=usuario;
-//        labelSaldo.setText(usuario.getConta().getSaldo());
+        //Verificar Problema com o getSaldo. Quando for solucionado, o codigo abaixo funcionará.
+        //labelSaldoUsuario.setText(String.format("%.2f", usuario.getConta().getSaldo())) ;
     }
 
     /**

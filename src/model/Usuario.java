@@ -50,7 +50,7 @@ public class Usuario implements java.io.Serializable {
 
     @Column(name = "senha")
     private String senha;
-
+    
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idconta", nullable = true)
     @Cascade(CascadeType.SAVE_UPDATE)
