@@ -200,7 +200,7 @@ public class TelaSaque extends javax.swing.JFrame {
         TelaConfirmacao tela = new TelaConfirmacao(this,true,usuario);
         tela.setVisible(true);
         if (tela.confirma()){
-            int saldo =usuario.getConta().getSaldo();
+            double saldo =usuario.getConta().getSaldo();
                 if (saldo>valor){
                    usuario.getConta().setSaldo(saldo-valor);
                    UsuarioDAO usuDAO = new UsuarioDAO();

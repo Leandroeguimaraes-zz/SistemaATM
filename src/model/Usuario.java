@@ -106,9 +106,9 @@ public class Usuario implements java.io.Serializable {
         if (valor < 0) {
             throw new ValorInvalidoException();
         }
-        double saldo = Double.parseDouble(conta.getSaldo());
+        double saldo = conta.getSaldo();
         double novoSaldo = saldo + valor;
-        conta.setSaldo("" + novoSaldo);
+        conta.setSaldo(novoSaldo);
     }
 
     /**
@@ -122,12 +122,12 @@ public class Usuario implements java.io.Serializable {
         if (valor < 0) {
             throw new ValorInvalidoException();
         }
-        double saldo = Double.valueOf(conta.getSaldo());
+        double saldo = conta.getSaldo();
         double novoSaldo = saldo - valor;
         if (novoSaldo < 0) {
             throw new SaldoInsuficienteException();
         }
-        conta.setSaldo("" + novoSaldo);
+        conta.setSaldo(novoSaldo);
     }
 
 }

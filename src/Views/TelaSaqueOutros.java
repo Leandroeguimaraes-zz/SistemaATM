@@ -126,7 +126,7 @@ public class TelaSaqueOutros extends javax.swing.JFrame {
          TelaConfirmacao tela = new TelaConfirmacao(this,true,usuario);
         tela.setVisible(true);
         if (tela.confirma()){
-            int saldo =usuario.getConta().getSaldo();
+            double saldo =usuario.getConta().getSaldo();
             int valor = Integer.parseInt(campoValorSaque.getText());
                 if (saldo>valor){
                    usuario.getConta().setSaldo(saldo-valor);

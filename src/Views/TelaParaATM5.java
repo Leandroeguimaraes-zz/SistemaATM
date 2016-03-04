@@ -170,7 +170,7 @@ public class TelaParaATM5 extends javax.swing.JFrame {
         //
         //
         if (tela.confirma()){
-            int saldo =usuario.getConta().getSaldo();
+            double saldo =usuario.getConta().getSaldo();
             int valor=Integer.parseInt(campoValor.getText());
             if (saldo >= valor){
                    usuario.getConta().setSaldo(saldo-valor);

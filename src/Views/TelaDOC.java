@@ -183,7 +183,7 @@ public class TelaDOC extends javax.swing.JFrame {
         //
         //
         if (tela.confirma()){
-            int saldo =usuario.getConta().getSaldo();
+            double saldo =usuario.getConta().getSaldo();
             int valor=Integer.parseInt(campoValor.getText());
             if (saldo >= valor){
                 if (valor < 5000){
