@@ -5,6 +5,8 @@
  */
 package model;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author VM
@@ -18,5 +20,16 @@ public class ValorInvalidoException extends Exception {
         super(message);
     }
     
+    public void ValorInvalidoException(int i){
+        if(i==1){
+            JOptionPane.showMessageDialog(null, "Valor Invalido!");
+        }
+        if(i==2){
+            JOptionPane.showMessageDialog(null, "Valor ultrapassa limite de deposito díario.");
+        }else{
+            System.out.println("Erro de valor ainda nao declarado!");
+        }
+    }
+
     
 }

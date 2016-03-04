@@ -103,9 +103,6 @@ public class Usuario implements java.io.Serializable {
      * @throws ValorInvalidoException valor < zero.
      */
     public void deposita(Conta conta, double valor) throws ValorInvalidoException {
-        if (valor <= 0) {
-            throw new ValorInvalidoException("Impossível Depositar Valores Negativos!");
-        }
         double saldo = conta.getSaldo();
         double novoSaldo = saldo + valor;
         conta.setSaldo(novoSaldo);
@@ -119,7 +116,7 @@ public class Usuario implements java.io.Serializable {
      * @throws SaldoInsuficienteException saldo < valor
      */
     public void saca(Conta conta, double valor) throws ValorInvalidoException, SaldoInsuficienteException {
-        if (valor < 0) {
+        if (valor <= 0) {
             throw new ValorInvalidoException();
         }
         double saldo = conta.getSaldo();

@@ -196,7 +196,9 @@ public class TelaSaque extends javax.swing.JFrame {
         efetuarSaque(200);
     }//GEN-LAST:event_btn200ActionPerformed
     
-    private void efetuarSaque(int valor){
+    private void efetuarSaque(double valor){
+        
+        
         TelaConfirmacao tela = new TelaConfirmacao(this,true,usuario);
         tela.setVisible(true);
         if (tela.confirma()){

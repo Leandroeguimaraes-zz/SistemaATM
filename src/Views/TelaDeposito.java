@@ -5,8 +5,11 @@
  */
 package Views;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Usuario;
+import model.ValorInvalidoException;
 import model.dao.UsuarioDAO;
 
 /**
@@ -112,25 +115,34 @@ public class TelaDeposito extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        TelaConfirmacao tela = new TelaConfirmacao(this,true,usuario);
-        tela.setVisible(true);
-        if (tela.confirma()){
-            double saldo =usuario.getConta().getSaldo();
-            int valor=Integer.parseInt(campoValor.getText());
-                if (valor < 5000){
-                   usuario.getConta().setSaldo(saldo+valor);
-                   UsuarioDAO usuDAO = new UsuarioDAO();
-                   usuDAO.salvar(usuario);
-                   JOptionPane.showMessageDialog(this, "Deposito realizado com sucesso.");
-                }else{
-                    JOptionPane.showMessageDialog(this, "Valor ultrapassa limite de deposito díario.");
-                }
+        ValorInvalidoException v = new ValorInvalidoException();
+        
+        int valor=Integer.parseInt(campoValor.getText());
+        if (valor <= 0){
+            v.ValorInvalidoException(1);
+        }else if(valor>500){
+            v.ValorInvalidoException(2);
         }else{
-            JOptionPane.showMessageDialog(this,"Operação cancelada.");
+            TelaConfirmacao tela = new TelaConfirmacao(this,true,usuario);
+            tela.setVisible(true);
+            if (tela.confirma()){
+                double saldo =usuario.getConta().getSaldo();  
+                try {
+                    usuario.deposita(usuario.getConta(), valor);
+                } catch (ValorInvalidoException ex) {
+                    JOptionPane.showMessageDialog(this, "Problema com a conta.");
+                }
+                    //usuario.getConta().setSaldo(saldo+valor);
+                    UsuarioDAO usuDAO = new UsuarioDAO();
+                    usuDAO.salvar(usuario);
+                    JOptionPane.showMessageDialog(this, "Deposito realizado com sucesso.");    
+            }else{
+                JOptionPane.showMessageDialog(this,"Operação cancelada.");
+            }
+            this.setVisible(false);
+            new TelaBemVindoMenu(usuario).setVisible(true);
+            dispose();
         }
-        this.setVisible(false);
-        new TelaBemVindoMenu(usuario).setVisible(true);
-        dispose();
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed

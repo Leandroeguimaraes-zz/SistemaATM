@@ -123,11 +123,11 @@ public class TelaSaqueOutros extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-         TelaConfirmacao tela = new TelaConfirmacao(this,true,usuario);
+        TelaConfirmacao tela = new TelaConfirmacao(this,true,usuario);
         tela.setVisible(true);
         if (tela.confirma()){
             double saldo =usuario.getConta().getSaldo();
-            int valor = Integer.parseInt(campoValorSaque.getText());
+            double valor = Double.parseDouble(campoValorSaque.getText());
                 if (saldo>valor){
                    usuario.getConta().setSaldo(saldo-valor);
                    UsuarioDAO usuDAO = new UsuarioDAO();
