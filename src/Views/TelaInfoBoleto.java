@@ -6,9 +6,7 @@
 package Views;
 
 import javax.swing.JOptionPane;
-import model.Conta;
 import model.Usuario;
-import model.dao.ContaDAO;
 import model.dao.UsuarioDAO;
 
 /**
@@ -17,7 +15,7 @@ import model.dao.UsuarioDAO;
  */
 public class TelaInfoBoleto extends javax.swing.JFrame {
 
-    private Conta conta;
+    private Usuario usuario;
 
     /**
      * Creates new form TelaSaque
@@ -26,9 +24,9 @@ public class TelaInfoBoleto extends javax.swing.JFrame {
         initComponents();
     }
 
-    TelaInfoBoleto(Conta conta) {
+    TelaInfoBoleto(Usuario usuario) {
         initComponents();
-        this.conta = conta;
+        this.usuario = usuario;
     }
 
     /**
@@ -190,12 +188,12 @@ public class TelaInfoBoleto extends javax.swing.JFrame {
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.setVisible(false);
-        new TelaBemVindoMenu(conta).setVisible(true);
+        new TelaBemVindoMenu(usuario).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        TelaConfirmacao tela = new TelaConfirmacao(this,true,conta);
+        TelaConfirmacao tela = new TelaConfirmacao(this,true,usuario);
         tela.setVisible(true);
         //
         //
@@ -206,13 +204,13 @@ public class TelaInfoBoleto extends javax.swing.JFrame {
         //
         //
         if (tela.confirma()){
-            double saldo =conta.getSaldo();
+            int saldo =usuario.getConta().getSaldo();
             int valor=Integer.parseInt(labelValor.getText());
             if (saldo >= valor){
                 if (valor < 5000){
-                   conta.setSaldo(saldo-valor);
-                   ContaDAO contDAO = new ContaDAO();
-                   contDAO.salvar(conta);
+                   usuario.getConta().setSaldo(saldo-valor);
+                   UsuarioDAO usuDAO = new UsuarioDAO();
+                   usuDAO.salvar(usuario);
                    JOptionPane.showMessageDialog(this, "Pagamento realizado com sucesso.");
                    //
                    //
@@ -231,7 +229,7 @@ public class TelaInfoBoleto extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Operação cancelada.");
         }
         this.setVisible(false);
-        new TelaBemVindoMenu(conta).setVisible(true);
+        new TelaBemVindoMenu(usuario).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnConfirmarActionPerformed
 

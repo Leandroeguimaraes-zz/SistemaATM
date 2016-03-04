@@ -8,7 +8,6 @@ package Views;
 import javax.swing.JOptionPane;
 import model.Conta;
 import model.Usuario;
-import model.dao.ContaDAO;
 import model.dao.UsuarioDAO;
 
 /**
@@ -17,7 +16,7 @@ import model.dao.UsuarioDAO;
  */
 public class TelaDOC extends javax.swing.JFrame {
 
-    private Conta conta;
+    private Usuario usuario;
 
     /**
      * Creates new form TelaSaque
@@ -26,8 +25,8 @@ public class TelaDOC extends javax.swing.JFrame {
         initComponents();
     }
 
-    TelaDOC(Conta conta) {
-        this.conta = conta;
+    TelaDOC(Usuario usuario) {
+        this.usuario = usuario;
         initComponents();
     }
 
@@ -168,12 +167,12 @@ public class TelaDOC extends javax.swing.JFrame {
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.setVisible(false);
-        new TelaTransferencia(conta).setVisible(true);
+        new TelaTransferencia(usuario).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        TelaConfirmacao tela = new TelaConfirmacao(this,true,conta);
+        TelaConfirmacao tela = new TelaConfirmacao(this,true,usuario);
         tela.setVisible(true);
         //
         //
@@ -184,13 +183,13 @@ public class TelaDOC extends javax.swing.JFrame {
         //
         //
         if (tela.confirma()){
-            double saldo =conta.getSaldo();
+            int saldo =usuario.getConta().getSaldo();
             int valor=Integer.parseInt(campoValor.getText());
             if (saldo >= valor){
                 if (valor < 5000){
-                   conta.setSaldo(saldo-valor);
-                   ContaDAO contDAO = new ContaDAO();
-                   contDAO.salvar(conta);
+                   usuario.getConta().setSaldo(saldo-valor);
+                   UsuarioDAO usuDAO = new UsuarioDAO();
+                   usuDAO.salvar(usuario);
                    JOptionPane.showMessageDialog(this, "Transferencia realizada com sucesso.");
                    //
                    //
@@ -209,7 +208,7 @@ public class TelaDOC extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Operação cancelada.");
         }
         this.setVisible(false);
-        new TelaBemVindoMenu(conta).setVisible(true);
+        new TelaBemVindoMenu(usuario).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnConfirmarActionPerformed
 

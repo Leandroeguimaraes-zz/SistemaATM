@@ -17,7 +17,7 @@ public interface UsuarioInterfaceDAO {
     
     public void setUsuario(Usuario usuario);
     
-    public Usuario getUsuario(String cpf);
+    public Usuario getBuscaUsuario(String agencia,String numConta,String senha);
     
     public List<Usuario> getUsuarios();
     

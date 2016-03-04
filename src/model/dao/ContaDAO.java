@@ -20,27 +20,6 @@ import org.hibernate.Query;
 public class ContaDAO implements ContaInterfaceDAO{
 
     private List<Conta> contas;
-    private Conta conta;
-    
-    @Override
-    public void setConta(Conta conta){
-        this.conta = conta;
-    }
-    
-    @Override
-    public Conta getConta(String banco, String agencia, String conta){
-        if(this.conta == null){
-            Session session = HibernateUtil.getSessionFactory().openSession();
-            Query query = session.getNamedQuery("Conta.buscaConta");
-            query.setParameter("banco", banco);
-            query.setParameter("agencia", agencia);
-            query.setParameter("conta", conta);
-            this.conta= (Conta) query.list().get(0);
-            session.close();
-          
-        }
-        return this.conta;
-    }
     
     @Override
     public List<Conta> getContas() {

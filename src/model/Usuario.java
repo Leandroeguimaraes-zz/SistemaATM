@@ -28,30 +28,33 @@ import org.hibernate.annotations.CascadeType;
     @NamedQuery(name = "Usuario.listaUsuarios", query = "select a from Usuario a"),
     @NamedQuery(name = "Usuario.buscaUsuario",
             query = "select user from Usuario as user "
-            + "where user.cpf =: cpf")
+            + "join user.conta as c "
+            + "where c.numConta=:numConta and user.senha=:senha and c.agencia=:agencia")
 })
 
 @Entity
-@Table(name = "USUARIO")
+@Table(name = "Usuario")
 @SequenceGenerator(name = "USUARIO_SEQUENCE", sequenceName = "USUARIO_SEQUENCE", allocationSize = 1, initialValue = 0)
 public class Usuario implements java.io.Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USUARIO_SEQUENCE")
+
     private int idUsuario;
 
-    @Column(name = "CPF")
+    @Column(name = "cpf")
     private String cpf;
 
-    @Column(name = "NOME")
+    @Column(name = "nome")
     private String nome;
 
-    @Column(name = "TELEFONE")
-    private String telefone;
-    
-    @Column(name = "ENDERECO")
-    private String endereco;
-    
+    @Column(name = "senha")
+    private String senha;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "idconta", nullable = true)
+    @Cascade(CascadeType.SAVE_UPDATE)
+    private Conta conta;
 
     public int getIdUsuario() {
         return idUsuario;
@@ -77,14 +80,21 @@ public class Usuario implements java.io.Serializable {
         this.nome = nome;
     }
 
-    public String getTelefone() {
-        return telefone;
+    public String getSenha() {
+        return senha;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
+    public Conta getConta() {
+        return conta;
+    }
+
+    public void setConta(Conta conta) {
+        this.conta = conta;
+    }
 
     /**
      *
@@ -92,17 +102,14 @@ public class Usuario implements java.io.Serializable {
      * @param valor a ser depositado
      * @throws ValorInvalidoException valor < zero.
      */
-    
-    /**
     public void deposita(Conta conta, double valor) throws ValorInvalidoException {
         if (valor < 0) {
             throw new ValorInvalidoException();
         }
-        double saldo = conta.getSaldo();
+        double saldo = Double.parseDouble(conta.getSaldo());
         double novoSaldo = saldo + valor;
-        conta.setSaldo(novoSaldo);
+        conta.setSaldo("" + novoSaldo);
     }
-    */
 
     /**
      *
@@ -111,18 +118,16 @@ public class Usuario implements java.io.Serializable {
      * @throws ValorInvalidoException valor < 0
      * @throws SaldoInsuficienteException saldo < valor
      */
-    /**
     public void saca(Conta conta, double valor) throws ValorInvalidoException, SaldoInsuficienteException {
         if (valor < 0) {
             throw new ValorInvalidoException();
         }
-        double saldo = conta.getSaldo();
+        double saldo = Double.valueOf(conta.getSaldo());
         double novoSaldo = saldo - valor;
         if (novoSaldo < 0) {
             throw new SaldoInsuficienteException();
         }
-        conta.setSaldo(novoSaldo);
+        conta.setSaldo("" + novoSaldo);
     }
-    */
 
 }

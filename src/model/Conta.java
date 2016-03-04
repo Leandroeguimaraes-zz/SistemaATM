@@ -7,18 +7,13 @@ package model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
 
 /**
  *
@@ -26,13 +21,11 @@ import org.hibernate.annotations.CascadeType;
  */
 
 @NamedQueries({
-    @NamedQuery(name="Conta.listaContas", query="select a from Conta a"),
-    @NamedQuery(name="Conta.buscaConta", query="select cont from Conta as cont "
-                                         +"where cont.banco=: banco and cont.agencia=:agencia and cont.conta=:conta")
+    @NamedQuery(name="Conta.listaContas", query="select a from Conta a")
 })
 
 @Entity
-@Table(name="CONTA")
+@Table(name="Conta")
 @SequenceGenerator(name="CONTA_SEQUENCE", sequenceName="CONTA_SEQUENCE", allocationSize=1, initialValue=0)
 
 public class Conta implements java.io.Serializable{
@@ -42,28 +35,14 @@ public class Conta implements java.io.Serializable{
     
     private int idConta;
     
-    @Column(name="BANCO")
-    private String banco;
-    
-    @Column(name="AGENCIA")
+    @Column(name="Agencia")
     private String agencia;
     
-    @Column(name="CONTA")
-    private String conta;
+    @Column(name="numConta")
+    private String numConta;
     
-    @Column(name="CPF")
-    private String cpf;
-    
-    @Column(name="SENHA")
-    private String senha;
-    
-    @Column(name="SALDO")
-    private double saldo;
-    
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idUsuario", nullable = true)
-    @Cascade(CascadeType.SAVE_UPDATE)
-    private Usuario usuario;
+    @Column(name="Saldo")
+    private int saldo;
 
     public int getIdConta() {
         return idConta;
@@ -71,14 +50,6 @@ public class Conta implements java.io.Serializable{
 
     public void setIdConta(int idConta) {
         this.idConta = idConta;
-    }
-    
-    public String getBanco() {
-        return banco;
-    }
-
-    public void setBanco(String banco){
-        this.banco = banco;
     }
 
     public String getAgencia() {
@@ -89,35 +60,19 @@ public class Conta implements java.io.Serializable{
         this.agencia = agencia;
     }
 
-    public String getConta() {
-        return conta;
+    public String getNumConta() {
+        return numConta;
     }
 
-    public void setConta(String conta) {
-        this.conta = conta;
-    }
-    
-    public Usuario getUsuario() {
-        return usuario;
+    public void setNumConta(String numConta) {
+        this.numConta = numConta;
     }
 
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-    
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public double getSaldo() {
+    public int getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(double saldo) {
+    public void setSaldo(int saldo) {
         this.saldo = saldo;
     }
     

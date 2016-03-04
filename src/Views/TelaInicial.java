@@ -7,6 +7,7 @@ package Views;
 
 import controller.ValidacaoUsuario;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -161,7 +162,7 @@ public class TelaInicial extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(campoConta,iP,"Acesso Permitido!",JOptionPane.PLAIN_MESSAGE);
                 System.out.println("CHECK");
                 this.setVisible(false);
-                new TelaBemVindoMenu(vu.getConta()).setVisible(true);
+                new TelaBemVindoMenu(vu.getUsuario()).setVisible(true);
             }
         } catch (Exception e) {
             ImageIcon iN =new ImageIcon(getClass().getResource("/Imagens/acessoNegado.png"));
