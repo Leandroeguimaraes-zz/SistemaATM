@@ -5,6 +5,7 @@
  */
 package Views;
 
+import model.Conta;
 import model.Usuario;
 
 /**
@@ -13,7 +14,7 @@ import model.Usuario;
  */
 public class TelaPagamento extends javax.swing.JFrame {
 
-    private Usuario usuario;
+    private Conta conta;
 
     /**
      * Creates new form TelaSaque
@@ -22,9 +23,9 @@ public class TelaPagamento extends javax.swing.JFrame {
         initComponents();
     }
 
-    TelaPagamento(Usuario usuario) {
+    TelaPagamento(Conta conta) {
         initComponents();
-        this.usuario = usuario;
+        this.conta = conta;
     }
 
     /**
@@ -116,13 +117,13 @@ public class TelaPagamento extends javax.swing.JFrame {
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.setVisible(false);
-        new TelaBemVindoMenu(usuario).setVisible(true);
+        new TelaBemVindoMenu(conta).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         this.setVisible(false);
-        new TelaInfoBoleto(usuario).setVisible(true);
+        new TelaInfoBoleto(conta).setVisible(true);
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     /**

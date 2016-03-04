@@ -5,6 +5,7 @@
  */
 package Views;
 
+import model.Conta;
 import model.Usuario;
 
 /**
@@ -13,14 +14,14 @@ import model.Usuario;
  */
 public class TelaSaldoExtrato extends javax.swing.JFrame {
 
-    Usuario usuario;
+    Conta conta;
     
     public TelaSaldoExtrato() {
         initComponents();
     }
-    public TelaSaldoExtrato(Usuario usuario) {
+    public TelaSaldoExtrato(Conta conta) {
         initComponents();
-        this.usuario=usuario;
+        this.conta=conta;
 //        labelSaldo.setText(usuario.getConta().getSaldo());
     }
 
@@ -111,13 +112,13 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.setVisible(false);
-        new TelaBemVindoMenu(usuario).setVisible(true);
+        new TelaBemVindoMenu(conta).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnMostarExtratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostarExtratoActionPerformed
         this.setVisible(false);
-        new TelaExtrato(usuario).setVisible(true);
+        new TelaExtrato(conta).setVisible(true);
     }//GEN-LAST:event_btnMostarExtratoActionPerformed
 
     /**

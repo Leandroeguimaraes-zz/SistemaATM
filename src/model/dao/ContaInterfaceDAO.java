@@ -14,6 +14,10 @@ import model.Conta;
  */
 public interface ContaInterfaceDAO {
     
+    public void setConta(Conta conta);
+    
+    public Conta getConta(String banco,String agencia, String conta);
+    
     public List<Conta> getContas();
     
     public void setContas(List<Conta> contas);

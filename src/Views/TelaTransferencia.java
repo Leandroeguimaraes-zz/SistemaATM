@@ -5,6 +5,7 @@
  */
 package Views;
 
+import model.Conta;
 import model.Usuario;
 
 /**
@@ -13,7 +14,7 @@ import model.Usuario;
  */
 public class TelaTransferencia extends javax.swing.JFrame {
 
-    private Usuario usuario;
+    private Conta conta;
 
     /**
      * Creates new form TelaSaque
@@ -22,8 +23,8 @@ public class TelaTransferencia extends javax.swing.JFrame {
         initComponents();
     }
 
-    TelaTransferencia(Usuario usuario) {
-        this.usuario = usuario;
+    TelaTransferencia(Conta conta) {
+        this.conta = conta;
         initComponents();
     }
 
@@ -128,23 +129,23 @@ public class TelaTransferencia extends javax.swing.JFrame {
 
     private void btnBancoBancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBancoBancoActionPerformed
         this.setVisible(false);
-        new TelaParaATM5(usuario).setVisible(true);
+        new TelaParaATM5(conta).setVisible(true);
     }//GEN-LAST:event_btnBancoBancoActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.setVisible(false);
-        new TelaBemVindoMenu(usuario).setVisible(true);
+        new TelaBemVindoMenu(conta).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnDOCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDOCActionPerformed
         this.setVisible(false);
-        new TelaDOC(usuario).setVisible(true);
+        new TelaDOC(conta).setVisible(true);
     }//GEN-LAST:event_btnDOCActionPerformed
 
     private void btnTEDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTEDActionPerformed
         this.setVisible(false);
-        new TelaTED(usuario).setVisible(true);
+        new TelaTED(conta).setVisible(true);
     }//GEN-LAST:event_btnTEDActionPerformed
 
     /**

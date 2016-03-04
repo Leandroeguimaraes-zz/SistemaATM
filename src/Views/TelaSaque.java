@@ -6,7 +6,9 @@
 package Views;
 
 import javax.swing.JOptionPane;
+import model.Conta;
 import model.Usuario;
+import model.dao.ContaDAO;
 import model.dao.UsuarioDAO;
 
 /**
@@ -15,7 +17,7 @@ import model.dao.UsuarioDAO;
  */
 public class TelaSaque extends javax.swing.JFrame {
 
-    private Usuario usuario;
+    private Conta conta;
 
     /**
      * Creates new form TelaSaque
@@ -24,8 +26,8 @@ public class TelaSaque extends javax.swing.JFrame {
         initComponents();
     }
 
-    TelaSaque(Usuario usuario) {
-        this.usuario = usuario;
+    TelaSaque(Conta conta) {
+        this.conta = conta;
         initComponents();
     }
 
@@ -171,13 +173,13 @@ public class TelaSaque extends javax.swing.JFrame {
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.setVisible(false);
-        new TelaBemVindoMenu(usuario).setVisible(true);
+        new TelaBemVindoMenu(conta).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnOutrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOutrosActionPerformed
         this.setVisible(false);
-        new TelaSaqueOutros(usuario).setVisible(true);
+        new TelaSaqueOutros(conta).setVisible(true);
     }//GEN-LAST:event_btnOutrosActionPerformed
 
     private void btn20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn20ActionPerformed
@@ -197,14 +199,14 @@ public class TelaSaque extends javax.swing.JFrame {
     }//GEN-LAST:event_btn200ActionPerformed
     
     private void efetuarSaque(int valor){
-        TelaConfirmacao tela = new TelaConfirmacao(this,true,usuario);
+        TelaConfirmacao tela = new TelaConfirmacao(this,true,conta);
         tela.setVisible(true);
         if (tela.confirma()){
-            int saldo =usuario.getConta().getSaldo();
+            double saldo =conta.getSaldo();
                 if (saldo>valor){
-                   usuario.getConta().setSaldo(saldo-valor);
-                   UsuarioDAO usuDAO = new UsuarioDAO();
-                   usuDAO.salvar(usuario);
+                   conta.setSaldo(saldo-valor);
+                   ContaDAO contDAO = new ContaDAO();
+                   contDAO.salvar(conta);
                    JOptionPane.showMessageDialog(this, "Saque realizado com sucesso");
                 }else{
                     JOptionPane.showMessageDialog(this, "Saldo insuficiente.");
@@ -213,7 +215,7 @@ public class TelaSaque extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Operação cancelada.");
         }
         this.setVisible(false);
-        new TelaBemVindoMenu(usuario).setVisible(true);
+        new TelaBemVindoMenu(conta).setVisible(true);
         dispose();
         
     }

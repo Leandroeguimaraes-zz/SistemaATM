@@ -6,6 +6,7 @@
 package Views;
 
 import javax.swing.JOptionPane;
+import model.Conta;
 import model.Usuario;
 
 /**
@@ -14,19 +15,19 @@ import model.Usuario;
  */
 public class TelaBemVindoMenu extends javax.swing.JFrame {
 
-    Usuario usuario;
+    Conta conta;
 
     public TelaBemVindoMenu() {
-        Usuario usu = new Usuario();
-        this.usuario = usu;
+        Conta conta = new Conta();
+        this.conta = conta;
         initComponents();
 
     }
 
-    public TelaBemVindoMenu(Usuario usuario) {
+    public TelaBemVindoMenu(Conta conta) {
         initComponents();
-        this.usuario = usuario;
-        labelNomeUsuario.setText(usuario.getNome());
+        this.conta = conta;
+        labelNomeUsuario.setText(this.conta.getUsuario().getNome());
     }
 
     /**
@@ -56,7 +57,6 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(800, 600));
         setMinimumSize(new java.awt.Dimension(800, 600));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
 
         painelPrincipal.setLayout(null);
@@ -192,7 +192,7 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
 
     private void btnSaldoExtratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaldoExtratoActionPerformed
         this.setVisible(false);
-        new TelaSaldoExtrato(usuario).setVisible(true);
+        new TelaSaldoExtrato(conta).setVisible(true);
     }//GEN-LAST:event_btnSaldoExtratoActionPerformed
 
     private void btnInvestimentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInvestimentosActionPerformed
@@ -201,22 +201,22 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
 
     private void btnDepositoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepositoActionPerformed
         this.setVisible(false);
-        new TelaDeposito(usuario).setVisible(true);
+        new TelaDeposito(conta).setVisible(true);
     }//GEN-LAST:event_btnDepositoActionPerformed
 
     private void btnSaquesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaquesActionPerformed
         this.setVisible(false);
-        new TelaSaque(usuario).setVisible(true);
+        new TelaSaque(conta).setVisible(true);
     }//GEN-LAST:event_btnSaquesActionPerformed
 
     private void btnPagamentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagamentosActionPerformed
         this.setVisible(false);
-        new TelaPagamento(usuario).setVisible(true);
+        new TelaPagamento(conta).setVisible(true);
     }//GEN-LAST:event_btnPagamentosActionPerformed
 
     private void btnTransferenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferenciasActionPerformed
         this.setVisible(false);
-        new TelaTransferencia(usuario).setVisible(true);
+        new TelaTransferencia(conta).setVisible(true);
     }//GEN-LAST:event_btnTransferenciasActionPerformed
 
     /**

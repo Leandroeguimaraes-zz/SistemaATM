@@ -24,19 +24,19 @@ public class testeDaO {
          Conta c4 = new Conta();
          c1.setNumConta("1001");
          c1.setAgencia("11");
-         c1.setSaldo("100");
+         c1.setSaldo(100);
          
          c2.setNumConta("1002");
          c2.setAgencia("12");
-         c2.setSaldo("950");
+         c2.setSaldo(950);
          
          c3.setNumConta("1003");
          c3.setAgencia("13");
-         c3.setSaldo("950");
+         c3.setSaldo(950);
          
          c4.setNumConta("1004");
          c4.setAgencia("14");
-         c4.setSaldo("950");
+         c4.setSaldo(950);
          
          
          
