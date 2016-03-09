@@ -5,7 +5,7 @@
  */
 package Views;
 
-import controller.ValidacaoUsuario;
+import controller.Controller;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class TelaInicial extends javax.swing.JFrame {
 
-    ValidacaoUsuario vu = new ValidacaoUsuario();
+    Controller vu = new Controller();
     
     public TelaInicial() {
         initComponents();
@@ -156,7 +156,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         try {
-            if(vu.validaLogin(campoAgencia.getText(),campoConta.getText(), campoSenha.getText())){
+            if(vu.efetuaLogin(campoAgencia.getText(),campoConta.getText(), campoSenha.getText())){
                 ImageIcon iP =new ImageIcon(getClass().getResource("/Imagens/acessoPermitido.png"));
                 JOptionPane.showMessageDialog(campoConta,iP,"Acesso Permitido!",JOptionPane.PLAIN_MESSAGE);
                 System.out.println("CHECK");

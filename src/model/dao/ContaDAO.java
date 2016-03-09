@@ -28,18 +28,15 @@ public class ContaDAO implements ContaInterfaceDAO{
     }
     
     @Override
-    public Conta getConta(String banco, String agencia, String conta){
-        if(this.conta == null){
+    public Conta getConta(String banco, String agencia, String cc){
             Session session = HibernateUtil.getSessionFactory().openSession();
             Query query = session.getNamedQuery("Conta.buscaConta");
             query.setParameter("banco", banco);
             query.setParameter("agencia", agencia);
-            query.setParameter("conta", conta);
-            this.conta= (Conta) query.list().get(0);
+            query.setParameter("conta", cc);
+            Conta conta = (Conta) query.list().get(0);
             session.close();
-          
-        }
-        return this.conta;
+            return conta;
     }
     
     @Override

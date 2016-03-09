@@ -21,16 +21,16 @@ public class TelaConfirmacao extends javax.swing.JDialog {
     int[][] matriz = new int[6][2];
     int cont = 0;
     private boolean confirma;
-    private Conta conta;
+    private String senha;
     /**
      * Creates new form TelaConfirmacao
      * @param parent
      * @param modal
      * @param usuario
      */
-    public TelaConfirmacao(java.awt.Frame parent, boolean modal,Conta conta) {
+    public TelaConfirmacao(java.awt.Frame parent, boolean modal,String senha) {
         super(parent, modal);
-        this.conta = conta;
+        this.senha = senha;
         initComponents();
     }
 
@@ -205,7 +205,7 @@ public class TelaConfirmacao extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this,"Senha incorreta.");
         }else{
             geraSenhas();
-            if (senhas.containsValue(conta.getSenha())){
+            if (senhas.containsValue(senha)){
                 confirma = true;
                 this.setVisible(false);
             }else{
