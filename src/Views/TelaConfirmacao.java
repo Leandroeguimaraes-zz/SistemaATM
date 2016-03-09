@@ -5,11 +5,11 @@
  */
 package Views;
 
+import controller.Controller;
 import java.util.HashMap;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import model.Conta;
-import model.Usuario;
+
 
 /**
  *
@@ -21,16 +21,16 @@ public class TelaConfirmacao extends javax.swing.JDialog {
     int[][] matriz = new int[6][2];
     int cont = 0;
     private boolean confirma;
-    private String senha;
+    private Controller control;
     /**
      * Creates new form TelaConfirmacao
      * @param parent
      * @param modal
      * @param usuario
      */
-    public TelaConfirmacao(java.awt.Frame parent, boolean modal,String senha) {
+    public TelaConfirmacao(java.awt.Frame parent, boolean modal,Controller control) {
         super(parent, modal);
-        this.senha = senha;
+        this.control = control;
         initComponents();
     }
 
@@ -205,7 +205,7 @@ public class TelaConfirmacao extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this,"Senha incorreta.");
         }else{
             geraSenhas();
-            if (senhas.containsValue(senha)){
+            if (senhas.containsValue(this.control.getSenha())){
                 confirma = true;
                 this.setVisible(false);
             }else{

@@ -175,44 +175,21 @@ public class TelaInfoBoleto extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        TelaConfirmacao tela = new TelaConfirmacao(this,true,control);
+        TelaConfirmacao tela = new TelaConfirmacao(this, true, control);
         tela.setVisible(true);
-        //
-        //
-        //
-        //rotina para verificar se control existe
-        //
-        //
-        //
-        //
-        if (tela.confirma()){
-            double saldo =control.getSaldo();
-            int valor=Integer.parseInt(labelValor.getText());
-            if (saldo >= valor){
-                if (valor < 5000){
-                   control.setSaldo(saldo-valor);
-                   ContaDAO contDAO = new ContaDAO();
-                   contDAO.salvar(control);
-                   JOptionPane.showMessageDialog(this, "Pagamento realizado com sucesso.");
-                   //
-                   //
-                   //
-                   // rotina para salvar os dados na control destinataria
-                   //
-                   //
-                   //
-                }else{
-                    JOptionPane.showMessageDialog(this, "Valor ultrapassa limite de DOC");
-                }
-            }else{
-                JOptionPane.showMessageDialog(this, "Valor a ser pago inferior ao do boleto.");
+        if (tela.confirma()) {
+            if (control.efetuaPagamento()) {
+                JOptionPane.showMessageDialog(this, "Pagamento realizado com sucesso.");
+                this.setVisible(false);
+                new TelaBemVindoMenu(control).setVisible(true);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Saldo insuficiente.");
             }
-        }else{
-            JOptionPane.showMessageDialog(this,"Operação cancelada.");
+        } else {
+            JOptionPane.showMessageDialog(this, "Operação cancelada.");
         }
-        this.setVisible(false);
-        new TelaBemVindoMenu(control).setVisible(true);
-        dispose();
+
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     public static void main(String args[]) {

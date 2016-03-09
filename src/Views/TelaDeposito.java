@@ -96,7 +96,7 @@ public class TelaDeposito extends javax.swing.JFrame {
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         double valor = Double.parseDouble(this.campoValor.getText());
         if (valor < 5000) {
-            TelaConfirmacao tela = new TelaConfirmacao(this, true, this.control.getSenha());
+            TelaConfirmacao tela = new TelaConfirmacao(this, true, control);
             tela.setVisible(true);
             if (tela.confirma()) {
                 control.efetuaDeposito(valor);

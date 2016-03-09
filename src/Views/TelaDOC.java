@@ -156,7 +156,7 @@ public class TelaDOC extends javax.swing.JFrame {
         double valor = Double.parseDouble(this.campoValor.getText());
         if (valor < 5000) {
             if (control.existeContaECpf(this.campoBanco.getText(), this.campoAgencia.getText(), this.campoConta.getText(), this.campoCPF.getText())) {
-                TelaConfirmacao tela = new TelaConfirmacao(this, true, control.getSenha());
+                TelaConfirmacao tela = new TelaConfirmacao(this, true, control);
                 tela.setVisible(true);
                 if (tela.confirma()) {
                     if (this.control.efetuaTransferenciaDOC(valor)) {

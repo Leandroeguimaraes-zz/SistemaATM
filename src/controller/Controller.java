@@ -13,6 +13,7 @@ import model.Boleto;
 import model.Conta;
 import model.Evento;
 import model.Usuario;
+import model.dao.BoletoDAO;
 import model.dao.ContaDAO;
 import model.dao.UsuarioDAO;
 
@@ -24,9 +25,11 @@ public class Controller {
 
     ContaDAO contaDAO = new ContaDAO();
     UsuarioDAO usuarioDAO = new UsuarioDAO();
+    BoletoDAO boletoDAO = new BoletoDAO();
 
     Conta contaLogada;
     Conta contaDestinataria;
+    Boleto boleto;
 
     public boolean efetuaLogin(String agencia, String cc, String senha) {
         Conta conta = this.contaDAO.getConta("005", agencia, cc);
@@ -46,7 +49,7 @@ public class Controller {
     public double getSaldo() {
         return this.contaLogada.getSaldo();
     }
-    
+
     public String getNome() {
         return this.contaLogada.getUsuario().getNome();
     }
@@ -77,5 +80,28 @@ public class Controller {
     public void efetuaDeposito(double valor) {
         this.contaLogada.setSaldo(this.contaLogada.getSaldo() + valor);
         this.contaDAO.atualiza(this.contaLogada);
+    }
+
+    public boolean existeBoleto(String codigo) {
+        Boleto boleto = this.boletoDAO.getBoleto(codigo);
+        if (boleto != null) {
+            this.boleto = boleto;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean efetuaPagamento() {
+        if (this.contaLogada.getSaldo() >= this.boleto.getValor()) {
+            this.contaLogada.setSaldo(this.contaLogada.getSaldo() - this.boleto.getValor());
+            this.contaDestinataria = this.boleto.getConta();
+            this.contaDestinataria.setSaldo(this.contaDestinataria.getSaldo() - this.boleto.getValor());
+            this.contaDAO.atualiza(this.contaLogada);
+            this.contaDAO.atualiza(this.contaDestinataria);
+            return true;
+        }else{
+            return false;
+        }
     }
 }
