@@ -6,6 +6,8 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import model.Boleto;
 import model.Conta;
@@ -46,14 +48,52 @@ public class Controller {
         return this.contaLogada.getUsuario().getNome();
     }
 
+    public Boleto getBoleto() {
+        return this.boleto;
+    }
+
+    // Uteis_________________________________________________________________________________________
+    //======================================================================================================
+    public Date zeraHora(Date data) {
+        Calendar c = Calendar.getInstance();
+        c.setTime(data);
+        c.set(Calendar.HOUR_OF_DAY, 0);
+        c.set(Calendar.MINUTE, 0);
+        c.set(Calendar.SECOND, 0);
+        c.set(Calendar.MILLISECOND, 0);
+        data = c.getTime();
+        return data;
+    }
+
+    public int diasEntre(Date dataAtual, Date data) {
+        dataAtual = zeraHora(dataAtual);
+        data = zeraHora(data);
+        
+        Calendar cA = Calendar.getInstance();
+        cA.setTime(dataAtual);
+        cA.set(Calendar.HOUR_OF_DAY, 0);
+        cA.set(Calendar.MINUTE, 0);
+        cA.set(Calendar.SECOND, 0);
+        cA.set(Calendar.MILLISECOND, 0);
+
+        Calendar c = Calendar.getInstance();
+        c.setTime(data);
+        c.set(Calendar.HOUR_OF_DAY, 0);
+        c.set(Calendar.MINUTE, 0);
+        c.set(Calendar.SECOND, 0);
+        c.set(Calendar.MILLISECOND, 0);
+        return (int) ((cA.getTimeInMillis() - c.getTimeInMillis()) / (1000 * 60 * 60 * 24));
+
+    }
+
     // Validação Usuario_________________________________________________________________________________________
     //======================================================================================================
     public boolean existeConta(String agencia, String cc) {
         Conta conta = this.contaDAO.getContaLogin("005", agencia, cc);
         if (conta != null) {
-                this.contaLogada = conta;
-                return true;
-            
+            this.contaLogada = conta;
+            return true;
+
         }
         return false;
     }
@@ -213,7 +253,7 @@ public class Controller {
         }
         return false;
     }
-     
+
 }
 //dd/mm/aaaaxxSA12345678xxTransferenciaxPara:001/0001/000001xxxxxx-100000,00
 //       10|           24|                                     40|       50|        

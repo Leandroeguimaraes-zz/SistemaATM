@@ -49,6 +49,11 @@ public class TelaPagamento extends javax.swing.JFrame {
         btnVoltar.setBounds(550, 500, 200, 50);
 
         campoCodigoBarras.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        campoCodigoBarras.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoCodigoBarrasKeyTyped(evt);
+            }
+        });
         jPanel2.add(campoCodigoBarras);
         campoCodigoBarras.setBounds(250, 200, 490, 30);
 
@@ -105,7 +110,7 @@ public class TelaPagamento extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        if (this.control.existeBoleto(this.campoCodigoBarras.getText())){
+        if (this.control.existeBoleto(this.campoCodigoBarras.getText()) || this.campoCodigoBarras.getText().length()<12){
             this.setVisible(false);
             new TelaInfoBoleto(control).setVisible(true);
             dispose();
@@ -114,6 +119,13 @@ public class TelaPagamento extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnConfirmarActionPerformed
+
+    private void campoCodigoBarrasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoCodigoBarrasKeyTyped
+        char ch = evt.getKeyChar();
+        if (!Character.isDigit(ch) || this.campoCodigoBarras.getText().length() >= 12) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_campoCodigoBarrasKeyTyped
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
