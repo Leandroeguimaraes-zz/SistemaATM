@@ -12,7 +12,7 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
     public TelaSaldoExtrato(Controller control) {
         initComponents();
         this.control=control;
-        labelSaldo.setText(String.valueOf(this.control.getSaldo()));
+        this.labelSaldoUsuario.setText(String.valueOf(this.control.getSaldo()));
     }
 
     @SuppressWarnings("unchecked")

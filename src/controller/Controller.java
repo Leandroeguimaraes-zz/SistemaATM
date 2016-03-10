@@ -49,9 +49,9 @@ public class Controller {
     // Validação Usuario_________________________________________________________________________________________
     //======================================================================================================
     public boolean efetuaLogin(String agencia, String cc, String senha) {
-        Conta conta = this.contaDAO.getConta("005", agencia, cc);
+        Conta conta = this.contaDAO.getContaLogin("005", agencia, cc);
         if (conta != null) {
-            if (this.contaLogada.getSenha().equals(senha)) {
+            if (conta.getSenha().equals(senha)) {
                 this.contaLogada = conta;
                 return true;
             } else {
@@ -65,13 +65,13 @@ public class Controller {
     //======================================================================================================
     public void efetuaDeposito(double valor) {
         this.contaLogada.setSaldo(this.contaLogada.getSaldo() + valor);
-        this.contaDAO.atualiza(this.contaLogada);
+        //this.contaDAO.atualiza(this.contaLogada);
     }
 
     public boolean efetuaSaque(double valor) {
         if (this.contaLogada.getSaldo() >= valor) {
             this.contaLogada.setSaldo(this.contaLogada.getSaldo() - valor);
-            this.contaDAO.atualiza(this.contaLogada);
+            //this.contaDAO.atualiza(this.contaLogada);
             return true;
         } else {
             return false;
@@ -95,8 +95,8 @@ public class Controller {
         if (this.contaLogada.getSaldo() >= valor) {
             this.contaLogada.setSaldo(this.contaLogada.getSaldo() - valor);
             this.contaDestinataria.setSaldo(this.contaDestinataria.getSaldo() + valor);
-            this.contaDAO.atualiza(this.contaLogada);
-            this.contaDAO.atualiza(this.contaDestinataria);
+            //this.contaDAO.atualiza(this.contaLogada);
+            //this.contaDAO.atualiza(this.contaDestinataria);
             return true;
         } else {
             return false;
@@ -120,8 +120,8 @@ public class Controller {
             this.contaLogada.setSaldo(this.contaLogada.getSaldo() - this.boleto.getValor());
             this.contaDestinataria = this.boleto.getConta();
             this.contaDestinataria.setSaldo(this.contaDestinataria.getSaldo() + this.boleto.getValor());
-            this.contaDAO.atualiza(this.contaLogada);
-            this.contaDAO.atualiza(this.contaDestinataria);
+            //this.contaDAO.atualiza(this.contaLogada);
+            //this.contaDAO.atualiza(this.contaDestinataria);
             return true;
         } else {
             return false;
@@ -134,30 +134,89 @@ public class Controller {
         ArrayList<String> listaFinal = new ArrayList<String>();
         ArrayList<Evento> listaEventos = this.eventoDAO.getEventos();
         String string;
+        Evento ev;
         for (int i = 0; i < listaEventos.size(); i++) {
-            if (listaEventos.get(i).getId().substring(0, 1).equals("SA")) {
-                string = listaEventos.get(i).getData().toString()+"  "
-                        +listaEventos.get(i).getId()+"  "
-                        +"SAQUE                    "
-                        +"-"+ String.valueOf(listaEventos.get(i).getValor());
+            ev = listaEventos.get(i);
+            if (ev.getId().substring(0, 1).equals("SA")) {
+                string = ev.getData().toString() + "  "
+                        + ev.getId() + "  "
+                        + "SAQUE";
+                for (int j = 0; j < 35; j++) {
+                    string += " ";
+                }
+                string += "-" + String.valueOf(ev.getValor());
                 listaFinal.add(string);
             }
-            if (listaEventos.get(i).getId().substring(0, 1).equals("DE")){
-                string = listaEventos.get(i).getData().toString()+"  "
-                        +listaEventos.get(i).getId()+"  "
-                        +"DEPOSITO                 "
-                        +"+"+ String.valueOf(listaEventos.get(i).getValor());
+            if (ev.getId().substring(0, 1).equals("DE")) {
+                string = ev.getData().toString() + "  "
+                        + ev.getId() + "  "
+                        + "DEPOSITO";
+                for (int j = 0; j < 32; j++) {
+                    string += " ";
+                }
+                string += "+" + String.valueOf(ev.getValor());
                 listaFinal.add(string);
             }
-            if (listaEventos.get(i).getId().substring(0, 1).equals("PA")){
-                string = listaEventos.get(i).getData().toString()+"  "
-                        +listaEventos.get(i).getId()+"  "
-                        +"DEPOSITO                 "
-                        +"+"+ String.valueOf(listaEventos.get(i).getValor());
-                listaFinal.add(string);
+            if (ev.getId().substring(0, 1).equals("PA")) {
+                if (this.comparaContas(this.contaLogada, ev.getConta())) {
+                    string = ev.getData().toString() + "  "
+                            + ev.getId() + "  "
+                            + "PAGAMENTO PARA:" + ev.getContaDestino().getBanco() + "/" + ev.getContaDestino().getAgencia() + "/" + ev.getContaDestino().getConta();
+                    for (int j = 0; j < 10; j++) {
+                        string += " ";
+                    }
+                    string += "-" + String.valueOf(ev.getValor());
+                    listaFinal.add(string);
+                }
+                if (this.comparaContas(this.contaLogada, ev.getContaDestino())) {
+                    string = ev.getData().toString() + "  "
+                            + ev.getId() + "  "
+                            + "PAGAMENTO DE:" + ev.getContaDestino().getBanco() + "/" + ev.getContaDestino().getAgencia() + "/" + ev.getContaDestino().getConta();
+                    for (int j = 0; j < 12; j++) {
+                        string += " ";
+                    }
+                    string += "+" + String.valueOf(ev.getValor());
+                    listaFinal.add(string);
+                }
+            }
+            if (ev.getId().substring(0, 1).equals("TR")) {
+                if (this.comparaContas(this.contaLogada, ev.getConta())) {
+                    string = ev.getData().toString() + "  "
+                            + ev.getId() + "  "
+                            + "TRANSFERENCIA PARA:" + ev.getContaDestino().getBanco() + "/" + ev.getContaDestino().getAgencia() + "/" + ev.getContaDestino().getConta();
+                    for (int j = 0; j < 6; j++) {
+                        string += " ";
+                    }
+                    string += "-" + String.valueOf(ev.getValor());
+                    listaFinal.add(string);
+                }
+                if (this.comparaContas(this.contaLogada, ev.getContaDestino())) {
+                    string = ev.getData().toString() + "  "
+                            + ev.getId() + "  "
+                            + "TRANSFERENCIA DE:" + ev.getContaDestino().getBanco() + "/" + ev.getContaDestino().getAgencia() + "/" + ev.getContaDestino().getConta();
+                    for (int j = 0; j < 8; j++) {
+                        string += " ";
+                    }
+                    string += "+" + String.valueOf(ev.getValor());
+                    listaFinal.add(string);
+                }
             }
 
         }
+        return listaFinal;
     }
-dd/mm/aaaaxxSA12345678xx(001/0001/00000-1)xxxxx-100000,00
+
+    private boolean comparaContas(Conta conta1, Conta conta2) {
+        if (conta1.getBanco().equals(conta2.getBanco())) {
+            if (conta1.getAgencia().equals(conta2.getAgencia())) {
+                if (conta1.getConta().equals(conta2.getConta())) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+     
 }
+//dd/mm/aaaaxxSA12345678xxTransferenciaxPara:001/0001/000001xxxxxx-100000,00
+//       10|           24|                                     40|       50|        

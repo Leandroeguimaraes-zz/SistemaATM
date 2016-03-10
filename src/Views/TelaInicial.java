@@ -18,11 +18,11 @@ public class TelaInicial extends javax.swing.JFrame {
 
         painelPrincipal = new javax.swing.JPanel();
         btnLimpar = new javax.swing.JButton();
-        campoSenha = new javax.swing.JPasswordField();
         btnConfirmar = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
         campoAgencia = new javax.swing.JTextField();
         campoConta = new javax.swing.JTextField();
+        campoSenha = new javax.swing.JPasswordField();
         labelAgencia = new javax.swing.JLabel();
         labelSenha = new javax.swing.JLabel();
         labelConta = new javax.swing.JLabel();
@@ -51,9 +51,6 @@ public class TelaInicial extends javax.swing.JFrame {
         btnLimpar.setBounds(300, 500, 200, 50);
         btnLimpar.getAccessibleContext().setAccessibleName("");
 
-        painelPrincipal.add(campoSenha);
-        campoSenha.setBounds(250, 430, 300, 30);
-
         btnConfirmar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnConfirmar.setForeground(new java.awt.Color(0, 51, 102));
         btnConfirmar.setText("Confirmar");
@@ -78,21 +75,29 @@ public class TelaInicial extends javax.swing.JFrame {
         btnSair.setBounds(550, 500, 200, 50);
         btnSair.getAccessibleContext().setAccessibleName("");
 
-        campoAgencia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoAgenciaActionPerformed(evt);
+        campoAgencia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoAgenciaKeyTyped(evt);
             }
         });
         painelPrincipal.add(campoAgencia);
         campoAgencia.setBounds(250, 330, 300, 30);
 
-        campoConta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoContaActionPerformed(evt);
+        campoConta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoContaKeyTyped(evt);
             }
         });
         painelPrincipal.add(campoConta);
         campoConta.setBounds(250, 380, 300, 30);
+
+        campoSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoSenhaKeyTyped(evt);
+            }
+        });
+        painelPrincipal.add(campoSenha);
+        campoSenha.setBounds(250, 430, 300, 30);
 
         labelAgencia.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         labelAgencia.setForeground(new java.awt.Color(0, 51, 102));
@@ -122,10 +127,6 @@ public class TelaInicial extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void campoContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoContaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoContaActionPerformed
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         this.campoConta.setText("");
@@ -160,9 +161,27 @@ public class TelaInicial extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
-    private void campoAgenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoAgenciaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoAgenciaActionPerformed
+    private void campoAgenciaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoAgenciaKeyTyped
+        char ch = evt.getKeyChar();
+        if(!Character.isDigit(ch) || this.campoAgencia.getText().length()>=4){
+            evt.consume();
+        }
+    
+    }//GEN-LAST:event_campoAgenciaKeyTyped
+
+    private void campoContaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoContaKeyTyped
+        char ch = evt.getKeyChar();
+        if(!Character.isDigit(ch) || this.campoConta.getText().length()>=6){
+            evt.consume();
+        }
+    }//GEN-LAST:event_campoContaKeyTyped
+
+    private void campoSenhaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoSenhaKeyTyped
+        char ch = evt.getKeyChar();
+        if(!Character.isDigit(ch) || this.campoSenha.getText().length()>=6){
+            evt.consume();
+        }
+    }//GEN-LAST:event_campoSenhaKeyTyped
 
     /**
      * @param args the command line arguments

@@ -52,6 +52,11 @@ public class Usuario implements java.io.Serializable {
     @Column(name = "ENDERECO")
     private String endereco;
     
+    public Usuario(String cpf, String nome){
+        this.cpf = cpf;
+        this.nome = nome;
+    }
+    
 
     public int getIdUsuario() {
         return idUsuario;

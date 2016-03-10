@@ -1,6 +1,7 @@
 package Views;
 
 import controller.Controller;
+import java.util.ArrayList;
 
 public class TelaExtrato extends javax.swing.JFrame {
 
@@ -25,7 +26,7 @@ public class TelaExtrato extends javax.swing.JFrame {
         btnVoltar = new javax.swing.JButton();
         labeloExtratoTitulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        campoExtrato = new javax.swing.JTextArea();
         labelFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -69,12 +70,12 @@ public class TelaExtrato extends javax.swing.JFrame {
         jPanel1.add(labeloExtratoTitulo);
         labeloExtratoTitulo.setBounds(320, 50, 270, 50);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTextArea1.setFocusable(false);
-        jTextArea1.setRequestFocusEnabled(false);
-        jScrollPane1.setViewportView(jTextArea1);
+        campoExtrato.setColumns(20);
+        campoExtrato.setRows(5);
+        campoExtrato.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        campoExtrato.setFocusable(false);
+        campoExtrato.setRequestFocusEnabled(false);
+        jScrollPane1.setViewportView(campoExtrato);
 
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(50, 200, 700, 270);
@@ -104,7 +105,12 @@ public class TelaExtrato extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
-        
+        ArrayList<String> lista = this.control.getListaEventos();
+        String quebraLinha = System.lineSeparator();
+        for (int i = 0; i < lista.size(); i++) {
+            this.campoExtrato.setText(lista.get(i)+quebraLinha);
+            
+        }
     }//GEN-LAST:event_btnImprimirActionPerformed
 
     public static void main(String args[]) {
@@ -143,9 +149,9 @@ public class TelaExtrato extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnVoltar;
+    private javax.swing.JTextArea campoExtrato;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel labelExtrato;
     private javax.swing.JLabel labelFundo;
     private javax.swing.JLabel labeloExtratoTitulo;

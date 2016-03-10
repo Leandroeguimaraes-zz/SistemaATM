@@ -50,7 +50,7 @@ public class Conta implements java.io.Serializable{
     
     @Column(name="CONTA")
     private String conta;
-    
+
     @Column(name="CPF")
     private String cpf;
     
@@ -70,6 +70,15 @@ public class Conta implements java.io.Serializable{
         this.agencia = agencia;
         this.conta = cc;
         this.saldo = saldo;
+    }
+    
+    public Conta(String banco,String agencia, String cc, String cpf, double saldo,String senha){
+        this.banco = banco;
+        this.agencia = agencia;
+        this.conta = cc;
+        this.cpf = cpf;
+        this.saldo = saldo;
+        this.senha = senha;
     }
     
     public int getIdConta() {
@@ -102,6 +111,14 @@ public class Conta implements java.io.Serializable{
 
     public void setConta(String conta) {
         this.conta = conta;
+    }
+    
+    public String getCPF(){
+        return this.cpf;
+    }
+    
+    public void setCPF(String cpf){
+        this.cpf = cpf;
     }
     
     public Usuario getUsuario() {
