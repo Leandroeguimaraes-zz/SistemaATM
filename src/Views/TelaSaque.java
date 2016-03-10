@@ -148,7 +148,7 @@ public class TelaSaque extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn10ActionPerformed
-        control.efetuaSaque(10);
+        efetuarSaque(10);
     }//GEN-LAST:event_btn10ActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed

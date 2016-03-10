@@ -48,15 +48,12 @@ public class Controller {
 
     // Validação Usuario_________________________________________________________________________________________
     //======================================================================================================
-    public boolean efetuaLogin(String agencia, String cc, String senha) {
+    public boolean existeConta(String agencia, String cc) {
         Conta conta = this.contaDAO.getContaLogin("005", agencia, cc);
         if (conta != null) {
-            if (conta.getSenha().equals(senha)) {
                 this.contaLogada = conta;
                 return true;
-            } else {
-                return false;
-            }
+            
         }
         return false;
     }

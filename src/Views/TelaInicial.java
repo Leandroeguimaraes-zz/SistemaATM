@@ -22,9 +22,7 @@ public class TelaInicial extends javax.swing.JFrame {
         btnSair = new javax.swing.JButton();
         campoAgencia = new javax.swing.JTextField();
         campoConta = new javax.swing.JTextField();
-        campoSenha = new javax.swing.JPasswordField();
         labelAgencia = new javax.swing.JLabel();
-        labelSenha = new javax.swing.JLabel();
         labelConta = new javax.swing.JLabel();
         labelFundo = new javax.swing.JLabel();
 
@@ -81,7 +79,7 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
         painelPrincipal.add(campoAgencia);
-        campoAgencia.setBounds(250, 330, 300, 30);
+        campoAgencia.setBounds(250, 350, 300, 30);
 
         campoConta.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -89,33 +87,19 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
         painelPrincipal.add(campoConta);
-        campoConta.setBounds(250, 380, 300, 30);
-
-        campoSenha.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                campoSenhaKeyTyped(evt);
-            }
-        });
-        painelPrincipal.add(campoSenha);
-        campoSenha.setBounds(250, 430, 300, 30);
+        campoConta.setBounds(250, 400, 300, 30);
 
         labelAgencia.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         labelAgencia.setForeground(new java.awt.Color(0, 51, 102));
         labelAgencia.setText("Agência:");
         painelPrincipal.add(labelAgencia);
-        labelAgencia.setBounds(100, 330, 100, 30);
-
-        labelSenha.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        labelSenha.setForeground(new java.awt.Color(0, 51, 102));
-        labelSenha.setText("Senha:");
-        painelPrincipal.add(labelSenha);
-        labelSenha.setBounds(100, 430, 100, 30);
+        labelAgencia.setBounds(100, 350, 100, 30);
 
         labelConta.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         labelConta.setForeground(new java.awt.Color(0, 51, 102));
         labelConta.setText("Conta:");
         painelPrincipal.add(labelConta);
-        labelConta.setBounds(100, 380, 100, 30);
+        labelConta.setBounds(100, 400, 100, 30);
 
         labelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/FUNDOBOASVINDAS.png"))); // NOI18N
         painelPrincipal.add(labelFundo);
@@ -130,7 +114,6 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
         this.campoConta.setText("");
-        this.campoSenha.setText("");
         this.campoAgencia.setText("");
     }//GEN-LAST:event_btnLimparActionPerformed
 
@@ -144,17 +127,25 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
 
-        if (control.efetuaLogin(campoAgencia.getText(), campoConta.getText(), campoSenha.getText())) {
-            ImageIcon iP = new ImageIcon(getClass().getResource("/Imagens/acessoPermitido.png"));
-            JOptionPane.showMessageDialog(campoConta, iP, "Acesso Permitido!", JOptionPane.PLAIN_MESSAGE);
-            this.setVisible(false);
-            new TelaBemVindoMenu(control).setVisible(true);
-            dispose();
+        if (control.existeConta(campoAgencia.getText(), campoConta.getText())) {
+            TelaConfirmacao tela = new TelaConfirmacao(this, true, control);
+            tela.setVisible(true);
+            if (tela.confirma()) {
+                ImageIcon iP = new ImageIcon(getClass().getResource("/Imagens/acessoPermitido.png"));
+                JOptionPane.showMessageDialog(campoConta, iP, "Acesso Permitido!", JOptionPane.PLAIN_MESSAGE);
+                this.setVisible(false);
+                new TelaBemVindoMenu(control).setVisible(true);
+                dispose();
+            } else {
+                ImageIcon iN = new ImageIcon(getClass().getResource("/Imagens/acessoNegado.png"));
+                JOptionPane.showMessageDialog(campoConta, iN, "Senha incorreta.", JOptionPane.PLAIN_MESSAGE);
+                campoConta.setText("");
+                campoAgencia.setText("");
+            }
         } else {
             ImageIcon iN = new ImageIcon(getClass().getResource("/Imagens/acessoNegado.png"));
-            JOptionPane.showMessageDialog(campoConta, iN, "Acesso Negado!", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(campoConta, iN, "Conta inexistente.", JOptionPane.PLAIN_MESSAGE);
             campoConta.setText("");
-            campoSenha.setText("");
             campoAgencia.setText("");
         }
 
@@ -163,25 +154,18 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void campoAgenciaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoAgenciaKeyTyped
         char ch = evt.getKeyChar();
-        if(!Character.isDigit(ch) || this.campoAgencia.getText().length()>=4){
+        if (!Character.isDigit(ch) || this.campoAgencia.getText().length() >= 4) {
             evt.consume();
         }
-    
+
     }//GEN-LAST:event_campoAgenciaKeyTyped
 
     private void campoContaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoContaKeyTyped
         char ch = evt.getKeyChar();
-        if(!Character.isDigit(ch) || this.campoConta.getText().length()>=6){
+        if (!Character.isDigit(ch) || this.campoConta.getText().length() >= 6) {
             evt.consume();
         }
     }//GEN-LAST:event_campoContaKeyTyped
-
-    private void campoSenhaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoSenhaKeyTyped
-        char ch = evt.getKeyChar();
-        if(!Character.isDigit(ch) || this.campoSenha.getText().length()>=6){
-            evt.consume();
-        }
-    }//GEN-LAST:event_campoSenhaKeyTyped
 
     /**
      * @param args the command line arguments
@@ -224,11 +208,9 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JButton btnSair;
     private javax.swing.JTextField campoAgencia;
     private javax.swing.JTextField campoConta;
-    private javax.swing.JPasswordField campoSenha;
     private javax.swing.JLabel labelAgencia;
     private javax.swing.JLabel labelConta;
     private javax.swing.JLabel labelFundo;
-    private javax.swing.JLabel labelSenha;
     private javax.swing.JPanel painelPrincipal;
     // End of variables declaration//GEN-END:variables
 }
