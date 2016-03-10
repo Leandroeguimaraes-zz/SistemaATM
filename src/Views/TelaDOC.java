@@ -159,7 +159,7 @@ public class TelaDOC extends javax.swing.JFrame {
                 TelaConfirmacao tela = new TelaConfirmacao(this, true, control);
                 tela.setVisible(true);
                 if (tela.confirma()) {
-                    if (this.control.efetuaTransferenciaDOC(valor)) {
+                    if (this.control.efetuaTransferencia(valor)) {
                         JOptionPane.showMessageDialog(this, "Transferencia realizada com sucesso.");
                         this.setVisible(false);
                         new TelaBemVindoMenu(this.control).setVisible(true);

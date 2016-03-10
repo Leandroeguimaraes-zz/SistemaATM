@@ -65,6 +65,13 @@ public class Conta implements java.io.Serializable{
     @Cascade(CascadeType.SAVE_UPDATE)
     private Usuario usuario;
 
+    public Conta(String banco,String agencia, String cc, double saldo){
+        this.banco = banco;
+        this.agencia = agencia;
+        this.conta = cc;
+        this.saldo = saldo;
+    }
+    
     public int getIdConta() {
         return idConta;
     }

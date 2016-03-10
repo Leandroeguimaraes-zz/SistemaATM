@@ -104,7 +104,7 @@ public class TelaExtrato extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnImprimirActionPerformed
 
     public static void main(String args[]) {

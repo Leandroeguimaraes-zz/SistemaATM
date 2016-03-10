@@ -1,33 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Views;
 
+import controller.Controller;
 import javax.swing.JOptionPane;
-import model.Conta;
-import model.Usuario;
-import model.dao.ContaDAO;
-import model.dao.UsuarioDAO;
 
-/**
- *
- * @author Lucas Thimoteo
- */
 public class TelaParaATM5 extends javax.swing.JFrame {
 
-    private Conta conta;
+    private Controller control;
 
-    /**
-     * Creates new form TelaSaque
-     */
     public TelaParaATM5() {
         initComponents();
     }
 
-    TelaParaATM5(Conta conta) {
-        this.conta = conta;
+    TelaParaATM5(Controller control) {
+        this.control = control;
         initComponents();
     }
 
@@ -156,45 +141,32 @@ public class TelaParaATM5 extends javax.swing.JFrame {
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.setVisible(false);
-        new TelaTransferencia(conta).setVisible(true);
+        new TelaTransferencia(control).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        TelaConfirmacao tela = new TelaConfirmacao(this,true,conta);
-        tela.setVisible(true);
-        //
-        //
-        //
-        //rotina para verificar se conta existe e se o cpf bate com a conta declarada
-        //
-        //
-        //
-        //
-        if (tela.confirma()){
-            double saldo =conta.getSaldo();
-            int valor=Integer.parseInt(campoValor.getText());
-            if (saldo >= valor){
-                   conta.setSaldo(saldo-valor);
-                   ContaDAO contDAO = new ContaDAO();
-                   contDAO.salvar(conta);
-                   JOptionPane.showMessageDialog(this, "Tranferencia realizada com sucesso.");
-                   //
-                   //
-                   //
-                   // rotina para salvar os dados na conta destinataria
-                   //
-                   //
-                   //
-            }else{
-                JOptionPane.showMessageDialog(this, "Saldo insuficiente.");
+        double valor = Double.parseDouble(this.campoValor.getText());
+            if (control.existeContaECpf("005", this.campoAgencia.getText(), this.campoConta.getText(), this.campoCPF.getText())) {
+                TelaConfirmacao tela = new TelaConfirmacao(this, true, control);
+                tela.setVisible(true);
+                if (tela.confirma()) {
+                    if (this.control.efetuaTransferencia(valor)) {
+                        JOptionPane.showMessageDialog(this, "Transferencia realizada com sucesso.");
+                        this.setVisible(false);
+                        new TelaBemVindoMenu(this.control).setVisible(true);
+                        dispose();
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Saldo insuficiente.");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Operação cancelada.");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Conta inexistente.");
             }
-        }else{
-            JOptionPane.showMessageDialog(this,"Operação cancelada.");
-        }
-        this.setVisible(false);
-        new TelaBemVindoMenu(conta).setVisible(true);
-        dispose();
+        
+
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     /**

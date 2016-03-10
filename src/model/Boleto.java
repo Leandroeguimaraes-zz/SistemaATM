@@ -1,13 +1,36 @@
 package model;
 
-public class Boleto {
+import java.util.Date;
 
+public class Boleto {
+    
+    private String codigo;
+    private Conta contaDestino;
+    private double valor;
+    private Date dataVencimento;
+
+    public Boleto(String codigo, Conta conta, double valor, Date data){
+        this.codigo = codigo;
+        this.contaDestino = conta;
+        this.valor = valor;
+        this.dataVencimento = data;
+        
+    }
+    
+    public String getCodigo(){
+        return this.codigo;
+    }
+    
     public Conta getConta() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.contaDestino;
     }
 
     public double getValor() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.valor;
+    }
+    
+    public Date getData(){
+        return this.dataVencimento;
     }
     
 }
