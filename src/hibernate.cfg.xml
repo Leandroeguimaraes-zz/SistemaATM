@@ -5,8 +5,8 @@
     <property name="hibernate.dialect">org.hibernate.dialect.OracleDialect</property>
     <property name="hibernate.connection.driver_class">oracle.jdbc.OracleDriver</property>
     <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:XE</property>
-    <property name="hibernate.connection.username">Guzman</property>
-    <property name="hibernate.connection.password">guzman</property>
+    <property name="hibernate.connection.username">Leandro</property>
+    <property name="hibernate.connection.password">leandro</property>
     <property name="hibernate.hbm2ddl.auto">update</property>
     <mapping class="model.Conta"/>
     <mapping class="model.dao.ContaDAO"/>
@@ -14,5 +14,11 @@
     <mapping class="model.Usuario"/>
     <mapping class="model.dao.UsuarioDAO"/>
     <mapping class="model.dao.UsuarioInterfaceDAO"/>
+    <mapping class="model.Evento"/>
+    <mapping class="model.dao.EventoDAO"/>
+    <mapping class="model.dao.EventoInterfaceDAO"/>
+    <mapping class="model.Boleto"/>
+    <mapping class="model.dao.BoletoDAO"/>
+    <mapping class="model.dao.BoletoInterfaceDAO"/>
   </session-factory>
 </hibernate-configuration>
