@@ -8,7 +8,6 @@ package zModelosSeparados;
 import zModelosExcecoesSeparados.DataInvalidaException;
 import zModelosExcecoesSeparados.HoraInvalidaException;
 import zModelosExcecoesSeparados.SenhaInvalidaException;
-import model.ValorInvalidoException;
 import zModelosExcecoesSeparados.ContaInvalidoException;
 import zModelosExcecoesSeparados.TitularInvalidoException;
 import zModelosExcecoesSeparados.CpfInvalidoException;
@@ -63,12 +62,7 @@ public final class Conta {
      * @throws zModelosExcecoesSeparados.HoraInvalidaException (hora invalida para o
      * padrao 24h)
      */
-    public void deposita(double valor) throws ValorInvalidoException, DataInvalidaException, HoraInvalidaException {
-        if (valor < 0) {
-            throw new ValorInvalidoException();
-        }
-        this.saldo += valor;
-    }
+
 
     /**
      * retira uma quantia do saldo da conta.
@@ -81,12 +75,7 @@ public final class Conta {
      * @throws zModelosExcecoesSeparados.HoraInvalidaException (hora invalida para o
      * padrao 24h)
      */
-    public void sacar(double valor) throws ValorInvalidoException, DataInvalidaException, HoraInvalidaException {
-        if (valor < 0) {
-            throw new ValorInvalidoException();
-        }
-        this.saldo -= valor;
-    }
+   
 
     /**
      * seta a agencia da conta.

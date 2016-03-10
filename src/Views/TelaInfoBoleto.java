@@ -20,9 +20,9 @@ public class TelaInfoBoleto extends javax.swing.JFrame {
         this.labelValor.setText(String.valueOf(this.control.getBoleto().getValor()));
         this.labelBancoDestinatario.setText(this.control.getBoleto().getConta().getBanco());
         this.labelAgenciaDestinatario.setText(this.control.getBoleto().getConta().getAgencia());
-        this.labelContaDestinatario.setText(this.control.getBoleto().getConta().getConta());
+        this.labelContaDestinatario.setText(this.control.getBoleto().getConta().getNumConta());
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
-        this.labelDataVencimento.setText(sdf.format(this.control.getBoleto().getData()));
+        this.labelDataVencimento.setText(sdf.format(this.control.getBoleto().getDataVencimento()));
     }
 
     @SuppressWarnings("unchecked")
@@ -192,7 +192,7 @@ public class TelaInfoBoleto extends javax.swing.JFrame {
         TelaConfirmacao tela = new TelaConfirmacao(this, true, control);
         tela.setVisible(true);
         Date dataAtual = new Date();
-        if (this.control.diasEntre(dataAtual, this.control.getBoleto().getData()) < 0) {
+        if (this.control.diasEntre(dataAtual, this.control.getBoleto().getDataVencimento()) < 0) {
             if (Double.valueOf(this.campoValor.getText())==this.control.getBoleto().getValor()) {
                 if (tela.confirma()) {
                     if (control.efetuaPagamento()) {

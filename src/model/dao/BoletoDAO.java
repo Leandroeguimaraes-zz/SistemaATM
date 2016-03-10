@@ -1,19 +1,35 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package model.dao;
 
-import java.util.Calendar;
-import java.util.Date;
+import Util.HibernateUtil;
 import model.Boleto;
-import model.Conta;
+import org.hibernate.Query;
+import org.hibernate.Session;
 
-public class BoletoDAO {
 
-    public Boleto getBoleto(String codigo) {
-        Conta conta = new Conta("001","0001","00001",200);
-        Calendar c = Calendar.getInstance();
-        c.set(2016, 2, 21);
-        Date data = c.getTime();
-        Boleto boleto = new Boleto(codigo,conta,50,data);
+/**
+ *
+ * @author Leandro
+ */
+public class BoletoDAO implements BoletoInterfaceDAO{
+    
+    private Boleto boleto;
+    
+    @Override
+    public Boleto buscaBoleto(String codigo) {
+        if(boleto==null){
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            Query query = session.getNamedQuery("Boleto.buscaBoleto");
+            query.setParameter("codigo", codigo);
+            boleto= (Boleto) query.list().get(0);
+            session.close();
+        }
         return boleto;
     }
+
     
 }

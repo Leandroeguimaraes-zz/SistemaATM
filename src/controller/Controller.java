@@ -15,7 +15,7 @@ import model.Evento;
 import model.dao.BoletoDAO;
 import model.dao.ContaDAO;
 import model.dao.EventoDAO;
-import model.dao.UsuarioDAO;
+
 
 /**
  *
@@ -24,7 +24,6 @@ import model.dao.UsuarioDAO;
 public class Controller {
 
     ContaDAO contaDAO = new ContaDAO();
-    UsuarioDAO usuarioDAO = new UsuarioDAO();
     BoletoDAO boletoDAO = new BoletoDAO();
     EventoDAO eventoDAO = new EventoDAO();
 
@@ -89,7 +88,7 @@ public class Controller {
     // Validação Usuario_________________________________________________________________________________________
     //======================================================================================================
     public boolean existeConta(String agencia, String cc) {
-        Conta conta = this.contaDAO.getContaLogin("005", agencia, cc);
+        Conta conta = this.contaDAO.getConta("005", agencia, cc);
         if (conta != null) {
             this.contaLogada = conta;
             return true;
@@ -143,7 +142,7 @@ public class Controller {
     // Pagamentos_________________________________________________________________________________________
     //======================================================================================================
     public boolean existeBoleto(String codigo) {
-        Boleto boleto = this.boletoDAO.getBoleto(codigo);
+        Boleto boleto = this.boletoDAO.buscaBoleto(codigo);
         if (boleto != null) {
             this.boleto = boleto;
             return true;
@@ -169,7 +168,7 @@ public class Controller {
     //======================================================================================================
     public ArrayList<String> getListaEventos() {
         ArrayList<String> listaFinal = new ArrayList<String>();
-        ArrayList<Evento> listaEventos = this.eventoDAO.getEventos();
+        List<Evento> listaEventos = this.eventoDAO.buscaEventos(this.contaLogada.getBanco(),this.contaLogada.getAgencia(),this.contaLogada.getNumConta());
         String string;
         Evento ev;
         for (int i = 0; i < listaEventos.size(); i++) {
@@ -198,7 +197,7 @@ public class Controller {
                 if (this.comparaContas(this.contaLogada, ev.getConta())) {
                     string = ev.getData().toString() + "  "
                             + ev.getId() + "  "
-                            + "PAGAMENTO PARA:" + ev.getContaDestino().getBanco() + "/" + ev.getContaDestino().getAgencia() + "/" + ev.getContaDestino().getConta();
+                            + "PAGAMENTO PARA:" + ev.getContaDestino().getBanco() + "/" + ev.getContaDestino().getAgencia() + "/" + ev.getContaDestino().getNumConta();
                     for (int j = 0; j < 10; j++) {
                         string += " ";
                     }
@@ -208,7 +207,7 @@ public class Controller {
                 if (this.comparaContas(this.contaLogada, ev.getContaDestino())) {
                     string = ev.getData().toString() + "  "
                             + ev.getId() + "  "
-                            + "PAGAMENTO DE:" + ev.getContaDestino().getBanco() + "/" + ev.getContaDestino().getAgencia() + "/" + ev.getContaDestino().getConta();
+                            + "PAGAMENTO DE:" + ev.getContaDestino().getBanco() + "/" + ev.getContaDestino().getAgencia() + "/" + ev.getContaDestino().getNumConta();
                     for (int j = 0; j < 12; j++) {
                         string += " ";
                     }
@@ -220,7 +219,7 @@ public class Controller {
                 if (this.comparaContas(this.contaLogada, ev.getConta())) {
                     string = ev.getData().toString() + "  "
                             + ev.getId() + "  "
-                            + "TRANSFERENCIA PARA:" + ev.getContaDestino().getBanco() + "/" + ev.getContaDestino().getAgencia() + "/" + ev.getContaDestino().getConta();
+                            + "TRANSFERENCIA PARA:" + ev.getContaDestino().getBanco() + "/" + ev.getContaDestino().getAgencia() + "/" + ev.getContaDestino().getNumConta();
                     for (int j = 0; j < 6; j++) {
                         string += " ";
                     }
@@ -230,7 +229,7 @@ public class Controller {
                 if (this.comparaContas(this.contaLogada, ev.getContaDestino())) {
                     string = ev.getData().toString() + "  "
                             + ev.getId() + "  "
-                            + "TRANSFERENCIA DE:" + ev.getContaDestino().getBanco() + "/" + ev.getContaDestino().getAgencia() + "/" + ev.getContaDestino().getConta();
+                            + "TRANSFERENCIA DE:" + ev.getContaDestino().getBanco() + "/" + ev.getContaDestino().getAgencia() + "/" + ev.getContaDestino().getNumConta();
                     for (int j = 0; j < 8; j++) {
                         string += " ";
                     }
@@ -246,7 +245,7 @@ public class Controller {
     private boolean comparaContas(Conta conta1, Conta conta2) {
         if (conta1.getBanco().equals(conta2.getBanco())) {
             if (conta1.getAgencia().equals(conta2.getAgencia())) {
-                if (conta1.getConta().equals(conta2.getConta())) {
+                if (conta1.getNumConta().equals(conta2.getNumConta())) {
                     return true;
                 }
             }

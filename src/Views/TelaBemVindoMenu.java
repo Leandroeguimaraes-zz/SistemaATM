@@ -3,14 +3,20 @@ package Views;
 import controller.Controller;
 import javax.swing.JOptionPane;
 
+
+
+
 public class TelaBemVindoMenu extends javax.swing.JFrame {
+
 
     Controller control;
 
     public TelaBemVindoMenu() {
+
         initComponents();
 
     }
+
 
     public TelaBemVindoMenu(Controller conta) {
         initComponents();
@@ -176,6 +182,7 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
     private void btnSaldoExtratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaldoExtratoActionPerformed
         this.setVisible(false);
         new TelaSaldoExtrato(control).setVisible(true);
+
     }//GEN-LAST:event_btnSaldoExtratoActionPerformed
 
     private void btnInvestimentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInvestimentosActionPerformed

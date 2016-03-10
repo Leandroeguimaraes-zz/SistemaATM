@@ -26,13 +26,13 @@ import org.hibernate.annotations.CascadeType;
  */
 
 @NamedQueries({
-    @NamedQuery(name="Conta.listaContas", query="select a from Conta a"),
-    @NamedQuery(name="Conta.buscaConta", query="select cont from Conta as cont "
-                                         +"where cont.banco=: banco and cont.agencia=:agencia and cont.conta=:conta")
+    @NamedQuery(name = "Conta.buscaConta",
+            query = "select conta from Conta as c "
+            + "where c.banco=:banco and c.agencia=:agencia and c.numConta=:numConta")
 })
 
 @Entity
-@Table(name="CONTA")
+@Table(name="Conta")
 @SequenceGenerator(name="CONTA_SEQUENCE", sequenceName="CONTA_SEQUENCE", allocationSize=1, initialValue=0)
 
 public class Conta implements java.io.Serializable{
@@ -42,44 +42,28 @@ public class Conta implements java.io.Serializable{
     
     private int idConta;
     
-    @Column(name="BANCO")
+    @Column(name="Banco")
     private String banco;
     
-    @Column(name="AGENCIA")
+    @Column(name="Agencia")
     private String agencia;
     
-    @Column(name="CONTA")
-    private String conta;
 
-    @Column(name="CPF")
-    private String cpf;
-    
-    @Column(name="SENHA")
-    private String senha;
-    
-    @Column(name="SALDO")
-    private double saldo;
+    @Column(name="numConta")
+    private String numConta;
     
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "idUsuario", nullable = true)
     @Cascade(CascadeType.SAVE_UPDATE)
     private Usuario usuario;
 
-    public Conta(String banco,String agencia, String cc, double saldo){
-        this.banco = banco;
-        this.agencia = agencia;
-        this.conta = cc;
-        this.saldo = saldo;
-    }
     
-    public Conta(String banco,String agencia, String cc, String cpf, double saldo,String senha){
-        this.banco = banco;
-        this.agencia = agencia;
-        this.conta = cc;
-        this.cpf = cpf;
-        this.saldo = saldo;
-        this.senha = senha;
-    }
+    @Column(name="Saldo")
+    private double saldo;
+    
+    @Column(name = "senha")
+    private String senha;
+
     
     public int getIdConta() {
         return idConta;
@@ -88,12 +72,12 @@ public class Conta implements java.io.Serializable{
     public void setIdConta(int idConta) {
         this.idConta = idConta;
     }
-    
+
     public String getBanco() {
         return banco;
     }
 
-    public void setBanco(String banco){
+    public void setBanco(String banco) {
         this.banco = banco;
     }
 
@@ -105,36 +89,20 @@ public class Conta implements java.io.Serializable{
         this.agencia = agencia;
     }
 
-    public String getConta() {
-        return conta;
+    public String getNumConta() {
+        return numConta;
     }
 
-    public void setConta(String conta) {
-        this.conta = conta;
+    public void setNumConta(String numConta) {
+        this.numConta = numConta;
     }
-    
-    public String getCPF(){
-        return this.cpf;
-    }
-    
-    public void setCPF(String cpf){
-        this.cpf = cpf;
-    }
-    
+
     public Usuario getUsuario() {
         return usuario;
     }
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
-    }
-    
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
     }
 
     public double getSaldo() {
@@ -144,6 +112,13 @@ public class Conta implements java.io.Serializable{
     public void setSaldo(double saldo) {
         this.saldo = saldo;
     }
-    
-    
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+  
 }

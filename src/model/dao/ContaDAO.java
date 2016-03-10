@@ -14,32 +14,28 @@ import model.Conta;
 import model.Usuario;
 import org.hibernate.Query;
 
-
 /**
  *
  * @author Leandro
  */
-public class ContaDAO {
-
-    public Conta getContaLogin(String banco, String agencia, String cc){
-        Conta conta = new Conta(banco,agencia,cc, "11111111111",500.00,"111111");
-        UsuarioDAO usuDAO = new UsuarioDAO();
-        conta.setUsuario(usuDAO.getUsuario(conta.getCPF()));
-//            Session session = HibernateUtil.getSessionFactory().openSession();
-//            Query query = session.getNamedQuery("Conta.buscaConta");
-//            query.setParameter("banco", banco);
-//            query.setParameter("agencia", agencia);
-//            query.setParameter("conta", cc);
-//            Conta conta = (Conta) query.list().get(0);
-//            session.close();
-            return conta;
-    }
+public class ContaDAO implements ContaInterfaceDAO{
     
-    public Conta getConta(String banco, String agencia, String cc){
-        Conta conta = new Conta(banco,agencia,cc,500);
+    private Conta conta;
+    
+    public Conta getConta(String banco, String agencia,String numConta){
+        if(conta==null){
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            Query query = session.getNamedQuery("Usuario.buscaUsuario");
+            query.setParameter("banco", banco);
+            query.setParameter("agencia", agencia);
+            query.setParameter("numConta", numConta);
+            conta= (Conta) query.list().get(0);
+            session.close();
+        }
         return conta;
     }
     
+    @Override
     public void atualiza(Conta conta){
         Session s = HibernateUtil.getSessionFactory().openSession();
         Transaction trans = s.beginTransaction();
@@ -47,4 +43,6 @@ public class ContaDAO {
         trans.commit();
         s.close();
     }
+    
+
 }

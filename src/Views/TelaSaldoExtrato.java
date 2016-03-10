@@ -1,4 +1,4 @@
-package Views;
+package Views;//GEN-LINE:variables
 
 import controller.Controller;
 
@@ -16,7 +16,7 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -93,18 +93,18 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
 
         pack();
         setLocationRelativeTo(null);
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
-    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {                                          
         this.setVisible(false);
         new TelaBemVindoMenu(control).setVisible(true);
         dispose();
-    }//GEN-LAST:event_btnVoltarActionPerformed
+    }                                         
 
-    private void btnMostarExtratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostarExtratoActionPerformed
+    private void btnMostarExtratoActionPerformed(java.awt.event.ActionEvent evt) {                                                 
         this.setVisible(false);
         new TelaExtrato(control).setVisible(true);
-    }//GEN-LAST:event_btnMostarExtratoActionPerformed
+    }                                                
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -138,7 +138,7 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JButton btnMostarExtrato;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JPanel jPanel1;
@@ -146,5 +146,5 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
     private javax.swing.JLabel labelSaldo;
     private javax.swing.JLabel labelSaldoTitulo;
     private javax.swing.JLabel labelSaldoUsuario;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 }

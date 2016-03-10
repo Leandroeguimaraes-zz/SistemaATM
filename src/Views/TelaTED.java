@@ -1,4 +1,4 @@
-package Views;
+package Views;//GEN-LINE:variables
 
 import controller.Controller;
 import javax.swing.JOptionPane;
@@ -18,7 +18,7 @@ public class TelaTED extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
@@ -145,15 +145,15 @@ public class TelaTED extends javax.swing.JFrame {
 
         pack();
         setLocationRelativeTo(null);
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
-    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {                                          
         this.setVisible(false);
         new TelaTransferencia(control).setVisible(true);
         dispose();
-    }//GEN-LAST:event_btnVoltarActionPerformed
+    }                                         
 
-    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
+    private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {                                             
         double valor = Double.parseDouble(this.campoValor.getText());
         if (valor >1000 && valor < 30000) {
             if (control.existeContaECpf(this.campoBanco.getText(), this.campoAgencia.getText(), this.campoConta.getText(), this.campoCPF.getText())) {
@@ -177,7 +177,7 @@ public class TelaTED extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Valor ultrapassa limite de DOC.");
         }
-    }//GEN-LAST:event_btnConfirmarActionPerformed
+    }                                            
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -226,7 +226,7 @@ public class TelaTED extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JButton btnConfirmar;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JTextField campoAgencia;
@@ -242,5 +242,5 @@ public class TelaTED extends javax.swing.JFrame {
     private javax.swing.JLabel labelFundo;
     private javax.swing.JLabel labelTED;
     private javax.swing.JLabel labelValor;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 }

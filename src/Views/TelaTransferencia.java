@@ -1,5 +1,5 @@
-package Views;
-
+package Views;//GEN-FIRST:event_btnDOCActionPerformed
+//GEN-LAST:event_btnDOCActionPerformed
 import controller.Controller;
 
 public class TelaTransferencia extends javax.swing.JFrame {
@@ -16,7 +16,7 @@ public class TelaTransferencia extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
@@ -107,28 +107,28 @@ public class TelaTransferencia extends javax.swing.JFrame {
 
         pack();
         setLocationRelativeTo(null);
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
-    private void btnBancoBancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBancoBancoActionPerformed
+    private void btnBancoBancoActionPerformed(java.awt.event.ActionEvent evt) {                                              
         this.setVisible(false);
         new TelaParaATM5(control).setVisible(true);
-    }//GEN-LAST:event_btnBancoBancoActionPerformed
+    }                                             
 
-    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {                                          
         this.setVisible(false);
         new TelaBemVindoMenu(control).setVisible(true);
         dispose();
-    }//GEN-LAST:event_btnVoltarActionPerformed
+    }                                         
 
-    private void btnDOCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDOCActionPerformed
+    private void btnDOCActionPerformed(java.awt.event.ActionEvent evt) {                                       
         this.setVisible(false);
         new TelaDOC(control).setVisible(true);
-    }//GEN-LAST:event_btnDOCActionPerformed
+    }                                      
 
-    private void btnTEDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTEDActionPerformed
+    private void btnTEDActionPerformed(java.awt.event.ActionEvent evt) {                                       
         this.setVisible(false);
         new TelaTED(control).setVisible(true);
-    }//GEN-LAST:event_btnTEDActionPerformed
+    }                                      
 
 
     public static void main(String args[]) {
@@ -166,7 +166,7 @@ public class TelaTransferencia extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JButton btnBancoBanco;
     private javax.swing.JButton btnDOC;
     private javax.swing.JButton btnTED;
@@ -174,5 +174,5 @@ public class TelaTransferencia extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel labelFundo;
     private javax.swing.JLabel labelTransferencia;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 }

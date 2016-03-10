@@ -1,5 +1,5 @@
-package Views;
-
+package Views;//GEN-FIRST:event_btn20ActionPerformed
+//GEN-LAST:event_btn20ActionPerformed
 import controller.Controller;
 import javax.swing.JOptionPane;
 
@@ -17,7 +17,7 @@ public class TelaSaque extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
@@ -145,38 +145,38 @@ public class TelaSaque extends javax.swing.JFrame {
 
         pack();
         setLocationRelativeTo(null);
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
-    private void btn10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn10ActionPerformed
+    private void btn10ActionPerformed(java.awt.event.ActionEvent evt) {                                      
         efetuarSaque(10);
-    }//GEN-LAST:event_btn10ActionPerformed
+    }                                     
 
-    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {                                          
         this.setVisible(false);
         new TelaBemVindoMenu(control).setVisible(true);
         dispose();
-    }//GEN-LAST:event_btnVoltarActionPerformed
+    }                                         
 
-    private void btnOutrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOutrosActionPerformed
+    private void btnOutrosActionPerformed(java.awt.event.ActionEvent evt) {                                          
         this.setVisible(false);
         new TelaSaqueOutros(control).setVisible(true);
-    }//GEN-LAST:event_btnOutrosActionPerformed
+    }                                         
 
-    private void btn20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn20ActionPerformed
+    private void btn20ActionPerformed(java.awt.event.ActionEvent evt) {                                      
         efetuarSaque(20);
-    }//GEN-LAST:event_btn20ActionPerformed
+    }                                     
 
-    private void btn50ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn50ActionPerformed
+    private void btn50ActionPerformed(java.awt.event.ActionEvent evt) {                                      
         efetuarSaque(50);
-    }//GEN-LAST:event_btn50ActionPerformed
+    }                                     
 
-    private void btn100ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn100ActionPerformed
+    private void btn100ActionPerformed(java.awt.event.ActionEvent evt) {                                       
         efetuarSaque(100);
-    }//GEN-LAST:event_btn100ActionPerformed
+    }                                      
 
-    private void btn200ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn200ActionPerformed
+    private void btn200ActionPerformed(java.awt.event.ActionEvent evt) {                                       
         efetuarSaque(200);
-    }//GEN-LAST:event_btn200ActionPerformed
+    }                                      
 
     private void efetuarSaque(double valor) {
         TelaConfirmacao tela = new TelaConfirmacao(this, true, control);
@@ -227,7 +227,7 @@ public class TelaSaque extends javax.swing.JFrame {
         });
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JButton btn10;
     private javax.swing.JButton btn100;
     private javax.swing.JButton btn20;
@@ -238,5 +238,5 @@ public class TelaSaque extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel labelFundo;
     private javax.swing.JLabel labelSaque;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 }

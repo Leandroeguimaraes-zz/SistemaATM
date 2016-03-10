@@ -12,7 +12,11 @@
     <mapping class="model.dao.ContaDAO"/>
     <mapping class="model.dao.ContaInterfaceDAO"/>
     <mapping class="model.Usuario"/>
-    <mapping class="model.dao.UsuarioDAO"/>
-    <mapping class="model.dao.UsuarioInterfaceDAO"/>
+    <mapping class="model.Evento"/>
+    <mapping class="model.dao.EventoDAO"/>
+    <mapping class="model.dao.EventoInterfaceDAO"/>
+    <mapping class="model.Boleto"/>
+    <mapping class="model.dao.BoletoDAO"/>
+    <mapping class="model.dao.BoletoInterfaceDAO"/>
   </session-factory>
 </hibernate-configuration>
