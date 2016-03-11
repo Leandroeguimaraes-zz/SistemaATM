@@ -52,6 +52,7 @@ public class TelaTED extends javax.swing.JFrame {
         campoConta = new javax.swing.JTextField();
         campoBanco = new javax.swing.JTextField();
         labelFundo = new javax.swing.JLabel();
+        jFormattedTextField1 = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -161,6 +162,10 @@ public class TelaTED extends javax.swing.JFrame {
         labelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/FUNDO.png"))); // NOI18N
         jPanel2.add(labelFundo);
         labelFundo.setBounds(0, 0, 800, 600);
+
+        jFormattedTextField1.setText("jFormattedTextField1");
+        jPanel2.add(jFormattedTextField1);
+        jFormattedTextField1.setBounds(470, 290, 109, 20);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -283,6 +288,7 @@ public class TelaTED extends javax.swing.JFrame {
     private javax.swing.JTextField campoCPF;
     private javax.swing.JTextField campoConta;
     private Views.JNumberFormatField campoValor;
+    private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel labelAgencia;
     private javax.swing.JLabel labelBanco;

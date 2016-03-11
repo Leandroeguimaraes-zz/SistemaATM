@@ -46,5 +46,9 @@ public class EventoDAO implements EventoInterfaceDAO {
         JOptionPane.showMessageDialog(null, "Salvo");
     }
 
+    public Evento buscaEvento(String id) {
+        return null;
+    }
+
 
 }

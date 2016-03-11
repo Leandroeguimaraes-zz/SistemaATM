@@ -64,6 +64,14 @@ public class Evento implements java.io.Serializable{
     @Temporal(value=TemporalType.DATE)
     private Date data;
 
+    public Evento(String id, Conta conta, Conta contaDestino, double valor, Date data) {
+        this.id = id;
+        this.conta = conta;
+        this.contaDestino = contaDestino;
+        this.valor = valor;
+        this.data = data;
+    }
+
     public int getIdEvento() {
         return idEvento;
     }

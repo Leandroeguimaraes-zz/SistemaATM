@@ -5,10 +5,15 @@
  */
 package controller;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.text.MaskFormatter;
 import model.Boleto;
 import model.Conta;
 import model.Evento;
@@ -101,13 +106,15 @@ public class Controller {
     //======================================================================================================
     public void efetuaDeposito(double valor) {
         this.contaLogada.setSaldo(this.contaLogada.getSaldo() + valor);
-        //this.contaDAO.atualiza(this.contaLogada);
+        this.contaDAO.atualiza(this.contaLogada);
+        salvaDeposito(valor);
     }
 
     public boolean efetuaSaque(double valor) {
         if (this.contaLogada.getSaldo() >= valor) {
             this.contaLogada.setSaldo(this.contaLogada.getSaldo() - valor);
-            //this.contaDAO.atualiza(this.contaLogada);
+            this.contaDAO.atualiza(this.contaLogada);
+            salvaSaque(valor);
             return true;
         } else {
             return false;
@@ -131,8 +138,9 @@ public class Controller {
         if (this.contaLogada.getSaldo() >= valor) {
             this.contaLogada.setSaldo(this.contaLogada.getSaldo() - valor);
             this.contaDestinataria.setSaldo(this.contaDestinataria.getSaldo() + valor);
-            //this.contaDAO.atualiza(this.contaLogada);
-            //this.contaDAO.atualiza(this.contaDestinataria);
+            this.contaDAO.atualiza(this.contaLogada);
+            this.contaDAO.atualiza(this.contaDestinataria);
+            salvaTransferencia(valor);
             return true;
         } else {
             return false;
@@ -156,8 +164,9 @@ public class Controller {
             this.contaLogada.setSaldo(this.contaLogada.getSaldo() - this.boleto.getValor());
             this.contaDestinataria = this.boleto.getConta();
             this.contaDestinataria.setSaldo(this.contaDestinataria.getSaldo() + this.boleto.getValor());
-            //this.contaDAO.atualiza(this.contaLogada);
-            //this.contaDAO.atualiza(this.contaDestinataria);
+            this.contaDAO.atualiza(this.contaLogada);
+            this.contaDAO.atualiza(this.contaDestinataria);
+            salvaPagamento(this.boleto.getValor());
             return true;
         } else {
             return false;
@@ -241,7 +250,10 @@ public class Controller {
         }
         return listaFinal;
     }
-
+    
+    //dd/mm/aaaaxxSA12345678xxTransferenciaxPara:001/0001/000001xxxxxx-100000,00
+    //       10|           24|                                     40|       50|
+    
     private boolean comparaContas(Conta conta1, Conta conta2) {
         if (conta1.getBanco().equals(conta2.getBanco())) {
             if (conta1.getAgencia().equals(conta2.getAgencia())) {
@@ -252,7 +264,61 @@ public class Controller {
         }
         return false;
     }
+    
+    // Eventos_________________________________________________________________________________________
+    //======================================================================================================
+    
+    private void salvaSaque(double valor){
+        String id = "SA" + geraRandom();
+        while(this.eventoDAO.buscaEvento(id)!=null){
+            id = "SA" + geraRandom();
+        }
+        Date data = new Date();
+        data = zeraHora(data);
+        Evento ev = new Evento(id,this.contaLogada,null,valor,data);
+        this.eventoDAO.salvar(evento);
+        
+    }
+    
+    private void salvaDeposito(double valor){
+        String id = "DE" + geraRandom();
+        while(this.eventoDAO.buscaEvento(id)!=null){
+            id = "DE" + geraRandom();
+        }
+        Date data = new Date();
+        data = zeraHora(data);
+        Evento ev = new Evento(id,this.contaLogada,null,valor,data);
+        this.eventoDAO.salvar(evento);
+    }
+    
+    private void salvaPagamento(double valor){
+        String id = "PA" + geraRandom();
+        while(this.eventoDAO.buscaEvento(id)!=null){
+            id = "PA" + geraRandom();
+        }
+        Date data = new Date();
+        data = zeraHora(data);
+        Evento ev = new Evento(id,this.contaLogada,this.contaDestinataria,valor,data);
+        this.eventoDAO.salvar(evento);
+    }
+    
+    private void salvaTransferencia(double valor){
+        String id = "TR" + geraRandom();
+        while(this.eventoDAO.buscaEvento(id)!=null){
+            id = "TR" + geraRandom();
+        }
+        Date data = new Date();
+        data = zeraHora(data);
+        Evento ev = new Evento(id,this.contaLogada,this.contaDestinataria,valor,data);
+        this.eventoDAO.salvar(evento);
+    }
+
+    private String geraRandom() {
+            Random r = new Random();
+            return String.format("%08d", r.nextInt(99999999));
+       
+        
+    }
 
 }
-//dd/mm/aaaaxxSA12345678xxTransferenciaxPara:001/0001/000001xxxxxx-100000,00
-//       10|           24|                                     40|       50|        
+        
