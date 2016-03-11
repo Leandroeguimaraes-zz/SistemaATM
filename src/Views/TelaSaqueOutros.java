@@ -22,10 +22,10 @@ public class TelaSaqueOutros extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         btnVoltar = new javax.swing.JButton();
-        campoValorSaque = new javax.swing.JTextField();
         labelValorSaque = new javax.swing.JLabel();
         btnConfirmar = new javax.swing.JButton();
         labelOutroValor = new javax.swing.JLabel();
+        campoValor = new Views.JNumberFormatField();
         labelFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -47,10 +47,6 @@ public class TelaSaqueOutros extends javax.swing.JFrame {
         });
         jPanel2.add(btnVoltar);
         btnVoltar.setBounds(550, 500, 200, 50);
-
-        campoValorSaque.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jPanel2.add(campoValorSaque);
-        campoValorSaque.setBounds(230, 200, 200, 30);
 
         labelValorSaque.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         labelValorSaque.setForeground(new java.awt.Color(0, 51, 102));
@@ -74,6 +70,10 @@ public class TelaSaqueOutros extends javax.swing.JFrame {
         labelOutroValor.setText("Outro Valor");
         jPanel2.add(labelOutroValor);
         labelOutroValor.setBounds(320, 50, 200, 50);
+
+        campoValor.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jPanel2.add(campoValor);
+        campoValor.setBounds(230, 200, 200, 35);
 
         labelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/FUNDO.png"))); // NOI18N
         jPanel2.add(labelFundo);
@@ -108,7 +108,7 @@ public class TelaSaqueOutros extends javax.swing.JFrame {
         TelaConfirmacao tela = new TelaConfirmacao(this, true, control);
         tela.setVisible(true);
         if (tela.confirma()) {
-            if (control.efetuaSaque(Double.parseDouble(this.campoValorSaque.getText()))) {
+            if (control.efetuaSaque(this.campoValor.getValue().doubleValue())) {
                 JOptionPane.showMessageDialog(this, "Saque realizado com sucesso");
                 this.setVisible(false);
                 new TelaBemVindoMenu(control).setVisible(true);
@@ -158,7 +158,7 @@ public class TelaSaqueOutros extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmar;
     private javax.swing.JButton btnVoltar;
-    private javax.swing.JTextField campoValorSaque;
+    private Views.JNumberFormatField campoValor;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel labelFundo;
     private javax.swing.JLabel labelOutroValor;

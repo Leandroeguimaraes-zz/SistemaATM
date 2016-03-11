@@ -27,16 +27,16 @@ public class TelaParaATM5 extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         btnVoltar = new javax.swing.JButton();
-        campoCPF = new javax.swing.JTextField();
         labelCPF = new javax.swing.JLabel();
         btnConfirmar = new javax.swing.JButton();
         labelAgencia = new javax.swing.JLabel();
-        campoAgencia = new javax.swing.JTextField();
         labelConta = new javax.swing.JLabel();
-        campoConta = new javax.swing.JTextField();
         labelValor = new javax.swing.JLabel();
         lavbelParaATM5 = new javax.swing.JLabel();
         campoValor = new Views.JNumberFormatField();
+        campoCPF = new javax.swing.JTextField();
+        campoAgencia = new javax.swing.JTextField();
+        campoConta = new javax.swing.JTextField();
         labelFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -58,10 +58,6 @@ public class TelaParaATM5 extends javax.swing.JFrame {
         });
         jPanel2.add(btnVoltar);
         btnVoltar.setBounds(550, 500, 200, 50);
-
-        campoCPF.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jPanel2.add(campoCPF);
-        campoCPF.setBounds(230, 200, 200, 35);
 
         labelCPF.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         labelCPF.setForeground(new java.awt.Color(0, 51, 102));
@@ -86,19 +82,11 @@ public class TelaParaATM5 extends javax.swing.JFrame {
         jPanel2.add(labelAgencia);
         labelAgencia.setBounds(50, 250, 210, 30);
 
-        campoAgencia.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jPanel2.add(campoAgencia);
-        campoAgencia.setBounds(230, 250, 200, 35);
-
         labelConta.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         labelConta.setForeground(new java.awt.Color(0, 51, 102));
         labelConta.setText("Conta Corrente:");
         jPanel2.add(labelConta);
         labelConta.setBounds(50, 300, 210, 30);
-
-        campoConta.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jPanel2.add(campoConta);
-        campoConta.setBounds(230, 300, 200, 35);
 
         labelValor.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         labelValor.setForeground(new java.awt.Color(0, 51, 102));
@@ -115,6 +103,33 @@ public class TelaParaATM5 extends javax.swing.JFrame {
         campoValor.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jPanel2.add(campoValor);
         campoValor.setBounds(230, 350, 200, 35);
+
+        campoCPF.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        campoCPF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoCPFKeyTyped(evt);
+            }
+        });
+        jPanel2.add(campoCPF);
+        campoCPF.setBounds(230, 200, 200, 35);
+
+        campoAgencia.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        campoAgencia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoAgenciaKeyTyped(evt);
+            }
+        });
+        jPanel2.add(campoAgencia);
+        campoAgencia.setBounds(230, 250, 200, 35);
+
+        campoConta.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        campoConta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoContaKeyTyped(evt);
+            }
+        });
+        jPanel2.add(campoConta);
+        campoConta.setBounds(230, 300, 200, 35);
 
         labelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/FUNDO.png"))); // NOI18N
         jPanel2.add(labelFundo);
@@ -168,6 +183,27 @@ public class TelaParaATM5 extends javax.swing.JFrame {
         
 
     }//GEN-LAST:event_btnConfirmarActionPerformed
+
+    private void campoCPFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoCPFKeyTyped
+        char ch = evt.getKeyChar();
+        if (!Character.isDigit(ch) || this.campoCPF.getText().length() >=11) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_campoCPFKeyTyped
+
+    private void campoAgenciaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoAgenciaKeyTyped
+        char ch = evt.getKeyChar();
+        if (!Character.isDigit(ch) || this.campoAgencia.getText().length() >= 4) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_campoAgenciaKeyTyped
+
+    private void campoContaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoContaKeyTyped
+        char ch = evt.getKeyChar();
+        if (!Character.isDigit(ch) || this.campoConta.getText().length() >= 6) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_campoContaKeyTyped
 
     /**
      * @param args the command line arguments

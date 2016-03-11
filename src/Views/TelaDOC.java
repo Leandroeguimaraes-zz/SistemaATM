@@ -57,14 +57,19 @@ public class TelaDOC extends javax.swing.JFrame {
         btnVoltar.setBounds(550, 500, 200, 50);
 
         campoCPF.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        campoCPF.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoCPFKeyTyped(evt);
+            }
+        });
         jPanel2.add(campoCPF);
-        campoCPF.setBounds(230, 250, 200, 35);
+        campoCPF.setBounds(230, 200, 200, 35);
 
         labelCPF.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         labelCPF.setForeground(new java.awt.Color(0, 51, 102));
         labelCPF.setText("CPF:");
         jPanel2.add(labelCPF);
-        labelCPF.setBounds(50, 250, 180, 30);
+        labelCPF.setBounds(50, 200, 180, 30);
 
         btnConfirmar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnConfirmar.setForeground(new java.awt.Color(0, 51, 102));
@@ -84,6 +89,11 @@ public class TelaDOC extends javax.swing.JFrame {
         labelAgencia.setBounds(50, 300, 180, 30);
 
         campoAgencia.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        campoAgencia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoAgenciaKeyTyped(evt);
+            }
+        });
         jPanel2.add(campoAgencia);
         campoAgencia.setBounds(230, 300, 200, 35);
 
@@ -94,6 +104,11 @@ public class TelaDOC extends javax.swing.JFrame {
         labelConta.setBounds(50, 350, 180, 30);
 
         campoConta.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        campoConta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoContaKeyTyped(evt);
+            }
+        });
         jPanel2.add(campoConta);
         campoConta.setBounds(230, 350, 200, 35);
 
@@ -107,11 +122,16 @@ public class TelaDOC extends javax.swing.JFrame {
         labelBanco.setForeground(new java.awt.Color(0, 51, 102));
         labelBanco.setText("Banco:");
         jPanel2.add(labelBanco);
-        labelBanco.setBounds(50, 200, 180, 30);
+        labelBanco.setBounds(50, 250, 180, 30);
 
         campoBanco.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        campoBanco.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoBancoKeyTyped(evt);
+            }
+        });
         jPanel2.add(campoBanco);
-        campoBanco.setBounds(230, 200, 200, 35);
+        campoBanco.setBounds(230, 250, 200, 35);
 
         labelDOC.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         labelDOC.setForeground(new java.awt.Color(0, 51, 102));
@@ -177,6 +197,34 @@ public class TelaDOC extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Valor ultrapassa limite de DOC.");
         }
     }//GEN-LAST:event_btnConfirmarActionPerformed
+
+    private void campoBancoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoBancoKeyTyped
+        char ch = evt.getKeyChar();
+        if (!Character.isDigit(ch) || this.campoBanco.getText().length() >= 3) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_campoBancoKeyTyped
+
+    private void campoCPFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoCPFKeyTyped
+        char ch = evt.getKeyChar();
+        if (!Character.isDigit(ch) || this.campoCPF.getText().length() >=11) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_campoCPFKeyTyped
+
+    private void campoAgenciaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoAgenciaKeyTyped
+        char ch = evt.getKeyChar();
+        if (!Character.isDigit(ch) || this.campoAgencia.getText().length() >= 4) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_campoAgenciaKeyTyped
+
+    private void campoContaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoContaKeyTyped
+        char ch = evt.getKeyChar();
+        if (!Character.isDigit(ch) || this.campoConta.getText().length() >= 6) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_campoContaKeyTyped
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

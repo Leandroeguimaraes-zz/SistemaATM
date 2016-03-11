@@ -24,7 +24,7 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
     public TelaSaldoExtrato(Controller control) {
         initComponents();
         this.control=control;
-        this.labelSaldoUsuario.setText(String.valueOf(this.control.getSaldo()));
+        this.labelSaldoUsuario.setText("R$ "+String.valueOf(this.control.getSaldo()));
     }
 
     /**
