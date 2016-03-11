@@ -30,10 +30,10 @@ public class TelaDOC extends javax.swing.JFrame {
         labelConta = new javax.swing.JLabel();
         campoConta = new javax.swing.JTextField();
         labelValor = new javax.swing.JLabel();
-        campoValor = new javax.swing.JTextField();
         labelBanco = new javax.swing.JLabel();
         campoBanco = new javax.swing.JTextField();
         labelDOC = new javax.swing.JLabel();
+        campoValor = new Views.JNumberFormatField();
         labelFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -58,7 +58,7 @@ public class TelaDOC extends javax.swing.JFrame {
 
         campoCPF.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jPanel2.add(campoCPF);
-        campoCPF.setBounds(230, 250, 200, 30);
+        campoCPF.setBounds(230, 250, 200, 35);
 
         labelCPF.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         labelCPF.setForeground(new java.awt.Color(0, 51, 102));
@@ -85,7 +85,7 @@ public class TelaDOC extends javax.swing.JFrame {
 
         campoAgencia.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jPanel2.add(campoAgencia);
-        campoAgencia.setBounds(230, 300, 200, 30);
+        campoAgencia.setBounds(230, 300, 200, 35);
 
         labelConta.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         labelConta.setForeground(new java.awt.Color(0, 51, 102));
@@ -95,17 +95,13 @@ public class TelaDOC extends javax.swing.JFrame {
 
         campoConta.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jPanel2.add(campoConta);
-        campoConta.setBounds(230, 350, 200, 30);
+        campoConta.setBounds(230, 350, 200, 35);
 
         labelValor.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         labelValor.setForeground(new java.awt.Color(0, 51, 102));
         labelValor.setText("Valor:");
         jPanel2.add(labelValor);
         labelValor.setBounds(50, 400, 180, 30);
-
-        campoValor.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jPanel2.add(campoValor);
-        campoValor.setBounds(230, 400, 200, 30);
 
         labelBanco.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         labelBanco.setForeground(new java.awt.Color(0, 51, 102));
@@ -115,13 +111,17 @@ public class TelaDOC extends javax.swing.JFrame {
 
         campoBanco.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jPanel2.add(campoBanco);
-        campoBanco.setBounds(230, 200, 200, 30);
+        campoBanco.setBounds(230, 200, 200, 35);
 
         labelDOC.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         labelDOC.setForeground(new java.awt.Color(0, 51, 102));
         labelDOC.setText("DOC");
         jPanel2.add(labelDOC);
         labelDOC.setBounds(320, 50, 200, 50);
+
+        campoValor.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jPanel2.add(campoValor);
+        campoValor.setBounds(230, 400, 200, 35);
 
         labelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/FUNDO.png"))); // NOI18N
         jPanel2.add(labelFundo);
@@ -153,7 +153,7 @@ public class TelaDOC extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        double valor = Double.parseDouble(this.campoValor.getText());
+        double valor = campoValor.getValue().doubleValue();
         if (valor < 5000) {
             if (control.existeContaECpf(this.campoBanco.getText(), this.campoAgencia.getText(), this.campoConta.getText(), this.campoCPF.getText())) {
                 TelaConfirmacao tela = new TelaConfirmacao(this, true, control);
@@ -224,7 +224,7 @@ public class TelaDOC extends javax.swing.JFrame {
     private javax.swing.JTextField campoBanco;
     private javax.swing.JTextField campoCPF;
     private javax.swing.JTextField campoConta;
-    private javax.swing.JTextField campoValor;
+    private Views.JNumberFormatField campoValor;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel labelAgencia;
     private javax.swing.JLabel labelBanco;

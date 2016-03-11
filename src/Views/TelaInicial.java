@@ -73,21 +73,23 @@ public class TelaInicial extends javax.swing.JFrame {
         btnSair.setBounds(550, 500, 200, 50);
         btnSair.getAccessibleContext().setAccessibleName("");
 
+        campoAgencia.setText("1111");
         campoAgencia.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 campoAgenciaKeyTyped(evt);
             }
         });
         painelPrincipal.add(campoAgencia);
-        campoAgencia.setBounds(250, 350, 300, 30);
+        campoAgencia.setBounds(250, 350, 300, 35);
 
+        campoConta.setText("111111");
         campoConta.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 campoContaKeyTyped(evt);
             }
         });
         painelPrincipal.add(campoConta);
-        campoConta.setBounds(250, 400, 300, 30);
+        campoConta.setBounds(250, 400, 300, 35);
 
         labelAgencia.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         labelAgencia.setForeground(new java.awt.Color(0, 51, 102));
@@ -127,7 +129,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
 
-        if (control.existeConta(campoAgencia.getText(), campoConta.getText())) {
+        if (control.existeConta(campoAgencia.getText(), campoConta.getText()) && campoAgencia.getText().length()== 4 && campoConta.getText().length() == 6) {
             TelaConfirmacao tela = new TelaConfirmacao(this, true, control);
             tela.setVisible(true);
             if (tela.confirma()) {

@@ -23,9 +23,9 @@ public class TelaDeposito extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         labelSaldo = new javax.swing.JLabel();
         btnVoltar = new javax.swing.JButton();
-        campoValor = new javax.swing.JTextField();
         btnConfirmar = new javax.swing.JButton();
         labelDeposito = new javax.swing.JLabel();
+        campoValor = new Views.JNumberFormatField();
         labelFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -53,10 +53,6 @@ public class TelaDeposito extends javax.swing.JFrame {
         jPanel1.add(btnVoltar);
         btnVoltar.setBounds(550, 500, 200, 50);
 
-        campoValor.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jPanel1.add(campoValor);
-        campoValor.setBounds(260, 200, 200, 30);
-
         btnConfirmar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnConfirmar.setForeground(new java.awt.Color(0, 51, 102));
         btnConfirmar.setText("Confirmar");
@@ -73,6 +69,10 @@ public class TelaDeposito extends javax.swing.JFrame {
         labelDeposito.setText("Depósito");
         jPanel1.add(labelDeposito);
         labelDeposito.setBounds(320, 50, 200, 50);
+
+        campoValor.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jPanel1.add(campoValor);
+        campoValor.setBounds(260, 200, 200, 35);
 
         labelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/FUNDO.png"))); // NOI18N
         jPanel1.add(labelFundo);
@@ -94,7 +94,7 @@ public class TelaDeposito extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        double valor = Double.parseDouble(this.campoValor.getText());
+        double valor = this.campoValor.getValue().doubleValue();
         if (valor < 5000) {
             TelaConfirmacao tela = new TelaConfirmacao(this, true, control);
             tela.setVisible(true);
@@ -157,7 +157,7 @@ public class TelaDeposito extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmar;
     private javax.swing.JButton btnVoltar;
-    private javax.swing.JTextField campoValor;
+    private Views.JNumberFormatField campoValor;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelDeposito;
     private javax.swing.JLabel labelFundo;

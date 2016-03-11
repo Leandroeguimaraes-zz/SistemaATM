@@ -55,7 +55,7 @@ public class TelaPagamento extends javax.swing.JFrame {
             }
         });
         jPanel2.add(campoCodigoBarras);
-        campoCodigoBarras.setBounds(250, 200, 490, 30);
+        campoCodigoBarras.setBounds(250, 200, 490, 35);
 
         labelCodigoBarras.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         labelCodigoBarras.setForeground(new java.awt.Color(0, 51, 102));
@@ -110,7 +110,7 @@ public class TelaPagamento extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        if (this.control.existeBoleto(this.campoCodigoBarras.getText()) || this.campoCodigoBarras.getText().length()<12){
+        if (this.control.existeBoleto(this.campoCodigoBarras.getText()) && this.campoCodigoBarras.getText().length()<12){
             this.setVisible(false);
             new TelaInfoBoleto(control).setVisible(true);
             dispose();

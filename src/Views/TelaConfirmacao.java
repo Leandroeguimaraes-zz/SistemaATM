@@ -166,8 +166,9 @@ public class TelaConfirmacao extends javax.swing.JDialog {
         btnCancelarSenha.setBounds(550, 500, 200, 50);
 
         campoSenha.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        campoSenha.setEnabled(false);
         panelConfirmacao.add(campoSenha);
-        campoSenha.setBounds(250, 350, 300, 30);
+        campoSenha.setBounds(250, 350, 300, 35);
 
         fundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/FUNDO.png"))); // NOI18N
         panelConfirmacao.add(fundo);

@@ -119,22 +119,28 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="campoAgencia">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="1111"/>
+          </Properties>
           <Events>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="campoAgenciaKeyTyped"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="250" y="350" width="300" height="30"/>
+              <AbsoluteConstraints x="250" y="350" width="300" height="35"/>
             </Constraint>
           </Constraints>
         </Component>
         <Component class="javax.swing.JTextField" name="campoConta">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="111111"/>
+          </Properties>
           <Events>
             <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="campoContaKeyTyped"/>
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="250" y="400" width="300" height="30"/>
+              <AbsoluteConstraints x="250" y="400" width="300" height="35"/>
             </Constraint>
           </Constraints>
         </Component>

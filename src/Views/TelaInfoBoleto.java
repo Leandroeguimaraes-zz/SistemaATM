@@ -42,9 +42,9 @@ public class TelaInfoBoleto extends javax.swing.JFrame {
         labelDest = new javax.swing.JLabel();
         labelDataVenc = new javax.swing.JLabel();
         labelValPago = new javax.swing.JLabel();
-        campoValor = new javax.swing.JTextField();
         btnConfirmar = new javax.swing.JButton();
         btnVoltar = new javax.swing.JButton();
+        campoValor = new Views.JNumberFormatField();
         labelFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -128,15 +128,6 @@ public class TelaInfoBoleto extends javax.swing.JFrame {
         jPanel2.add(labelValPago);
         labelValPago.setBounds(50, 400, 210, 30);
 
-        campoValor.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        campoValor.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                campoValorKeyTyped(evt);
-            }
-        });
-        jPanel2.add(campoValor);
-        campoValor.setBounds(300, 405, 200, 30);
-
         btnConfirmar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnConfirmar.setForeground(new java.awt.Color(0, 51, 102));
         btnConfirmar.setText("Confirmar");
@@ -158,6 +149,10 @@ public class TelaInfoBoleto extends javax.swing.JFrame {
         });
         jPanel2.add(btnVoltar);
         btnVoltar.setBounds(550, 500, 200, 50);
+
+        campoValor.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jPanel2.add(campoValor);
+        campoValor.setBounds(300, 400, 200, 35);
 
         labelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/FUNDO.png"))); // NOI18N
         jPanel2.add(labelFundo);
@@ -193,7 +188,7 @@ public class TelaInfoBoleto extends javax.swing.JFrame {
         tela.setVisible(true);
         Date dataAtual = new Date();
         if (this.control.diasEntre(dataAtual, this.control.getBoleto().getDataVencimento()) < 0) {
-            if (Double.valueOf(this.campoValor.getText())==this.control.getBoleto().getValor()) {
+            if (this.campoValor.getValue().doubleValue()==this.control.getBoleto().getValor()) {
                 if (tela.confirma()) {
                     if (control.efetuaPagamento()) {
                         JOptionPane.showMessageDialog(this, "Pagamento realizado com sucesso.");
@@ -214,13 +209,6 @@ public class TelaInfoBoleto extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnConfirmarActionPerformed
-
-    private void campoValorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoValorKeyTyped
-        char ch = evt.getKeyChar();
-        if (!Character.isDigit(ch)) {
-            evt.consume();
-        }
-    }//GEN-LAST:event_campoValorKeyTyped
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -264,7 +252,7 @@ public class TelaInfoBoleto extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmar;
     private javax.swing.JButton btnVoltar;
-    private javax.swing.JTextField campoValor;
+    private Views.JNumberFormatField campoValor;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel labelAgenciaDestinatario;
     private javax.swing.JLabel labelBancoDestinatario;
