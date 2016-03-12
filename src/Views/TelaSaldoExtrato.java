@@ -6,6 +6,7 @@
 package Views;
 
 import controller.Controller;
+import java.util.ArrayList;
 
 /**
  *
@@ -25,6 +26,12 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
         initComponents();
         this.control=control;
         this.labelSaldoUsuario.setText("R$ "+String.valueOf(this.control.getSaldo()));
+        ArrayList<String> lista = this.control.getListaEventos();
+        String quebraLinha = System.lineSeparator();
+        for (int i = 0; i < lista.size(); i++) {
+            this.campoExtrato.setText(this.campoExtrato.getText() +lista.get(i)+quebraLinha);
+            
+        }
     }
 
     /**
@@ -38,10 +45,12 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         labelSaldo = new javax.swing.JLabel();
-        btnMostarExtrato = new javax.swing.JButton();
         labelSaldoUsuario = new javax.swing.JLabel();
         btnVoltar = new javax.swing.JButton();
         labelSaldoTitulo = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        campoExtrato = new javax.swing.JTextArea();
+        labelExtrato = new javax.swing.JLabel();
         labelFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -60,17 +69,6 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
         labelSaldo.setText("Saldo:");
         jPanel1.add(labelSaldo);
         labelSaldo.setBounds(50, 200, 70, 30);
-
-        btnMostarExtrato.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnMostarExtrato.setForeground(new java.awt.Color(0, 51, 102));
-        btnMostarExtrato.setText("Mostrar Extrato");
-        btnMostarExtrato.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMostarExtratoActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnMostarExtrato);
-        btnMostarExtrato.setBounds(300, 500, 200, 50);
 
         labelSaldoUsuario.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         labelSaldoUsuario.setForeground(new java.awt.Color(0, 102, 153));
@@ -95,6 +93,24 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
         jPanel1.add(labelSaldoTitulo);
         labelSaldoTitulo.setBounds(320, 50, 270, 50);
 
+        jScrollPane1.setFont(new java.awt.Font("Monospaced", 0, 11)); // NOI18N
+
+        campoExtrato.setColumns(20);
+        campoExtrato.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
+        campoExtrato.setRows(5);
+        campoExtrato.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        campoExtrato.setRequestFocusEnabled(false);
+        jScrollPane1.setViewportView(campoExtrato);
+
+        jPanel1.add(jScrollPane1);
+        jScrollPane1.setBounds(50, 290, 700, 190);
+
+        labelExtrato.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        labelExtrato.setForeground(new java.awt.Color(0, 51, 102));
+        labelExtrato.setText("Extrato:");
+        jPanel1.add(labelExtrato);
+        labelExtrato.setBounds(50, 240, 100, 29);
+
         labelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/FUNDO.png"))); // NOI18N
         jPanel1.add(labelFundo);
         labelFundo.setBounds(0, 0, 800, 600);
@@ -105,12 +121,6 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnMostarExtratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostarExtratoActionPerformed
-        this.setVisible(false);
-        new TelaExtrato(control).setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_btnMostarExtratoActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         
@@ -154,9 +164,11 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnMostarExtrato;
     private javax.swing.JButton btnVoltar;
+    private javax.swing.JTextArea campoExtrato;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelExtrato;
     private javax.swing.JLabel labelFundo;
     private javax.swing.JLabel labelSaldo;
     private javax.swing.JLabel labelSaldoTitulo;
