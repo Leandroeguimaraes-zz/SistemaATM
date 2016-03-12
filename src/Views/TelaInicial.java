@@ -73,6 +73,7 @@ public class TelaInicial extends javax.swing.JFrame {
         btnSair.setBounds(550, 500, 200, 50);
         btnSair.getAccessibleContext().setAccessibleName("");
 
+        campoAgencia.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         campoAgencia.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 campoAgenciaKeyTyped(evt);
@@ -81,6 +82,7 @@ public class TelaInicial extends javax.swing.JFrame {
         painelPrincipal.add(campoAgencia);
         campoAgencia.setBounds(250, 350, 300, 35);
 
+        campoConta.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         campoConta.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 campoContaKeyTyped(evt);
