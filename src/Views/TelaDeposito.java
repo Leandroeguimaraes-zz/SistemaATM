@@ -1,6 +1,6 @@
 package Views;
 
-import controller.Controller;
+import Control.Controller;
 import javax.swing.JOptionPane;
 
 public class TelaDeposito extends javax.swing.JFrame {

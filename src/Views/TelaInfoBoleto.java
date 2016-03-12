@@ -1,6 +1,6 @@
 package Views;
 
-import controller.Controller;
+import Control.Controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;

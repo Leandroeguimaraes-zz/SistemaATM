@@ -1,6 +1,6 @@
 package Views;
 
-import controller.Controller;
+import Control.Controller;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -73,7 +73,6 @@ public class TelaInicial extends javax.swing.JFrame {
         btnSair.setBounds(550, 500, 200, 50);
         btnSair.getAccessibleContext().setAccessibleName("");
 
-        campoAgencia.setText("1111");
         campoAgencia.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 campoAgenciaKeyTyped(evt);
@@ -82,7 +81,6 @@ public class TelaInicial extends javax.swing.JFrame {
         painelPrincipal.add(campoAgencia);
         campoAgencia.setBounds(250, 350, 300, 35);
 
-        campoConta.setText("111111");
         campoConta.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 campoContaKeyTyped(evt);

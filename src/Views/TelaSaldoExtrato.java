@@ -5,7 +5,7 @@
  */
 package Views;
 
-import controller.Controller;
+import Control.Controller;
 import java.util.ArrayList;
 
 /**

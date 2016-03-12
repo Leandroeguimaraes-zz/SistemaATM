@@ -1,6 +1,6 @@
 package Views;
 
-import controller.Controller;
+import Control.Controller;
 import javax.swing.JOptionPane;
 
 
@@ -33,13 +33,10 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
         labelBemVindo = new javax.swing.JLabel();
         btnFim = new javax.swing.JButton();
         btnDeposito = new javax.swing.JButton();
-        btnOutrosServicos = new javax.swing.JButton();
         btnTransferencias = new javax.swing.JButton();
-        btnInvestimentos = new javax.swing.JButton();
         btnPagamentos = new javax.swing.JButton();
         btnSaques = new javax.swing.JButton();
         btnSaldoExtrato = new javax.swing.JButton();
-        btnEmprestimos = new javax.swing.JButton();
         labelFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -84,12 +81,6 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
         painelPrincipal.add(btnDeposito);
         btnDeposito.setBounds(450, 250, 300, 50);
 
-        btnOutrosServicos.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnOutrosServicos.setForeground(new java.awt.Color(0, 51, 102));
-        btnOutrosServicos.setText("Outros Serviços");
-        painelPrincipal.add(btnOutrosServicos);
-        btnOutrosServicos.setBounds(450, 400, 300, 50);
-
         btnTransferencias.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnTransferencias.setForeground(new java.awt.Color(0, 51, 102));
         btnTransferencias.setText("Transferências");
@@ -100,17 +91,6 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
         });
         painelPrincipal.add(btnTransferencias);
         btnTransferencias.setBounds(50, 325, 300, 50);
-
-        btnInvestimentos.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnInvestimentos.setForeground(new java.awt.Color(0, 51, 102));
-        btnInvestimentos.setText("Investimentos");
-        btnInvestimentos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInvestimentosActionPerformed(evt);
-            }
-        });
-        painelPrincipal.add(btnInvestimentos);
-        btnInvestimentos.setBounds(50, 400, 300, 50);
 
         btnPagamentos.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnPagamentos.setForeground(new java.awt.Color(0, 51, 102));
@@ -145,12 +125,6 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
         painelPrincipal.add(btnSaldoExtrato);
         btnSaldoExtrato.setBounds(50, 175, 300, 50);
 
-        btnEmprestimos.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnEmprestimos.setForeground(new java.awt.Color(0, 51, 102));
-        btnEmprestimos.setText("Emprestimos");
-        painelPrincipal.add(btnEmprestimos);
-        btnEmprestimos.setBounds(450, 325, 300, 50);
-
         labelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/FUNDO.png"))); // NOI18N
         painelPrincipal.add(labelFundo);
         labelFundo.setBounds(0, 0, 800, 600);
@@ -184,10 +158,6 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
         new TelaSaldoExtrato(control).setVisible(true);
 
     }//GEN-LAST:event_btnSaldoExtratoActionPerformed
-
-    private void btnInvestimentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInvestimentosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnInvestimentosActionPerformed
 
     private void btnDepositoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepositoActionPerformed
         this.setVisible(false);
@@ -244,10 +214,7 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDeposito;
-    private javax.swing.JButton btnEmprestimos;
     private javax.swing.JButton btnFim;
-    private javax.swing.JButton btnInvestimentos;
-    private javax.swing.JButton btnOutrosServicos;
     private javax.swing.JButton btnPagamentos;
     private javax.swing.JButton btnSaldoExtrato;
     private javax.swing.JButton btnSaques;

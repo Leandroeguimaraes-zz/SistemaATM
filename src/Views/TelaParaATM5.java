@@ -1,6 +1,6 @@
 package Views;
 
-import controller.Controller;
+import Control.Controller;
 import javax.swing.JOptionPane;
 
 public class TelaParaATM5 extends javax.swing.JFrame {
