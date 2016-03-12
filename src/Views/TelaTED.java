@@ -57,7 +57,6 @@ public class TelaTED extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
-        setSize(new java.awt.Dimension(800, 600));
 
         jPanel2.setLayout(null);
 
@@ -76,7 +75,7 @@ public class TelaTED extends javax.swing.JFrame {
         labelCPF.setForeground(new java.awt.Color(0, 51, 102));
         labelCPF.setText("CPF:");
         jPanel2.add(labelCPF);
-        labelCPF.setBounds(50, 250, 180, 30);
+        labelCPF.setBounds(50, 200, 180, 30);
 
         btnConfirmar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnConfirmar.setForeground(new java.awt.Color(0, 51, 102));
@@ -111,7 +110,7 @@ public class TelaTED extends javax.swing.JFrame {
         labelBanco.setForeground(new java.awt.Color(0, 51, 102));
         labelBanco.setText("Banco:");
         jPanel2.add(labelBanco);
-        labelBanco.setBounds(50, 200, 180, 30);
+        labelBanco.setBounds(50, 250, 180, 30);
 
         labelTED.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         labelTED.setForeground(new java.awt.Color(0, 51, 102));
@@ -192,8 +191,7 @@ public class TelaTED extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        double valor = this.campoValor.getValue().doubleValue();
-        if (valor > 1000 && valor < 30000) {
+            double valor = this.campoValor.getValue().doubleValue();    
             int status = control.existeContaECpf(this.campoBanco.getText(), this.campoAgencia.getText(), this.campoConta.getText(), this.campoCPF.getText());
             if (status == 2) {
                 JOptionPane.showMessageDialog(this, "Conta inexistente.");
@@ -218,9 +216,7 @@ public class TelaTED extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Operação cancelada.");
                 }
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "Valor ultrapassa limite de DOC.");
-        }
+        
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void campoCPFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoCPFKeyTyped
