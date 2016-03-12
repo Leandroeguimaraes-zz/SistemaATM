@@ -110,7 +110,7 @@ public class TelaPagamento extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        if (this.control.existeBoleto(this.campoCodigoBarras.getText()) && this.campoCodigoBarras.getText().length()<12){
+        if (this.control.existeBoleto(this.campoCodigoBarras.getText()) && this.campoCodigoBarras.getText().length()<=20){
             this.setVisible(false);
             new TelaInfoBoleto(control).setVisible(true);
             dispose();
@@ -122,7 +122,7 @@ public class TelaPagamento extends javax.swing.JFrame {
 
     private void campoCodigoBarrasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoCodigoBarrasKeyTyped
         char ch = evt.getKeyChar();
-        if (!Character.isDigit(ch) || this.campoCodigoBarras.getText().length() >= 12) {
+        if (!Character.isDigit(ch) || this.campoCodigoBarras.getText().length() >= 20) {
             evt.consume();
         }
     }//GEN-LAST:event_campoCodigoBarrasKeyTyped

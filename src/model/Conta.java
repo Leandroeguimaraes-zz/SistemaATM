@@ -27,42 +27,52 @@ import org.hibernate.annotations.CascadeType;
 
 @NamedQueries({
     @NamedQuery(name = "Conta.buscaConta",
-            query = "select conta from Conta as c "
+            query = "from Conta as c "
             + "where c.banco=:banco and c.agencia=:agencia and c.numConta=:numConta")
 })
 
 @Entity
-@Table(name="Conta")
+@Table(name="CONTA")
 @SequenceGenerator(name="CONTA_SEQUENCE", sequenceName="CONTA_SEQUENCE", allocationSize=1, initialValue=0)
 
 public class Conta implements java.io.Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="CONTA_SEQUENCE")
-    
+    @Column(name="IDCONTA")
     private int idConta;
     
-    @Column(name="Banco")
+    @Column(name="BANCO")
     private String banco;
     
-    @Column(name="Agencia")
+    @Column(name="AGENCIA")
     private String agencia;
     
 
-    @Column(name="numConta")
+    @Column(name="NUMCONTA")
     private String numConta;
     
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idUsuario", nullable = true)
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "USUARIO", nullable = true)
     @Cascade(CascadeType.SAVE_UPDATE)
     private Usuario usuario;
 
-    
-    @Column(name="Saldo")
+    @Column(name="SALDO")
     private double saldo;
     
-    @Column(name = "senha")
+    @Column(name = "SENHA")
     private String senha;
+    
+    
+
+//    public Conta(String banco, String agencia, String numConta, Usuario usuario, double saldo, String senha) {
+//        this.banco = banco;
+//        this.agencia = agencia;
+//        this.numConta = numConta;
+//        this.usuario = usuario;
+//        this.saldo = saldo;
+//        this.senha = senha;
+//    }
 
     
     public int getIdConta() {

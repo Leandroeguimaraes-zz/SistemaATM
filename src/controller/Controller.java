@@ -6,6 +6,7 @@
 package controller;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -92,8 +93,8 @@ public class Controller {
 
     // Validação Usuario_________________________________________________________________________________________
     //======================================================================================================
-    public boolean existeConta(String agencia, String cc) {
-        Conta conta = this.contaDAO.getConta("005", agencia, cc);
+    public boolean existeContaLogin(String banco,String agencia, String cc) {
+        Conta conta = this.contaDAO.buscaConta(banco, agencia, cc);
         if (conta != null) {
             this.contaLogada = conta;
             return true;
@@ -123,15 +124,17 @@ public class Controller {
 
     // Transferencias_________________________________________________________________________________________
     //======================================================================================================
-    public boolean existeContaECpf(String banco, String agencia, String cc, String cpf) {
-        Conta conta = this.contaDAO.getConta(banco, agencia, cc);
+    public int existeContaECpf(String banco, String agencia, String cc, String cpf) {
+        Conta conta = this.contaDAO.buscaConta(banco, agencia, cc);
         if (conta != null) {
             if (conta.getUsuario().getCpf().equals(cpf)) {
                 this.contaDestinataria = conta;
-                return true;
+                return 0;
+            }else{
+                return 1;
             }
         }
-        return false;
+        return 2;
     }
 
     public boolean efetuaTransferencia(double valor) {
@@ -177,13 +180,13 @@ public class Controller {
     //======================================================================================================
     public ArrayList<String> getListaEventos() {
         ArrayList<String> listaFinal = new ArrayList<String>();
-        List<Evento> listaEventos = this.eventoDAO.buscaEventos(this.contaLogada.getBanco(),this.contaLogada.getAgencia(),this.contaLogada.getNumConta());
+        List<Evento> listaEventos = this.eventoDAO.buscaEventos(this.contaLogada);
         String string;
         Evento ev;
         for (int i = 0; i < listaEventos.size(); i++) {
             ev = listaEventos.get(i);
-            if (ev.getId().substring(0, 1).equals("SA")) {
-                string = ev.getData().toString() + "  "
+            if (ev.getId().contains("SA")) {
+                string = formataData(ev.getData()) + "  "
                         + ev.getId() + "  "
                         + "SAQUE";
                 for (int j = 0; j < 35; j++) {
@@ -192,8 +195,8 @@ public class Controller {
                 string += "-" + String.valueOf(ev.getValor());
                 listaFinal.add(string);
             }
-            if (ev.getId().substring(0, 1).equals("DE")) {
-                string = ev.getData().toString() + "  "
+            if (ev.getId().contains("DE")) {
+                string = formataData(ev.getData()) + "  "
                         + ev.getId() + "  "
                         + "DEPOSITO";
                 for (int j = 0; j < 32; j++) {
@@ -202,9 +205,9 @@ public class Controller {
                 string += "+" + String.valueOf(ev.getValor());
                 listaFinal.add(string);
             }
-            if (ev.getId().substring(0, 1).equals("PA")) {
+            if (ev.getId().contains("PA")) {
                 if (this.comparaContas(this.contaLogada, ev.getConta())) {
-                    string = ev.getData().toString() + "  "
+                    string = formataData(ev.getData()) + "  "
                             + ev.getId() + "  "
                             + "PAGAMENTO PARA:" + ev.getContaDestino().getBanco() + "/" + ev.getContaDestino().getAgencia() + "/" + ev.getContaDestino().getNumConta();
                     for (int j = 0; j < 10; j++) {
@@ -214,7 +217,7 @@ public class Controller {
                     listaFinal.add(string);
                 }
                 if (this.comparaContas(this.contaLogada, ev.getContaDestino())) {
-                    string = ev.getData().toString() + "  "
+                    string = formataData(ev.getData()) + "  "
                             + ev.getId() + "  "
                             + "PAGAMENTO DE:" + ev.getContaDestino().getBanco() + "/" + ev.getContaDestino().getAgencia() + "/" + ev.getContaDestino().getNumConta();
                     for (int j = 0; j < 12; j++) {
@@ -224,9 +227,9 @@ public class Controller {
                     listaFinal.add(string);
                 }
             }
-            if (ev.getId().substring(0, 1).equals("TR")) {
+            if (ev.getId().contains("TR")) {
                 if (this.comparaContas(this.contaLogada, ev.getConta())) {
-                    string = ev.getData().toString() + "  "
+                    string = formataData(ev.getData()) + "  "
                             + ev.getId() + "  "
                             + "TRANSFERENCIA PARA:" + ev.getContaDestino().getBanco() + "/" + ev.getContaDestino().getAgencia() + "/" + ev.getContaDestino().getNumConta();
                     for (int j = 0; j < 6; j++) {
@@ -236,7 +239,7 @@ public class Controller {
                     listaFinal.add(string);
                 }
                 if (this.comparaContas(this.contaLogada, ev.getContaDestino())) {
-                    string = ev.getData().toString() + "  "
+                    string = formataData(ev.getData()) + "  "
                             + ev.getId() + "  "
                             + "TRANSFERENCIA DE:" + ev.getContaDestino().getBanco() + "/" + ev.getContaDestino().getAgencia() + "/" + ev.getContaDestino().getNumConta();
                     for (int j = 0; j < 8; j++) {
@@ -253,6 +256,11 @@ public class Controller {
     
     //dd/mm/aaaaxxSA12345678xxTransferenciaxPara:001/0001/000001xxxxxx-100000,00
     //       10|           24|                                     40|       50|
+    
+    private String formataData(Date data){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        return sdf.format(data);
+    }
     
     private boolean comparaContas(Conta conta1, Conta conta2) {
         if (conta1.getBanco().equals(conta2.getBanco())) {
@@ -276,7 +284,7 @@ public class Controller {
         Date data = new Date();
         data = zeraHora(data);
         Evento ev = new Evento(id,this.contaLogada,null,valor,data);
-        this.eventoDAO.salvar(evento);
+        this.eventoDAO.salvar(ev);
         
     }
     
@@ -288,7 +296,7 @@ public class Controller {
         Date data = new Date();
         data = zeraHora(data);
         Evento ev = new Evento(id,this.contaLogada,null,valor,data);
-        this.eventoDAO.salvar(evento);
+        this.eventoDAO.salvar(ev);
     }
     
     private void salvaPagamento(double valor){
@@ -299,7 +307,7 @@ public class Controller {
         Date data = new Date();
         data = zeraHora(data);
         Evento ev = new Evento(id,this.contaLogada,this.contaDestinataria,valor,data);
-        this.eventoDAO.salvar(evento);
+        this.eventoDAO.salvar(ev);
     }
     
     private void salvaTransferencia(double valor){
@@ -310,10 +318,10 @@ public class Controller {
         Date data = new Date();
         data = zeraHora(data);
         Evento ev = new Evento(id,this.contaLogada,this.contaDestinataria,valor,data);
-        this.eventoDAO.salvar(evento);
+        this.eventoDAO.salvar(ev);
     }
 
-    private String geraRandom() {
+    public String geraRandom() {
             Random r = new Random();
             return String.format("%08d", r.nextInt(99999999));
        

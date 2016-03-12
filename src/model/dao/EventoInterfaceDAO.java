@@ -15,7 +15,7 @@ import model.Evento;
  */
 public interface EventoInterfaceDAO {
     
-    public List<Evento> buscaEventos(String banco, String agencia,String numConta);
+    public List<Evento> buscaEventos(Conta conta);
     
     
     public void salvar(Evento evento);

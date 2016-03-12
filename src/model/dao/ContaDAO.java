@@ -22,17 +22,31 @@ public class ContaDAO implements ContaInterfaceDAO{
     
     private Conta conta;
     
-    public Conta getConta(String banco, String agencia,String numConta){
+    public Conta buscaConta(String banco, String agencia,String numConta){
+//        Usuario usu = new Usuario("11111111111","Lucas");
+        conta=null;
         if(conta==null){
             Session session = HibernateUtil.getSessionFactory().openSession();
-            Query query = session.getNamedQuery("Usuario.buscaUsuario");
+            Query query = session.getNamedQuery("Conta.buscaConta");
             query.setParameter("banco", banco);
             query.setParameter("agencia", agencia);
             query.setParameter("numConta", numConta);
-            conta= (Conta) query.list().get(0);
+            if (query.list().size()>0){
+                conta= (Conta) query.list().get(0);
+            }
             session.close();
         }
         return conta;
+    }
+    
+        
+    public void salvar(Conta conta){
+        Session s = HibernateUtil.getSessionFactory().openSession();
+        Transaction trans = s.beginTransaction();
+        s.save(conta);
+        trans.commit();
+        s.close();
+       JOptionPane.showMessageDialog(null, "Salvo");
     }
     
     @Override
@@ -43,6 +57,5 @@ public class ContaDAO implements ContaInterfaceDAO{
         trans.commit();
         s.close();
     }
-    
 
 }

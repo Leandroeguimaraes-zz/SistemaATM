@@ -34,6 +34,7 @@ public class TelaExtrato extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
 
+        jPanel1.setFont(new java.awt.Font("Monospaced", 0, 11)); // NOI18N
         jPanel1.setLayout(null);
 
         labelExtrato.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -70,10 +71,12 @@ public class TelaExtrato extends javax.swing.JFrame {
         jPanel1.add(labeloExtratoTitulo);
         labeloExtratoTitulo.setBounds(320, 50, 270, 50);
 
+        jScrollPane1.setFont(new java.awt.Font("Monospaced", 0, 11)); // NOI18N
+
         campoExtrato.setColumns(20);
+        campoExtrato.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
         campoExtrato.setRows(5);
         campoExtrato.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        campoExtrato.setFocusable(false);
         campoExtrato.setRequestFocusEnabled(false);
         jScrollPane1.setViewportView(campoExtrato);
 
@@ -108,9 +111,10 @@ public class TelaExtrato extends javax.swing.JFrame {
         ArrayList<String> lista = this.control.getListaEventos();
         String quebraLinha = System.lineSeparator();
         for (int i = 0; i < lista.size(); i++) {
-            this.campoExtrato.setText(lista.get(i)+quebraLinha);
+            this.campoExtrato.setText(this.campoExtrato.getText() +lista.get(i)+quebraLinha);
             
         }
+ 
     }//GEN-LAST:event_btnImprimirActionPerformed
 
     public static void main(String args[]) {

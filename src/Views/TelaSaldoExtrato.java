@@ -108,13 +108,14 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
 
     private void btnMostarExtratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostarExtratoActionPerformed
         this.setVisible(false);
-        new TelaBemVindoMenu(control).setVisible(true);
-        dispose();
+        new TelaExtrato(control).setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnMostarExtratoActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        this.setVisible(false);
-        new TelaExtrato(control).setVisible(true);
+        
+        new TelaBemVindoMenu(control).setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**

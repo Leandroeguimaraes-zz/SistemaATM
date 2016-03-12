@@ -26,29 +26,23 @@ import org.hibernate.annotations.CascadeType;
  */
 
 @Entity
-@Table(name = "Usuario")
+@Table(name = "USUARIO")
 @SequenceGenerator(name = "USUARIO_SEQUENCE", sequenceName = "USUARIO_SEQUENCE", allocationSize = 1, initialValue = 0)
 public class Usuario implements java.io.Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USUARIO_SEQUENCE")
-
-    private int idUsuario;
-
-    @Column(name = "cpf")
+    @Column(name = "CPF")
     private String cpf;
 
-    @Column(name = "nome")
+    @Column(name = "NOME")
     private String nome;
+
+//    public Usuario(String cpf, String nome) {
+//        this.cpf = cpf;
+//        this.nome = nome;
+//    }
     
-
-    public int getIdUsuario() {
-        return idUsuario;
-    }
-
-    public void setIdUsuario(int idUsuario) {
-        this.idUsuario = idUsuario;
-    }
+ 
 
     public String getCpf() {
         return cpf;

@@ -28,8 +28,8 @@ import org.hibernate.annotations.CascadeType;
  * @author Leandro
  */
 @NamedQuery(name = "Boleto.buscaBoleto",
-            query = "select boleto from Boleto as boleto "
-            + "where boleto.codigo=:codigo")
+            query = "from Boleto as bol "
+            + "where bol.codigo=:codigo")
 
 
 @Entity
@@ -38,35 +38,21 @@ import org.hibernate.annotations.CascadeType;
 
 public class Boleto implements java.io.Serializable{
     
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator="BOLETO_SEQUENCE")
-    
-    private int idBoleto;
-    
-    @Column (name="Codigo")
+    @Id    
+    @Column (name="CODIGO")
     private String codigo;
     
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idconta", nullable = true)
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "CONTADESTINO", nullable = true)
     @Cascade(CascadeType.SAVE_UPDATE)
     private Conta conta;
     
-    @Column(name="Valor")
+    @Column(name="VALOR")
     private double valor;
     
-    @Column(name="DataVencimento")
+    @Column(name="DATAVENCIMENTO")
     @Temporal(value=TemporalType.DATE)
-    private Date dataVencimento;
-
-    public int getIdBoleto() {
-        return idBoleto;
-    }
-
-    public void setIdBoleto(int idBoleto) {
-        this.idBoleto = idBoleto;
-    }
-
-   
+    private Date dataVencimento;  
 
     public String getCodigo() {
         return codigo;

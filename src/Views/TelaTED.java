@@ -193,8 +193,16 @@ public class TelaTED extends javax.swing.JFrame {
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         double valor = this.campoValor.getValue().doubleValue();
-        if (valor >1000 && valor < 30000) {
-            if (control.existeContaECpf(this.campoBanco.getText(), this.campoAgencia.getText(), this.campoConta.getText(), this.campoCPF.getText())) {
+        if (valor > 1000 && valor < 30000) {
+            int status = control.existeContaECpf(this.campoBanco.getText(), this.campoAgencia.getText(), this.campoConta.getText(), this.campoCPF.getText());
+            if (status == 2) {
+                JOptionPane.showMessageDialog(this, "Conta inexistente.");
+            }
+            if (status == 1) {
+                JOptionPane.showMessageDialog(this, "CPF nao corresponde.");
+            }
+            if (status == 0) {
+
                 TelaConfirmacao tela = new TelaConfirmacao(this, true, control);
                 tela.setVisible(true);
                 if (tela.confirma()) {
@@ -209,8 +217,6 @@ public class TelaTED extends javax.swing.JFrame {
                 } else {
                     JOptionPane.showMessageDialog(this, "Operação cancelada.");
                 }
-            } else {
-                JOptionPane.showMessageDialog(this, "Conta inexistente.");
             }
         } else {
             JOptionPane.showMessageDialog(this, "Valor ultrapassa limite de DOC.");
@@ -219,7 +225,7 @@ public class TelaTED extends javax.swing.JFrame {
 
     private void campoCPFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoCPFKeyTyped
         char ch = evt.getKeyChar();
-        if (!Character.isDigit(ch) || this.campoCPF.getText().length() >=11) {
+        if (!Character.isDigit(ch) || this.campoCPF.getText().length() >= 11) {
             evt.consume();
         }
     }//GEN-LAST:event_campoCPFKeyTyped

@@ -7,11 +7,12 @@
     <property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:XE</property>
     <property name="hibernate.connection.username">Leandro</property>
     <property name="hibernate.connection.password">leandro</property>
-    <property name="hibernate.hbm2ddl.auto">update</property>
     <mapping class="model.Conta"/>
     <mapping class="model.dao.ContaDAO"/>
     <mapping class="model.dao.ContaInterfaceDAO"/>
     <mapping class="model.Usuario"/>
+    <mapping class="model.dao.EventoDAO"/>
+    <mapping class="model.dao.EventoInterfaceDAO"/>
     <mapping class="model.Evento"/>
     <mapping class="model.dao.EventoDAO"/>
     <mapping class="model.dao.EventoInterfaceDAO"/>

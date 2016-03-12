@@ -13,7 +13,7 @@ import model.Conta;
  */
 public interface ContaInterfaceDAO {
     
-    public Conta getConta(String banco, String agencia,String numConta);
+    public Conta buscaConta(String banco, String agencia,String numConta);
 
     public void atualiza(Conta conta);
 

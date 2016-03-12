@@ -162,31 +162,37 @@ public class TelaParaATM5 extends javax.swing.JFrame {
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         double valor = this.campoValor.getValue().doubleValue();
-            if (control.existeContaECpf("005", this.campoAgencia.getText(), this.campoConta.getText(), this.campoCPF.getText())) {
-                TelaConfirmacao tela = new TelaConfirmacao(this, true, control);
-                tela.setVisible(true);
-                if (tela.confirma()) {
-                    if (this.control.efetuaTransferencia(valor)) {
-                        JOptionPane.showMessageDialog(this, "Transferencia realizada com sucesso.");
-                        this.setVisible(false);
-                        new TelaBemVindoMenu(this.control).setVisible(true);
-                        dispose();
-                    } else {
-                        JOptionPane.showMessageDialog(this, "Saldo insuficiente.");
-                    }
+        int status = control.existeContaECpf("005", this.campoAgencia.getText(), this.campoConta.getText(), this.campoCPF.getText());
+        if (status == 2) {
+            JOptionPane.showMessageDialog(this, "Conta inexistente.");
+        }
+        if (status == 1) {
+            JOptionPane.showMessageDialog(this, "CPF nao corresponde.");
+        }
+        if (status == 0) {
+
+            TelaConfirmacao tela = new TelaConfirmacao(this, true, control);
+            tela.setVisible(true);
+            if (tela.confirma()) {
+                if (this.control.efetuaTransferencia(valor)) {
+                    JOptionPane.showMessageDialog(this, "Transferencia realizada com sucesso.");
+                    this.setVisible(false);
+                    new TelaBemVindoMenu(this.control).setVisible(true);
+                    dispose();
                 } else {
-                    JOptionPane.showMessageDialog(this, "Operação cancelada.");
+                    JOptionPane.showMessageDialog(this, "Saldo insuficiente.");
                 }
             } else {
-                JOptionPane.showMessageDialog(this, "Conta inexistente.");
+                JOptionPane.showMessageDialog(this, "Operação cancelada.");
             }
-        
+        }
+
 
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void campoCPFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoCPFKeyTyped
         char ch = evt.getKeyChar();
-        if (!Character.isDigit(ch) || this.campoCPF.getText().length() >=11) {
+        if (!Character.isDigit(ch) || this.campoCPF.getText().length() >= 11) {
             evt.consume();
         }
     }//GEN-LAST:event_campoCPFKeyTyped

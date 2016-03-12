@@ -129,7 +129,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
 
-        if (control.existeConta(campoAgencia.getText(), campoConta.getText()) && campoAgencia.getText().length()== 4 && campoConta.getText().length() == 6) {
+        if (control.existeContaLogin("005",campoAgencia.getText(), campoConta.getText()) && campoAgencia.getText().length()== 4 && campoConta.getText().length() == 6) {
             TelaConfirmacao tela = new TelaConfirmacao(this, true, control);
             tela.setVisible(true);
             if (tela.confirma()) {
