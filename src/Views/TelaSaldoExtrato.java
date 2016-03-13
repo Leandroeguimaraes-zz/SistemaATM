@@ -26,7 +26,7 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
         initComponents();
         this.control=control;
         this.labelSaldoUsuario.setText("R$ "+String.valueOf(this.control.getSaldo()));
-        ArrayList<String> lista = this.control.getListaEventos();
+        ArrayList<String> lista = this.control.getListaEventos(30);
         String quebraLinha = System.lineSeparator();
         for (int i = 0; i < lista.size(); i++) {
             this.campoExtrato.setText(this.campoExtrato.getText() +lista.get(i)+quebraLinha);
@@ -43,6 +43,7 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        grupoTempo = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         labelSaldo = new javax.swing.JLabel();
         labelSaldoUsuario = new javax.swing.JLabel();
@@ -51,6 +52,10 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         campoExtrato = new javax.swing.JTextArea();
         labelExtrato = new javax.swing.JLabel();
+        radio30 = new javax.swing.JRadioButton();
+        radio60 = new javax.swing.JRadioButton();
+        radio90 = new javax.swing.JRadioButton();
+        radioTudo = new javax.swing.JRadioButton();
         labelFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -109,7 +114,52 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
         labelExtrato.setForeground(new java.awt.Color(0, 51, 102));
         labelExtrato.setText("Extrato:");
         jPanel1.add(labelExtrato);
-        labelExtrato.setBounds(50, 240, 100, 29);
+        labelExtrato.setBounds(50, 240, 100, 30);
+
+        radio30.setBackground(new java.awt.Color(255, 255, 255));
+        grupoTempo.add(radio30);
+        radio30.setSelected(true);
+        radio30.setText("30 dias");
+        radio30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radio30ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(radio30);
+        radio30.setBounds(150, 240, 100, 30);
+
+        radio60.setBackground(new java.awt.Color(255, 255, 255));
+        grupoTempo.add(radio60);
+        radio60.setText("60 dias");
+        radio60.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radio60ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(radio60);
+        radio60.setBounds(250, 240, 100, 30);
+
+        radio90.setBackground(new java.awt.Color(255, 255, 255));
+        grupoTempo.add(radio90);
+        radio90.setText("90 dias");
+        radio90.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radio90ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(radio90);
+        radio90.setBounds(350, 240, 100, 30);
+
+        radioTudo.setBackground(new java.awt.Color(255, 255, 255));
+        grupoTempo.add(radioTudo);
+        radioTudo.setText("Tudo");
+        radioTudo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioTudoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(radioTudo);
+        radioTudo.setBounds(450, 240, 100, 30);
 
         labelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/FUNDO.png"))); // NOI18N
         jPanel1.add(labelFundo);
@@ -127,6 +177,54 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
         new TelaBemVindoMenu(control).setVisible(true);
         dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void radio30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radio30ActionPerformed
+        this.campoExtrato.setText("");
+        radio30.setSelected(true);
+        this.labelSaldoUsuario.setText("R$ "+String.valueOf(this.control.getSaldo()));
+        ArrayList<String> lista = this.control.getListaEventos(30);
+        String quebraLinha = System.lineSeparator();
+        for (int i = 0; i < lista.size(); i++) {
+            this.campoExtrato.setText(this.campoExtrato.getText() +lista.get(i)+quebraLinha);
+            
+        }
+    }//GEN-LAST:event_radio30ActionPerformed
+
+    private void radio60ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radio60ActionPerformed
+        this.campoExtrato.setText("");
+        radio60.setSelected(true);
+        this.labelSaldoUsuario.setText("R$ "+String.valueOf(this.control.getSaldo()));
+        ArrayList<String> lista = this.control.getListaEventos(60);
+        String quebraLinha = System.lineSeparator();
+        for (int i = 0; i < lista.size(); i++) {
+            this.campoExtrato.setText(this.campoExtrato.getText() +lista.get(i)+quebraLinha);
+            
+        }
+    }//GEN-LAST:event_radio60ActionPerformed
+
+    private void radio90ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radio90ActionPerformed
+        this.campoExtrato.setText("");
+        radio90.setSelected(true);
+        this.labelSaldoUsuario.setText("R$ "+String.valueOf(this.control.getSaldo()));
+        ArrayList<String> lista = this.control.getListaEventos(90);
+        String quebraLinha = System.lineSeparator();
+        for (int i = 0; i < lista.size(); i++) {
+            this.campoExtrato.setText(this.campoExtrato.getText() +lista.get(i)+quebraLinha);
+            
+        }
+    }//GEN-LAST:event_radio90ActionPerformed
+
+    private void radioTudoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioTudoActionPerformed
+        this.campoExtrato.setText("");
+        radioTudo.setSelected(true);
+        this.labelSaldoUsuario.setText("R$ "+String.valueOf(this.control.getSaldo()));
+        ArrayList<String> lista = this.control.getListaEventos(0);
+        String quebraLinha = System.lineSeparator();
+        for (int i = 0; i < lista.size(); i++) {
+            this.campoExtrato.setText(this.campoExtrato.getText() +lista.get(i)+quebraLinha);
+            
+        }
+    }//GEN-LAST:event_radioTudoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,6 +264,7 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnVoltar;
     private javax.swing.JTextArea campoExtrato;
+    private javax.swing.ButtonGroup grupoTempo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelExtrato;
@@ -173,5 +272,9 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
     private javax.swing.JLabel labelSaldo;
     private javax.swing.JLabel labelSaldoTitulo;
     private javax.swing.JLabel labelSaldoUsuario;
+    private javax.swing.JRadioButton radio30;
+    private javax.swing.JRadioButton radio60;
+    private javax.swing.JRadioButton radio90;
+    private javax.swing.JRadioButton radioTudo;
     // End of variables declaration//GEN-END:variables
 }
