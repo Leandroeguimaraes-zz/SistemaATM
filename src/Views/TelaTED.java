@@ -191,8 +191,9 @@ public class TelaTED extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-            double valor = this.campoValor.getValue().doubleValue();    
-            int status = control.existeContaECpf(this.campoBanco.getText(), this.campoAgencia.getText(), this.campoConta.getText(), this.campoCPF.getText());
+        double valor = this.campoValor.getValue().doubleValue();
+        int status = control.existeContaECpf(this.campoBanco.getText(), this.campoAgencia.getText(), this.campoConta.getText(), this.campoCPF.getText());
+        if (!this.campoBanco.getText().equals("005")) {
             if (status == 2) {
                 JOptionPane.showMessageDialog(this, "Conta inexistente.");
             }
@@ -216,7 +217,9 @@ public class TelaTED extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Operação cancelada.");
                 }
             }
-        
+        } else {
+            JOptionPane.showMessageDialog(this, "Nao é possivel realizar transferencia TED para uma conta ATM5.");
+        }
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void campoCPFKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoCPFKeyTyped

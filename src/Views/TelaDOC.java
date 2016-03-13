@@ -175,29 +175,33 @@ public class TelaDOC extends javax.swing.JFrame {
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         double valor = campoValor.getValue().doubleValue();
         if (valor < 5000) {
-            int status = control.existeContaECpf(this.campoBanco.getText(), this.campoAgencia.getText(), this.campoConta.getText(), this.campoCPF.getText());
-            if (status == 2) {
-                JOptionPane.showMessageDialog(this, "Conta inexistente.");
-            }
-            if (status == 1) {
-                JOptionPane.showMessageDialog(this, "CPF nao corresponde.");
-            }
-            if (status == 0) {
-
-                TelaConfirmacao tela = new TelaConfirmacao(this, true, control);
-                tela.setVisible(true);
-                if (tela.confirma()) {
-                    if (this.control.efetuaTransferencia(valor)) {
-                        JOptionPane.showMessageDialog(this, "Transferencia realizada com sucesso.");
-                        this.setVisible(false);
-                        new TelaBemVindoMenu(this.control).setVisible(true);
-                        dispose();
-                    } else {
-                        JOptionPane.showMessageDialog(this, "Saldo insuficiente.");
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(this, "Operação cancelada.");
+            if (!this.campoBanco.getText().equals("005")) {
+                int status = control.existeContaECpf(this.campoBanco.getText(), this.campoAgencia.getText(), this.campoConta.getText(), this.campoCPF.getText());
+                if (status == 2) {
+                    JOptionPane.showMessageDialog(this, "Conta inexistente.");
                 }
+                if (status == 1) {
+                    JOptionPane.showMessageDialog(this, "CPF nao corresponde.");
+                }
+                if (status == 0) {
+
+                    TelaConfirmacao tela = new TelaConfirmacao(this, true, control);
+                    tela.setVisible(true);
+                    if (tela.confirma()) {
+                        if (this.control.efetuaTransferencia(valor)) {
+                            JOptionPane.showMessageDialog(this, "Transferencia realizada com sucesso.");
+                            this.setVisible(false);
+                            new TelaBemVindoMenu(this.control).setVisible(true);
+                            dispose();
+                        } else {
+                            JOptionPane.showMessageDialog(this, "Saldo insuficiente.");
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Operação cancelada.");
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Nao é possivel realizar transferencia TED para uma conta ATM5.");
             }
         } else {
             JOptionPane.showMessageDialog(this, "Valor ultrapassa limite de DOC.");

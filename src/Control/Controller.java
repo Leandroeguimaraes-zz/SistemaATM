@@ -124,16 +124,20 @@ public class Controller {
     // Transferencias_________________________________________________________________________________________
     //======================================================================================================
     public int existeContaECpf(String banco, String agencia, String cc, String cpf) {
-        Conta conta = this.contaDAO.buscaConta(banco, agencia, cc);
-        if (conta != null) {
-            if (conta.getUsuario().getCpf().equals(cpf)) {
-                this.contaDestinataria = conta;
-                return 0;
+        if (!this.contaLogada.getBanco().equals(banco) && !this.contaLogada.getAgencia().equals(agencia) && !this.contaLogada.getNumConta().equals(cc)) {
+            Conta conta = this.contaDAO.buscaConta(banco, agencia, cc);
+            if (conta != null) {
+                if (conta.getUsuario().getCpf().equals(cpf)) {
+                    this.contaDestinataria = conta;
+                    return 0;
+                } else {
+                    return 1;
+                }
             } else {
-                return 1;
+                return 2;
             }
         }
-        return 2;
+        return 3;
     }
 
     public boolean efetuaTransferencia(double valor) {
@@ -330,7 +334,7 @@ public class Controller {
         Date dataHoje = new Date(System.currentTimeMillis());
         Calendar cal = Calendar.getInstance();
         cal.setTime(dataHoje);
-        cal.add(Calendar.DATE, - dias);
+        cal.add(Calendar.DATE, -dias);
         return cal.getTime();
     }
 

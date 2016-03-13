@@ -169,6 +169,9 @@ public class TelaParaATM5 extends javax.swing.JFrame {
         if (status == 1) {
             JOptionPane.showMessageDialog(this, "CPF nao corresponde.");
         }
+        if (status == 3){
+            JOptionPane.showMessageDialog(this, "Nao é possivel transferir para propria conta.");
+        }
         if (status == 0) {
 
             TelaConfirmacao tela = new TelaConfirmacao(this, true, control);
