@@ -183,7 +183,8 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
     private void radio30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radio30ActionPerformed
         this.campoExtrato.setText("");
         radio30.setSelected(true);
-        this.labelSaldoUsuario.setText("R$ "+String.valueOf(this.control.getSaldo()));
+        DecimalFormat df = new DecimalFormat("###,##0.00");
+        this.labelSaldoUsuario.setText("R$ "+String.valueOf(df.format(this.control.getSaldo())));
         ArrayList<String> lista = this.control.getListaEventos(30);
         String quebraLinha = System.lineSeparator();
         for (int i = 0; i < lista.size(); i++) {
@@ -195,7 +196,8 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
     private void radio60ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radio60ActionPerformed
         this.campoExtrato.setText("");
         radio60.setSelected(true);
-        this.labelSaldoUsuario.setText("R$ "+String.valueOf(this.control.getSaldo()));
+        DecimalFormat df = new DecimalFormat("###,##0.00");
+        this.labelSaldoUsuario.setText("R$ "+String.valueOf(df.format(this.control.getSaldo())));
         ArrayList<String> lista = this.control.getListaEventos(60);
         String quebraLinha = System.lineSeparator();
         for (int i = 0; i < lista.size(); i++) {
@@ -207,7 +209,8 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
     private void radio90ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radio90ActionPerformed
         this.campoExtrato.setText("");
         radio90.setSelected(true);
-        this.labelSaldoUsuario.setText("R$ "+String.valueOf(this.control.getSaldo()));
+        DecimalFormat df = new DecimalFormat("###,##0.00");
+        this.labelSaldoUsuario.setText("R$ "+String.valueOf(df.format(this.control.getSaldo())));
         ArrayList<String> lista = this.control.getListaEventos(90);
         String quebraLinha = System.lineSeparator();
         for (int i = 0; i < lista.size(); i++) {
@@ -219,7 +222,8 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
     private void radioTudoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioTudoActionPerformed
         this.campoExtrato.setText("");
         radioTudo.setSelected(true);
-        this.labelSaldoUsuario.setText("R$ "+String.valueOf(this.control.getSaldo()));
+        DecimalFormat df = new DecimalFormat("###,##0.00");
+        this.labelSaldoUsuario.setText("R$ "+String.valueOf(df.format(this.control.getSaldo())));
         ArrayList<String> lista = this.control.getListaEventos(0);
         String quebraLinha = System.lineSeparator();
         for (int i = 0; i < lista.size(); i++) {
