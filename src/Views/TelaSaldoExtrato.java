@@ -6,6 +6,7 @@
 package Views;
 
 import Control.Controller;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
@@ -25,7 +26,8 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
     public TelaSaldoExtrato(Controller control) {
         initComponents();
         this.control=control;
-        this.labelSaldoUsuario.setText("R$ "+String.valueOf(this.control.getSaldo()));
+        DecimalFormat df = new DecimalFormat("###,##0.00");
+        this.labelSaldoUsuario.setText("R$ "+String.valueOf(df.format(this.control.getSaldo())));
         ArrayList<String> lista = this.control.getListaEventos(30);
         String quebraLinha = System.lineSeparator();
         for (int i = 0; i < lista.size(); i++) {
