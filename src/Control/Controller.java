@@ -90,6 +90,21 @@ public class Controller {
         return (int) ((cA.getTimeInMillis() - c.getTimeInMillis()) / (1000 * 60 * 60 * 24));
 
     }
+    
+    public int mesesEntre(Date dataAtual, Date data){
+        dataAtual = zeraHora(dataAtual);
+        data = zeraHora(data);
+        
+        Calendar endCalendar = Calendar.getInstance();
+        endCalendar.setTime(dataAtual);
+
+        Calendar startCalendar = Calendar.getInstance();
+        startCalendar.setTime(data); 
+
+        int diffYear = endCalendar.get(Calendar.YEAR) - startCalendar.get(Calendar.YEAR);
+        int diffMonth = diffYear * 12 + endCalendar.get(Calendar.MONTH) - startCalendar.get(Calendar.MONTH);
+        return diffMonth;
+    }
 
     // Validação Usuario_________________________________________________________________________________________
     //======================================================================================================
@@ -380,13 +395,16 @@ public class Controller {
 
         ArrayList<Evento> eventos = getDepositosPoupanca();
         double total = 0;
+        double temp =0;
 
         for (int i = 0; i < eventos.size(); i++) {
-            total = eventos.get(i).getValor();
-            int dias = diasEntre(new Date(), eventos.get(i).getData());
-            for (int j = 0; j < dias; j++) {
-                total = total * 1.06;
+            temp = eventos.get(i).getValor();
+            int meses = mesesEntre(new Date(), eventos.get(i).getData());
+            System.out.println(meses);
+            for (int j = 0; j < meses; j++) {
+                temp = temp * 1.06;
             }
+            total+=temp;
         }
         return total;
     }
