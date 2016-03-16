@@ -21,6 +21,7 @@ import Model.Evento;
 import DAO.BoletoDAO;
 import DAO.ContaDAO;
 import DAO.EventoDAO;
+import java.text.DecimalFormat;
 
 /**
  *
@@ -265,6 +266,11 @@ public class Controller {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         return sdf.format(data);
     }
+    
+    private String formataData2(Date data) {
+        SimpleDateFormat sdf = new SimpleDateFormat("MMdd");
+        return sdf.format(data);
+    }
 
     private boolean comparaContas(Conta conta1, Conta conta2) {
         if (conta1.getBanco().equals(conta2.getBanco())) {
@@ -336,6 +342,127 @@ public class Controller {
         cal.setTime(dataHoje);
         cal.add(Calendar.DATE, -dias);
         return cal.getTime();
+    }
+    
+    
+    // ENCONTRA TODOS OS DEPOSITOS FEITO NA POUPANCA
+    public ArrayList<String> depositosP() {
+        
+        ArrayList<String> listaFinal = new ArrayList<String>();
+        int indice = 0;
+        //listaFinal.add("");
+        List<Evento> listaEventos = this.eventoDAO.buscaEventos(this.contaLogada);
+        String string="";
+        Evento ev;
+        //Date data = calculaData(dias);
+        
+        boolean continua = true;
+        
+        for (int k = 0; k < listaEventos.size(); k++) {
+            int i = k-1;
+            while(continua){
+                i++;
+                if(i>=listaEventos.size()){
+                    continua = false;
+                }else{
+                ev = listaEventos.get(i);
+                    if (ev.getId().contains("DP")) {
+                        string = formataData2(ev.getData());
+                                //+ ev.getId() + "  "
+                                //+ "DEPOSITO";
+                        /*for (int j = 0; j < 32; j++) {
+                            string += " ";
+                        }*/
+                        string +=String.valueOf(ev.getValor());
+                        listaFinal.add(indice, string);
+                        indice++;
+                        
+                    }
+                }                
+            }
+        }
+        return listaFinal;
+    }
+    
+    // CALCULA OS RENDIMENTOS DE CADA DEPOSITO NA POUPANCA ATE O MOMENTO
+    public ArrayList<Double> calculoP(){
+        
+        
+        List<String> datas = depositosP();
+        int qtd = 0;
+        
+        ArrayList<Double> rendimentos = new ArrayList<Double>();
+        rendimentos.add(0, 0.0);
+        int indice = 0;
+        int total=0;
+        
+        Date dataHoje = new Date(System.currentTimeMillis());
+        int mes = dataHoje.getMonth();
+        int ano = dataHoje.getYear();
+        
+        for (int i = 0 ; i<datas.size();i++){
+            //System.out.println(datas.get(i));
+            int mesA = Integer.parseInt(datas.get(i).substring(0, 2));
+            int diaA = Integer.parseInt(datas.get(i).substring(2, 4));  
+            int mesB = Integer.parseInt(formataData2(dataHoje).substring(0, 2));
+            // PARA TESTAR:
+            //mesB = 06;  
+            int diaB = Integer.parseInt(formataData2(dataHoje).substring(2, 4));  
+            
+            double n = Double.parseDouble(datas.get(i).substring(4));
+            System.out.println("VALORE DEPOSITADO NO DIA "+diaA+"/"+mesA+"/2016: R$"+n);
+            //System.out.println(n);
+            total +=n;
+            
+            if(mesB-mesA >0){
+                qtd = mesB-mesA-1;
+                if(diaB>diaA){
+                    qtd++;                   
+                }
+                n = calculaJuros(n,qtd);
+                
+                rendimentos.add(indice, n);
+                indice++;
+            }
+            
+        }
+        System.out.println("TOTAL DEPOSITADO NA POUPANCA: R$"+total);
+        return rendimentos;
+    }
+    
+    // RETORNA VALORES DO RENDIMENTO DE CADA DEPOSITO ATE O MOMENTO
+    public void mostrarP(){
+        
+        List<Double> v = calculoP();
+        DecimalFormat df = new DecimalFormat("###,##0.00");
+        
+        for(int i = 0;i<v.size();i++)
+            System.out.println(df.format(v.get(i)));
+        
+    }
+    
+    public void totalP(){
+        List<Double> v = calculoP();
+        DecimalFormat df = new DecimalFormat("###,##0.00");
+        double total = 0;
+        
+        for(int i = 0;i<v.size();i++){            
+            total += v.get(i);   
+        }
+        
+        System.out.println("TOTAL POUPADO COM OS JUROS ATE O MOMENTO: R$"+ df.format(total));
+        //System.out.println(df.format(total));
+    }
+
+    // CALCULA JUROS DA POUPANCA
+    private double calculaJuros(double n, int qtd) {
+        
+        double a  = n;
+        for(int i = 0;i<qtd;i++){
+            a = a*1.06;
+        }
+        return a;
+    
     }
 
 }

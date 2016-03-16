@@ -191,6 +191,8 @@ public class TelaSaldoExtrato extends javax.swing.JFrame {
             this.campoExtrato.setText(this.campoExtrato.getText() +lista.get(i)+quebraLinha);
             
         }
+        // TESTE POUPANCA
+        control.totalP();
     }//GEN-LAST:event_radio30ActionPerformed
 
     private void radio60ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radio60ActionPerformed
