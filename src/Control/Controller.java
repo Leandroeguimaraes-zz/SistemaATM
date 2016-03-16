@@ -111,6 +111,10 @@ public class Controller {
         salvaDeposito(valor);
     }
 
+    public void efetuaDepositoPoupanca(double valor) {
+        salvaDepositoPoupanca(valor);
+    }
+
     public boolean efetuaSaque(double valor) {
         if (this.contaLogada.getSaldo() >= valor) {
             this.contaLogada.setSaldo(this.contaLogada.getSaldo() - valor);
@@ -266,7 +270,7 @@ public class Controller {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         return sdf.format(data);
     }
-    
+
     private String formataData2(Date data) {
         SimpleDateFormat sdf = new SimpleDateFormat("MMdd");
         return sdf.format(data);
@@ -301,6 +305,17 @@ public class Controller {
         String id = "DE" + geraRandom();
         while (this.eventoDAO.buscaEvento(id) != null) {
             id = "DE" + geraRandom();
+        }
+        Date data = new Date();
+        data = zeraHora(data);
+        Evento ev = new Evento(id, this.contaLogada, null, valor, data);
+        this.eventoDAO.salvar(ev);
+    }
+
+    private void salvaDepositoPoupanca(double valor) {
+        String id = "DP" + geraRandom();
+        while (this.eventoDAO.buscaEvento(id) != null) {
+            id = "DP" + geraRandom();
         }
         Date data = new Date();
         data = zeraHora(data);
@@ -343,126 +358,71 @@ public class Controller {
         cal.add(Calendar.DATE, -dias);
         return cal.getTime();
     }
-    
-    
+
     // ENCONTRA TODOS OS DEPOSITOS FEITO NA POUPANCA
-    public ArrayList<String> depositosP() {
-        
-        ArrayList<String> listaFinal = new ArrayList<String>();
-        int indice = 0;
-        //listaFinal.add("");
+    private ArrayList<Evento> getDepositosPoupanca() {
+
+        ArrayList<Evento> listaFinal = new ArrayList<Evento>();
         List<Evento> listaEventos = this.eventoDAO.buscaEventos(this.contaLogada);
-        String string="";
         Evento ev;
-        //Date data = calculaData(dias);
-        
-        boolean continua = true;
-        
+
         for (int k = 0; k < listaEventos.size(); k++) {
-            int i = k-1;
-            while(continua){
-                i++;
-                if(i>=listaEventos.size()){
-                    continua = false;
-                }else{
-                ev = listaEventos.get(i);
-                    if (ev.getId().contains("DP")) {
-                        string = formataData2(ev.getData());
-                                //+ ev.getId() + "  "
-                                //+ "DEPOSITO";
-                        /*for (int j = 0; j < 32; j++) {
-                            string += " ";
-                        }*/
-                        string +=String.valueOf(ev.getValor());
-                        listaFinal.add(indice, string);
-                        indice++;
-                        
-                    }
-                }                
+            ev = listaEventos.get(k);
+            if (ev.getId().contains("DP")) {
+                listaFinal.add(ev);
             }
         }
         return listaFinal;
     }
-    
+
     // CALCULA OS RENDIMENTOS DE CADA DEPOSITO NA POUPANCA ATE O MOMENTO
-    public ArrayList<Double> calculoP(){
-        
-        
-        List<String> datas = depositosP();
-        int qtd = 0;
-        
-        ArrayList<Double> rendimentos = new ArrayList<Double>();
-        rendimentos.add(0, 0.0);
-        int indice = 0;
-        int total=0;
-        
-        Date dataHoje = new Date(System.currentTimeMillis());
-        int mes = dataHoje.getMonth();
-        int ano = dataHoje.getYear();
-        
-        for (int i = 0 ; i<datas.size();i++){
-            //System.out.println(datas.get(i));
-            int mesA = Integer.parseInt(datas.get(i).substring(0, 2));
-            int diaA = Integer.parseInt(datas.get(i).substring(2, 4));  
-            int mesB = Integer.parseInt(formataData2(dataHoje).substring(0, 2));
-            // PARA TESTAR:
-            //mesB = 06;  
-            int diaB = Integer.parseInt(formataData2(dataHoje).substring(2, 4));  
-            
-            double n = Double.parseDouble(datas.get(i).substring(4));
-            System.out.println("VALORE DEPOSITADO NO DIA "+diaA+"/"+mesA+"/2016: R$"+n);
-            //System.out.println(n);
-            total +=n;
-            
-            if(mesB-mesA >0){
-                qtd = mesB-mesA-1;
-                if(diaB>diaA){
-                    qtd++;                   
-                }
-                n = calculaJuros(n,qtd);
-                
-                rendimentos.add(indice, n);
-                indice++;
-            }
-            
-        }
-        System.out.println("TOTAL DEPOSITADO NA POUPANCA: R$"+total);
-        return rendimentos;
-    }
-    
-    // RETORNA VALORES DO RENDIMENTO DE CADA DEPOSITO ATE O MOMENTO
-    public void mostrarP(){
-        
-        List<Double> v = calculoP();
-        DecimalFormat df = new DecimalFormat("###,##0.00");
-        
-        for(int i = 0;i<v.size();i++)
-            System.out.println(df.format(v.get(i)));
-        
-    }
-    
-    public void totalP(){
-        List<Double> v = calculoP();
-        DecimalFormat df = new DecimalFormat("###,##0.00");
+    public Double calculoRendimentoPoupanca() {
+
+        ArrayList<Evento> eventos = getDepositosPoupanca();
         double total = 0;
-        
-        for(int i = 0;i<v.size();i++){            
-            total += v.get(i);   
+
+        for (int i = 0; i < eventos.size(); i++) {
+            total = eventos.get(i).getValor();
+            int dias = diasEntre(new Date(), eventos.get(i).getData());
+            for (int j = 0; j < dias; j++) {
+                total = total * 1.06;
+            }
         }
-        
-        System.out.println("TOTAL POUPADO COM OS JUROS ATE O MOMENTO: R$"+ df.format(total));
-        //System.out.println(df.format(total));
+        return total;
     }
 
-    // CALCULA JUROS DA POUPANCA
-    private double calculaJuros(double n, int qtd) {
-        
-        double a  = n;
-        for(int i = 0;i<qtd;i++){
-            a = a*1.06;
+    public ArrayList<String> getListaEventosPoupanca(int dias) {
+        ArrayList<String> listaFinal = new ArrayList<String>();
+        List<Evento> listaEventos = this.eventoDAO.buscaEventos(this.contaLogada);
+        String string;
+        Evento ev;
+        Date data = calculaData(dias);
+        for (int i = 0; i < listaEventos.size(); i++) {
+            ev = listaEventos.get(i);
+            if (ev.getData().after(data) || dias == 0) {
+                if (ev.getId().contains("SP")) {
+                    string = formataData(ev.getData()) + "  "
+                            + ev.getId() + "  "
+                            + "SAQUE";
+                    for (int j = 0; j < 35; j++) {
+                        string += " ";
+                    }
+                    string += "-" + String.valueOf(ev.getValor());
+                    listaFinal.add(string);
+                }
+                if (ev.getId().contains("DP")) {
+                    string = formataData(ev.getData()) + "  "
+                            + ev.getId() + "  "
+                            + "DEPOSITO";
+                    for (int j = 0; j < 32; j++) {
+                        string += " ";
+                    }
+                    string += "+" + String.valueOf(ev.getValor());
+                    listaFinal.add(string);
+                }
+            }
         }
-        return a;
-    
+        return listaFinal;
     }
 
 }

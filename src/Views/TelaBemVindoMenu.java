@@ -37,6 +37,7 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
         btnPagamentos = new javax.swing.JButton();
         btnSaques = new javax.swing.JButton();
         btnSaldoExtrato = new javax.swing.JButton();
+        btnPoupanca = new javax.swing.JButton();
         labelFundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -90,7 +91,7 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
             }
         });
         painelPrincipal.add(btnTransferencias);
-        btnTransferencias.setBounds(50, 325, 300, 50);
+        btnTransferencias.setBounds(50, 320, 300, 50);
 
         btnPagamentos.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnPagamentos.setForeground(new java.awt.Color(0, 51, 102));
@@ -124,6 +125,17 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
         });
         painelPrincipal.add(btnSaldoExtrato);
         btnSaldoExtrato.setBounds(50, 175, 300, 50);
+
+        btnPoupanca.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btnPoupanca.setForeground(new java.awt.Color(0, 51, 102));
+        btnPoupanca.setText("Poupança");
+        btnPoupanca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPoupancaActionPerformed(evt);
+            }
+        });
+        painelPrincipal.add(btnPoupanca);
+        btnPoupanca.setBounds(450, 320, 300, 50);
 
         labelFundo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/FUNDO.png"))); // NOI18N
         painelPrincipal.add(labelFundo);
@@ -179,6 +191,11 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
         new TelaTransferencia(control).setVisible(true);
     }//GEN-LAST:event_btnTransferenciasActionPerformed
 
+    private void btnPoupancaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPoupancaActionPerformed
+        this.setVisible(false);
+        new TelaPoupanca(control).setVisible(true);
+    }//GEN-LAST:event_btnPoupancaActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -216,6 +233,7 @@ public class TelaBemVindoMenu extends javax.swing.JFrame {
     private javax.swing.JButton btnDeposito;
     private javax.swing.JButton btnFim;
     private javax.swing.JButton btnPagamentos;
+    private javax.swing.JButton btnPoupanca;
     private javax.swing.JButton btnSaldoExtrato;
     private javax.swing.JButton btnSaques;
     private javax.swing.JButton btnTransferencias;
