@@ -400,7 +400,6 @@ public class Controller {
         for (int i = 0; i < eventos.size(); i++) {
             temp = eventos.get(i).getValor();
             int meses = mesesEntre(new Date(), eventos.get(i).getData());
-            System.out.println(meses);
             for (int j = 0; j < meses; j++) {
                 temp = temp * 1.06;
             }

@@ -105,21 +105,25 @@ public class TelaSaqueOutros extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        TelaConfirmacao tela = new TelaConfirmacao(this, true, control);
-        tela.setVisible(true);
-        if (tela.confirma()) {
-            if (control.efetuaSaque(this.campoValor.getValue().doubleValue())) {
-                JOptionPane.showMessageDialog(this, "Saque realizado com sucesso");
-                this.setVisible(false);
-                new TelaBemVindoMenu(control).setVisible(true);
-                dispose();
+
+        if (this.campoValor.getValue().doubleValue() > 0) {
+            TelaConfirmacao tela = new TelaConfirmacao(this, true, control);
+            tela.setVisible(true);
+            if (tela.confirma()) {
+                if (control.efetuaSaque(this.campoValor.getValue().doubleValue())) {
+                    JOptionPane.showMessageDialog(this, "Saque realizado com sucesso");
+                    this.setVisible(false);
+                    new TelaBemVindoMenu(control).setVisible(true);
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Saldo insuficiente.");
+                }
             } else {
-                JOptionPane.showMessageDialog(this, "Saldo insuficiente.");
+                JOptionPane.showMessageDialog(this, "Operação cancelada.");
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Operação cancelada.");
+            JOptionPane.showMessageDialog(this, "Impossivel realizar um saque no valor de R$0.");
         }
-   
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     public static void main(String args[]) {

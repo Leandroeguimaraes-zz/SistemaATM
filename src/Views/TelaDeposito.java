@@ -95,22 +95,25 @@ public class TelaDeposito extends javax.swing.JFrame {
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         double valor = this.campoValor.getValue().doubleValue();
-        if (valor < 5000) {
-            TelaConfirmacao tela = new TelaConfirmacao(this, true, control);
-            tela.setVisible(true);
-            if (tela.confirma()) {
-                control.efetuaDeposito(valor);
-                JOptionPane.showMessageDialog(this, "Deposito realizado com sucesso.");
-                this.setVisible(false);
-                new TelaBemVindoMenu(control).setVisible(true);
-                dispose();
+        if (valor > 0) {
+            if (valor < 5000) {
+                TelaConfirmacao tela = new TelaConfirmacao(this, true, control);
+                tela.setVisible(true);
+                if (tela.confirma()) {
+                    control.efetuaDeposito(valor);
+                    JOptionPane.showMessageDialog(this, "Deposito realizado com sucesso.");
+                    this.setVisible(false);
+                    new TelaBemVindoMenu(control).setVisible(true);
+                    dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Operação cancelada.");
+                }
             } else {
-                JOptionPane.showMessageDialog(this, "Operação cancelada.");
+                JOptionPane.showMessageDialog(this, "Valor ultrapassa limite de deposito díario.");
             }
         } else {
-            JOptionPane.showMessageDialog(this, "Valor ultrapassa limite de deposito díario.");
+            JOptionPane.showMessageDialog(this, "Impossivel realizar um saque no valor de R$0.");
         }
-
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
