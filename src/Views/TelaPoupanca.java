@@ -38,7 +38,6 @@ public class TelaPoupanca extends javax.swing.JFrame {
         labelSaldo = new javax.swing.JLabel();
         btnVoltar = new javax.swing.JButton();
         labelDeposito = new javax.swing.JLabel();
-        btnSacar = new javax.swing.JButton();
         btnDepositar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         campoExtrato = new javax.swing.JTextArea();
@@ -85,17 +84,6 @@ public class TelaPoupanca extends javax.swing.JFrame {
         jPanel1.add(labelDeposito);
         labelDeposito.setBounds(320, 50, 200, 50);
 
-        btnSacar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        btnSacar.setForeground(new java.awt.Color(0, 51, 102));
-        btnSacar.setText("Sacar");
-        btnSacar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSacarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnSacar);
-        btnSacar.setBounds(50, 500, 200, 50);
-
         btnDepositar.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btnDepositar.setForeground(new java.awt.Color(0, 51, 102));
         btnDepositar.setText("Depositar");
@@ -105,7 +93,7 @@ public class TelaPoupanca extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnDepositar);
-        btnDepositar.setBounds(300, 500, 200, 50);
+        btnDepositar.setBounds(50, 500, 200, 50);
 
         jScrollPane1.setFont(new java.awt.Font("Monospaced", 0, 11)); // NOI18N
 
@@ -191,14 +179,8 @@ public class TelaPoupanca extends javax.swing.JFrame {
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.setVisible(false);
-        this.dispose();
         new TelaBemVindoMenu(control).setVisible(true);
     }//GEN-LAST:event_btnVoltarActionPerformed
-
-    private void btnSacarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSacarActionPerformed
-        this.setVisible(false);
-        new TelaSaquePoupanca(control).setVisible(true);
-    }//GEN-LAST:event_btnSacarActionPerformed
 
     private void btnDepositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepositarActionPerformed
         this.setVisible(false);
@@ -287,7 +269,6 @@ public class TelaPoupanca extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDepositar;
-    private javax.swing.JButton btnSacar;
     private javax.swing.JButton btnVoltar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JTextArea campoExtrato;

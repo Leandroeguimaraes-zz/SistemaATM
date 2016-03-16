@@ -114,8 +114,8 @@ public class TelaDepositoPoupanca extends javax.swing.JFrame {
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         this.setVisible(false);
-        this.dispose();
-        new TelaDeposito(control).setVisible(true);
+        new TelaPoupanca(control).setVisible(true);
+        dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
